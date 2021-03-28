@@ -9,6 +9,7 @@ namespace TourFirmBusinessLogic.Interfaces
     public interface ITourStorage
     {
         List<TourViewModel> GetFullList();
+        List<TourViewModel> GetUserList(int UserID);
         List<TourViewModel> GetFilteredList(TourBindingModel model);
         TourViewModel GetElement(TourBindingModel model);
         void Insert(TourBindingModel model);

@@ -9,6 +9,7 @@ namespace TourFirmBusinessLogic.Interfaces
     public interface IGuideStorage
     {
         List<GuideViewModel> GetFullList();
+        List<GuideViewModel> GetUserList(int UserID);
         List<GuideViewModel> GetFilteredList(GuideBindingModel model);
         GuideViewModel GetElement(GuideBindingModel model);
         void Insert(GuideBindingModel model);

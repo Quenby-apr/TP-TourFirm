@@ -9,8 +9,10 @@ namespace TourFirmBusinessLogic.ViewModels
     {
         public int? ID { get; set; }
         [DisplayName("Название")] public string Name { get; set; }
-        [DisplayName("Продолжительность")] public decimal Duration { get; set; }
+        [DisplayName("Стоимость")] public decimal Price { get; set; }
+        [DisplayName("Продолжительность")] public int Duration { get; set; }
         public int PlaceID { get; set; }
         public int TouristID { get; set; }
+        public Dictionary<int, string> ExcursionGuides { get; set; }
     }
 }
