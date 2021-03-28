@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TourFirmBusinessLogic.BindingModels
+namespace TourFirmDatabaseImplement.Models
 {
-    public class GuideBindingModel
+    public class Guide
     {
-        public int? ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string PhoneNumber { get; set; }
@@ -15,7 +15,5 @@ namespace TourFirmBusinessLogic.BindingModels
         public string AdditionalLanguage { get; set; }
         public DateTime DateWork { get; set; }
         public int OperatorID { get; set; }
-        public DateTime? DateFrom { get; set; }
-        public DateTime? DateTo { get; set; }
     }
 }

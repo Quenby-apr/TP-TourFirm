@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TourFirmBusinessLogic.BindingModels
+namespace TourFirmDatabaseImplement.Models
 {
-    public class TourBindingModel
+    public class Tour
     {
-        public int? ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
         public decimal Price { get; set; }

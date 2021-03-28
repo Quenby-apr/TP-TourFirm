@@ -4,12 +4,12 @@ using System.Text;
 
 namespace TourFirmBusinessLogic.BindingModels
 {
-    public class HaltBindingModel
+    public class ExcursionBindingModel
     {
         public int? ID { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
-        public int OperatorID { get; set; }
-
+        public decimal Duration { get; set; }
+        public int PlaceID { get; set; }
+        public int TouristID { get; set; }
     }
 }
