@@ -47,7 +47,8 @@ namespace TourFirmDatabaseImplement.Implements
         {
             using (var context = new TourFirmDatabase())
             {
-                return context.Excursions.Include(rec => rec.ExcursionGuides)
+                return context.Excursions
+                    .Include(rec => rec.ExcursionGuides)
                     .ThenInclude(rec => rec.Guide).ToList().Select(rec => new ExcursionViewModel
                     {
                         ID = rec.ID,
