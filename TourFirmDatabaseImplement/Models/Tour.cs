@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace TourFirmDatabaseImplement.Models
 {
@@ -13,7 +11,13 @@ namespace TourFirmDatabaseImplement.Models
         public decimal Price { get; set; }
         public int OperatorID { get; set; }
         public int HaltID { get; set; }
-        [ForeignKey("TourID")] public virtual List<TourGuide> TourGuides { get; set; }
+
+        [ForeignKey("TourID")] 
+        public virtual List<TourGuide> TourGuides { get; set; }
+
+        [ForeignKey("TourID")]
+        public virtual List<TravelTour> TravelTours { get; set; }
+
         public virtual Operator Operator { get; set; }
         public virtual Halt Halt { get; set; }
     }

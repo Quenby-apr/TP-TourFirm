@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
@@ -10,10 +9,12 @@ namespace TourFirmBusinessLogic.BusinessLogic
     public class TourLogic
     {
         private readonly ITourStorage _tourStorage;
+
         public TourLogic(ITourStorage tourStorage)
         {
             _tourStorage = tourStorage;
         }
+
         public List<TourViewModel> Read(TourBindingModel model)
         {
             if (model == null)
@@ -26,6 +27,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             }
             return _tourStorage.GetFilteredList(model);
         }
+
         public void CreateOrUpdate(TourBindingModel model)
         {
             var element = _tourStorage.GetElement(new TourBindingModel
@@ -45,6 +47,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 _tourStorage.Insert(model);
             }
         }
+
         public void Delete(TourBindingModel model)
         {
             var element = _tourStorage.GetElement(new TourBindingModel { ID = model.ID });

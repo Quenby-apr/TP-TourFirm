@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace TourFirmDatabaseImplement.Models
 {
@@ -11,7 +9,7 @@ namespace TourFirmDatabaseImplement.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public int OperatorID { get; set; }
-        [ForeignKey("HaltId")] public virtual List<Tour> Tours { get; set; } = new List<Tour>();
+        [ForeignKey("HaltId")] public virtual List<Tour> Tours { get; set; }
         public virtual Operator Operator { get; set; }
     }
 }

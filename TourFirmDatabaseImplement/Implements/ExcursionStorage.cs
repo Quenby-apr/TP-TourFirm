@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
@@ -12,7 +11,6 @@ namespace TourFirmDatabaseImplement.Implements
 {
     public class ExcursionStorage : IExcursionStorage
     {
-
         public ExcursionViewModel GetElement(ExcursionBindingModel model)
         {
             if (model == null)

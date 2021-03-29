@@ -13,6 +13,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
         private readonly IGuideStorage _guideStorage;
         private readonly IExcursionStorage _excursionStorage;
         private readonly ITourStorage _tourStorage;
+
         public ReportLogic(IGuideStorage guideStorage, IExcursionStorage excursionStorage, ITourStorage tourStorage)
         {
             _guideStorage = guideStorage;

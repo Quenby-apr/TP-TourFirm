@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
@@ -10,10 +9,12 @@ namespace TourFirmBusinessLogic.BusinessLogic
     public class ExcursionLogic
     {
         private readonly IExcursionStorage _excursionStorage;
+
         public ExcursionLogic(IExcursionStorage excursionStorage)
         {
             _excursionStorage = excursionStorage;
         }
+
         public List<ExcursionViewModel> Read(ExcursionBindingModel model)
         {
             if (model == null)
@@ -26,6 +27,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             }
             return _excursionStorage.GetFilteredList(model);
         }
+
         public void CreateOrUpdate(ExcursionBindingModel model)
         {
             var element = _excursionStorage.GetElement(new ExcursionBindingModel
@@ -45,6 +47,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 _excursionStorage.Insert(model);
             }
         }
+
         public void Delete(ExcursionBindingModel model)
         {
             var element = _excursionStorage.GetElement(new ExcursionBindingModel { ID = model.ID });

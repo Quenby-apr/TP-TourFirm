@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
@@ -10,10 +9,12 @@ namespace TourFirmBusinessLogic.BusinessLogic
     public class GuideLogic
     {
         private readonly IGuideStorage _guideStorage;
+
         public GuideLogic(IGuideStorage guideStorage)
         {
             _guideStorage = guideStorage;
         }
+
         public List<GuideViewModel> Read(GuideBindingModel model)
         {
             if (model == null)
@@ -26,6 +27,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             }
             return _guideStorage.GetFilteredList(model);
         }
+
         public void CreateOrUpdate(GuideBindingModel model)
         {
             var element = _guideStorage.GetElement(new GuideBindingModel

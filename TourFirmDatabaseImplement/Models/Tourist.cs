@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TourFirmDatabaseImplement.Models
 {
@@ -13,5 +12,14 @@ namespace TourFirmDatabaseImplement.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string Mail { get; set; }
+
+        [ForeignKey("TouristID")] 
+        public virtual List<Travel> Travels { get; set; }
+
+        [ForeignKey("TouristID")]
+        public virtual List<Excursion> Excursions { get; set; }
+
+        [ForeignKey("TouristID")]
+        public virtual List<Place> Places { get; set; }
     }
 }

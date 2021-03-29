@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TourFirmBusinessLogic.BindingModels
+﻿namespace TourFirmBusinessLogic.BindingModels
 {
     public class OperatorBindingModel
     {
