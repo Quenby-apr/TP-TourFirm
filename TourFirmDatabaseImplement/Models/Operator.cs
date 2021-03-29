@@ -14,8 +14,8 @@ namespace TourFirmDatabaseImplement.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string Mail { get; set; }
-        [ForeignKey("OperatorId")] public virtual List<Guide> Guides { get; set; } = new List<Guide>();
-        [ForeignKey("OperatorId")] public virtual List<Halt> Halts { get; set; } = new List<Halt>();
-        [ForeignKey("OperatorId")] public virtual List<Tour> Tours { get; set; } = new List<Tour>();
+        [ForeignKey("OperatorId")] public virtual List<Guide> Guides { get; set; } 
+        [ForeignKey("OperatorId")] public virtual List<Halt> Halts { get; set; } 
+        [ForeignKey("OperatorId")] public virtual List<Tour> Tours { get; set; } 
     }
 }

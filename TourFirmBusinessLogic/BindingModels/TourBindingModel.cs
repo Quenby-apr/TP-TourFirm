@@ -12,6 +12,6 @@ namespace TourFirmBusinessLogic.BindingModels
         public decimal Price { get; set; }
         public int OperatorID { get; set; }
         public int HaltID { get; set; }
-        public Dictionary<int, (string, string)> TourGuides { get; set; }
+        public Dictionary<int,string> TourGuides { get; set; }
     }
 }
