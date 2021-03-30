@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TourFirmDatabaseImplement.Models;
 
 namespace TourFirmDatabaseImplement
@@ -16,6 +13,7 @@ namespace TourFirmDatabaseImplement
             }
             base.OnConfiguring(optionsBuilder);
         }
+
         public virtual DbSet<Guide> Guides { set; get; }
         public virtual DbSet<Halt> Halts { set; get; }
         public virtual DbSet<Tour> Tours { set; get; }
@@ -23,5 +21,10 @@ namespace TourFirmDatabaseImplement
         public virtual DbSet<Operator> Operators { set; get; }
         public virtual DbSet<ExcursionGuide> ExcursionGuides { set; get; }
         public virtual DbSet<TourGuide> TourGuides { set; get; }
+        public virtual DbSet<Travel> Travels { set; get; }
+        public virtual DbSet<Place> Places { set; get; }
+        public virtual DbSet<Tourist> Tourists { set; get; }
+        public virtual DbSet<TravelExcursion> TravelExcursions { set; get; }
+        public virtual DbSet<TravelTour> TravelTours { set; get; }
     }
 }
