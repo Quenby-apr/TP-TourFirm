@@ -25,7 +25,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public List<WorkViewModel> GetWorks(ReportBindingModel model)
+        /*public List<WorkViewModel> GetWorks(ReportBindingModel model)
         {
             var tours = _tourStorage.GetFullList();
             var excursions = _excursionStorage.GetFullList();
@@ -47,6 +47,6 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 TourName = 
             })
            .ToList();
-        }
+        }*/
     }
 }

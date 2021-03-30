@@ -168,5 +168,4 @@ namespace TourFirmDatabaseImplement.Implements
             return guide;
         }
     }
-    }
 }

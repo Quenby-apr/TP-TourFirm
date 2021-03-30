@@ -152,18 +152,94 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="WindowBindingExcursions.xaml.cs">
+      <DependentUpon>WindowBindingExcursions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowBindingTour.xaml.cs">
+      <DependentUpon>WindowBindingTour.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowEditGuide.xaml.cs">
+      <DependentUpon>WindowEditGuide.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowEditStop.xaml.cs">
+      <DependentUpon>WindowEditStop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowEditTour.xaml.cs">
+      <DependentUpon>WindowEditTour.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowGuides.xaml.cs">
+      <DependentUpon>WindowGuides.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowListExcursions.xaml.cs">
+      <DependentUpon>WindowListExcursions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowListStop.xaml.cs">
+      <DependentUpon>WindowListStop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowMain.xaml.cs">
+      <DependentUpon>WindowMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowSignIn.xaml.cs">
+      <DependentUpon>WindowSignIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowSignUp.xaml.cs">
+      <DependentUpon>WindowSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowTours.xaml.cs">
+      <DependentUpon>WindowTours.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="WindowBindingExcursions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowBindingTour.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowEditGuide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowEditStop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowEditTour.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowGuides.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowListExcursions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowListStop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowSignIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowTours.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -191,6 +267,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TourFirmBusinessLogic\TourFirmBusinessLogic.csproj">
+      <Project>{6258f18b-fa42-496e-bbb0-8f6a5db2ff83}</Project>
+      <Name>TourFirmBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TourFirmDatabaseImplement\TourFirmDatabaseImplement.csproj">
+      <Project>{adc140ad-1d06-4189-b44b-6cf4daaef837}</Project>
+      <Name>TourFirmDatabaseImplement</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TourFirmDatabaseImplement.Models
@@ -7,7 +8,7 @@ namespace TourFirmDatabaseImplement.Models
     public class Travel
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        [Required] public string Name { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public int TouristID { get; set; }

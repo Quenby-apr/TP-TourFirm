@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TourFirmView
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для WindowMain.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WindowMain : Window
     {
-        public MainWindow()
+        public WindowMain()
         {
             InitializeComponent();
         }

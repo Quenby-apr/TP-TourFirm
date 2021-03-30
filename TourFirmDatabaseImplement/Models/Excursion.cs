@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TourFirmDatabaseImplement.Models
@@ -6,9 +7,9 @@ namespace TourFirmDatabaseImplement.Models
     public class Excursion
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Duration { get; set; }
+        [Required]  public string Name { get; set; }
+        [Required]  public decimal Price { get; set; }
+        [Required]  public int Duration { get; set; }
         public int PlaceID { get; set; }
         public int TouristID { get; set; }
 
