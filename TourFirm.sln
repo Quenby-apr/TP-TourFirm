@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourFirmBusinessLogic", "To
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourFirmDatabaseImplement", "TourFirmDatabaseImplement\TourFirmDatabaseImplement.csproj", "{ADC140AD-1D06-4189-B44B-6CF4DAAEF837}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristTourFirmView", "TouristTourFirmView\TouristTourFirmView.csproj", "{833FD2DE-868D-4A35-80E7-479FB4B433A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{ADC140AD-1D06-4189-B44B-6CF4DAAEF837}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADC140AD-1D06-4189-B44B-6CF4DAAEF837}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADC140AD-1D06-4189-B44B-6CF4DAAEF837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833FD2DE-868D-4A35-80E7-479FB4B433A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833FD2DE-868D-4A35-80E7-479FB4B433A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833FD2DE-868D-4A35-80E7-479FB4B433A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833FD2DE-868D-4A35-80E7-479FB4B433A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
