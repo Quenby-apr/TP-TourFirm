@@ -366,13 +366,13 @@ namespace TourFirmDatabaseImplement.Migrations
 
             modelBuilder.Entity("TourFirmDatabaseImplement.Models.Excursion", b =>
                 {
-                    b.HasOne("TourFirmDatabaseImplement.Models.Place", null)
+                    b.HasOne("TourFirmDatabaseImplement.Models.Place", "Place")
                         .WithMany("Excursions")
                         .HasForeignKey("PlaceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TourFirmDatabaseImplement.Models.Tourist", null)
+                    b.HasOne("TourFirmDatabaseImplement.Models.Tourist", "Tourist")
                         .WithMany("Excursions")
                         .HasForeignKey("TouristID")
                         .OnDelete(DeleteBehavior.Cascade)

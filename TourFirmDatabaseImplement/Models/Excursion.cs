@@ -18,5 +18,7 @@ namespace TourFirmDatabaseImplement.Models
 
         [ForeignKey("ExcursionID")]
         public virtual List<TravelExcursion> TravelExcursions { get; set; }
+        public virtual Place Place { get; set; }
+        public virtual Tourist Tourist { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using TourFirmDatabaseImplement;
 namespace TourFirmDatabaseImplement.Migrations
 {
     [DbContext(typeof(TourFirmDatabase))]
-    [Migration("20210330101134_InitialDB")]
-    partial class InitialDB
+    [Migration("20210401095432_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -201,7 +201,7 @@ namespace TourFirmDatabaseImplement.Migrations
 
                     b.HasIndex("TouristID");
 
-                    b.ToTable("Place");
+                    b.ToTable("Places");
                 });
 
             modelBuilder.Entity("TourFirmDatabaseImplement.Models.Tour", b =>
@@ -292,7 +292,7 @@ namespace TourFirmDatabaseImplement.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Tourist");
+                    b.ToTable("Tourists");
                 });
 
             modelBuilder.Entity("TourFirmDatabaseImplement.Models.Travel", b =>
@@ -319,7 +319,7 @@ namespace TourFirmDatabaseImplement.Migrations
 
                     b.HasIndex("TouristID");
 
-                    b.ToTable("Travel");
+                    b.ToTable("Travels");
                 });
 
             modelBuilder.Entity("TourFirmDatabaseImplement.Models.TravelExcursion", b =>
@@ -341,7 +341,7 @@ namespace TourFirmDatabaseImplement.Migrations
 
                     b.HasIndex("TravelID");
 
-                    b.ToTable("TravelExcursion");
+                    b.ToTable("TravelExcursions");
                 });
 
             modelBuilder.Entity("TourFirmDatabaseImplement.Models.TravelTour", b =>
@@ -363,18 +363,18 @@ namespace TourFirmDatabaseImplement.Migrations
 
                     b.HasIndex("TravelID");
 
-                    b.ToTable("TravelTour");
+                    b.ToTable("TravelTours");
                 });
 
             modelBuilder.Entity("TourFirmDatabaseImplement.Models.Excursion", b =>
                 {
-                    b.HasOne("TourFirmDatabaseImplement.Models.Place", null)
+                    b.HasOne("TourFirmDatabaseImplement.Models.Place", "Place")
                         .WithMany("Excursions")
                         .HasForeignKey("PlaceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TourFirmDatabaseImplement.Models.Tourist", null)
+                    b.HasOne("TourFirmDatabaseImplement.Models.Tourist", "Tourist")
                         .WithMany("Excursions")
                         .HasForeignKey("TouristID")
                         .OnDelete(DeleteBehavior.Cascade)

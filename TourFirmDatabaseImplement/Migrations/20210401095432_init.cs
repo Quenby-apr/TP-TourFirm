@@ -2,7 +2,7 @@
 
 namespace TourFirmDatabaseImplement.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
