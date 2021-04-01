@@ -50,7 +50,9 @@ namespace TourFirmDatabaseImplement.Implements
             {
                 return context.Tours
                     .Include(rec => rec.TourGuides)
-                    .ThenInclude(rec => rec.Guide).ToList().Select(rec => new TourViewModel
+                    .ThenInclude(rec => rec.Guide)
+                    .ToList()
+                    .Select(rec => new TourViewModel
                     {
                         ID = rec.ID,
                         Name = rec.Name,

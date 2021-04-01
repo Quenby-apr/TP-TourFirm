@@ -83,11 +83,7 @@ namespace TouristTourFirmView
                 return;
             }
 
-            //TODO: перепроверить - не уверена, что это будет работать,
-            //      продумать, как добавлять эти туры в словарь travelTours. где брать ключ?
-            var tour = ListBoxAvaliableTours.SelectedItem;
-            
-           // travelTours.Add(ListBoxAvaliableTours.SelectedItem)
+            //TODO: перепроверить - не уверена, что это будет работать
             ListBoxSelectedTours.Items.Add(ListBoxAvaliableTours.SelectedItem);
             ListBoxAvaliableTours.Items.Remove(ListBoxAvaliableTours.SelectedItem);
         }
@@ -127,8 +123,26 @@ namespace TouristTourFirmView
                 MessageBox.Show("Дата начала путешествия не может быть позднее даты окончания путешествия", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (ListBoxSelectedTours.Items.Count == 0)
+            {
+                MessageBox.Show("Выберите туры", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
-          
+            //Ищем в общем списке туров те, что были выбраны пользователем в соотв. ListBox и сохраняем их в словарь
+            var allTours = tourStorage.GetFullList();
+            Dictionary<int, string> selectedTours = new Dictionary<int, string>();
+            foreach (var tourFromAll in allTours)
+            {
+                foreach (var selectedTourItem in ListBoxSelectedTours.Items)
+                {
+                    if (selectedTourItem.ToString().Equals(tourFromAll.Name))
+                    {
+                        selectedTours.Add(tourFromAll.ID, tourFromAll.Name);
+                    }
+                }
+            }
+
             try
             {
                 travelLogic.CreateOrUpdate(new TravelBindingModel
@@ -139,7 +153,7 @@ namespace TouristTourFirmView
                     DateEnd = (DateTime)DatePickerEnd.SelectedDate,
                     TouristID = App.Tourist.ID,
                     //TODO: продумать. + что делать с travelExcursions?
-                  //  TravelTours = new Dictionary<int, string> 
+                    TravelTours = selectedTours
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;

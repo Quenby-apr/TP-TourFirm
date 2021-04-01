@@ -46,7 +46,7 @@ namespace TouristTourFirmView
             form.ShowDialog();
         }
 
-        private void WindowClose_Click(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             App.Tourist = null;
             var windowSignIn = Container.Resolve<WindowSignIn>();

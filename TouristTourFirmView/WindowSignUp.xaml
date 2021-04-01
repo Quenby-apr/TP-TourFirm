@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
+        Closing="Window_Closing"
         Title="Регистрация" Height="500" Width="490">
     <Window.Resources>
 
@@ -21,18 +22,18 @@
     <Grid Margin="0,0,0,0">
         <StackPanel Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="250px" Height="465.768" Width="450.96" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
             <Label Content="Логин"  Margin="0,0,0,0" Height="35"/>
-            <TextBox x:Name="LoginTextBox"/>
+            <TextBox x:Name="TextBoxLogin"/>
             <Label Content="Пароль" />
-            <TextBox x:Name="PasswordTextBox"/>
+            <TextBox x:Name="TextBoxPassword"/>
             <Label Content="Имя"/>
-            <TextBox x:Name="FirstNameTextBox"/>
+            <TextBox x:Name="TextBoxName"/>
             <Label Content="Фамилия" />
-            <TextBox x:Name="SecondNameTextBox"/>
+            <TextBox x:Name="TextBoxSurname"/>
             <Label Content="Номер телефона" />
-            <TextBox x:Name="PhoneTextBox"/>
+            <TextBox x:Name="TextBoxPhone"/>
             <Label Content="Почта" />
-            <TextBox x:Name="MailTextBox"/>
-            <Button Content="Зарегистрироваться" FontSize="20" FontFamily="Consolas" Background="#FF140F0B" Foreground="White" Margin="10 20 10 0"  Click="SignUp_Click" Height="42" />
+            <TextBox x:Name="TextBoxMail"/>
+            <Button Click="ButtonSignUp_Click" Content="Зарегистрироваться" FontSize="20" FontFamily="Consolas" Background="#FF140F0B" Foreground="White" Margin="10 20 10 0" Height="42" />
         </StackPanel>
     </Grid>
 </Window>
