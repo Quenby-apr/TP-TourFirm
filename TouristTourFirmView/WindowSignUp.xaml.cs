@@ -23,5 +23,12 @@ namespace TouristTourFirmView
         {
             InitializeComponent();
         }
+
+        private void SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            WindowSignIn window = new WindowSignIn();
+            window.Show();
+            this.Close();
+        }
     }
 }

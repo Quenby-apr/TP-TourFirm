@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
-        Title="Путешествия" Height="450" Width="800">
+        Loaded="WindowTravels_Load"
+        Title="Путешествия" Height="450" Width="800" ResizeMode="NoResize" >
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700"/>
-        <Button x:Name="ButtonCreate" Content="Создать" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonUpdate" Content="Изменить" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonDelete" Content="Удалить" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonRefresh" Content="Обновить" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="75"/>
-
+        <DataGrid x:Name="DataGridTravels" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700"/>
+        <Button x:Name="ButtonAdd" Content="Создать" Click="ButtonAdd_Click" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="ButtonUpdate" Content="Изменить" Click="ButtonUpdate_Click" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="ButtonDelete" Content="Удалить" Click="ButtonDelete_Click" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="ButtonRefresh" Content="Обновить" Click="ButtonRefresh_Click" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

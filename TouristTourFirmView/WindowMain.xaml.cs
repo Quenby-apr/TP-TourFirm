@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using Unity;
 
 namespace TouristTourFirmView
 {
@@ -19,9 +8,50 @@ namespace TouristTourFirmView
     /// </summary>
     public partial class WindowMain : Window
     {
+        [Dependency]
+        public IUnityContainer Container { get; set; }
+
         public WindowMain()
         {
             InitializeComponent();
+        }
+
+        private void MenuItemTravels_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowTravels>();
+            form.ShowDialog();
+        }
+
+        private void MenuItemExcursions_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowExcursions>();
+            form.ShowDialog();
+        }
+
+        private void MenuItemPlaces_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowPlaces>();
+            form.ShowDialog();
+        }
+
+        private void MenuItemGuidesList_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowGetTravelGuides>();
+            form.ShowDialog();
+        }
+
+        private void MenuItemReport_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowReportTravels>();
+            form.ShowDialog();
+        }
+
+        private void WindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            App.Tourist = null;
+            var windowSignIn = Container.Resolve<WindowSignIn>();
+            Close();
+            windowSignIn.ShowDialog();
         }
     }
 }
