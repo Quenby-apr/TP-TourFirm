@@ -10,8 +10,8 @@ using TourFirmDatabaseImplement;
 namespace TourFirmDatabaseImplement.Migrations
 {
     [DbContext(typeof(TourFirmDatabase))]
-    [Migration("20210401095432_init")]
-    partial class init
+    [Migration("20210401102232_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
