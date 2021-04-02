@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TourFirmBusinessLogic.BindingModels;
+using TourFirmBusinessLogic.BusinessLogic;
+using Unity;
 
 namespace TouristTourFirmView
 {
@@ -19,16 +12,83 @@ namespace TouristTourFirmView
     /// </summary>
     public partial class WindowSignUp : Window
     {
-        public WindowSignUp()
+        [Dependency]
+        public IUnityContainer Container { get; set; }
+
+        private readonly TouristLogic logic;
+
+        public WindowSignUp(TouristLogic logic)
         {
             InitializeComponent();
+            this.logic = logic;
         }
 
-        private void SignUp_Click(object sender, RoutedEventArgs e)
+        private void ButtonSignUp_Click(object sender, RoutedEventArgs e)
         {
-            WindowSignIn window = new WindowSignIn();
-            window.Show();
-            this.Close();
+            if (string.IsNullOrEmpty(TextBoxLogin.Text))
+            {
+                MessageBox.Show("Введите логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(TextBoxPassword.Text))
+            {
+                MessageBox.Show("Введите пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(TextBoxName.Text))
+            {
+                MessageBox.Show("Введите имя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(TextBoxSurname.Text))
+            {
+                MessageBox.Show("Введите фамилию", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(TextBoxPhone.Text))
+            {
+                MessageBox.Show("Введите номер телефона", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(TextBoxMail.Text))
+            {
+                MessageBox.Show("Введите почту", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (!Regex.IsMatch(TextBoxMail.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                MessageBox.Show("Почта введена некорректно", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //TODO: В TouristLogic надо предусмотреть проверку уникальности почты
+
+            try
+            {
+                logic.CreateOrUpdate(new TouristBindingModel
+                {
+                    Login = TextBoxLogin.Text,
+                    Password = TextBoxPassword.Text,
+                    Name = TextBoxName.Text,
+                    Surname = TextBoxSurname.Text,
+                    Mail = TextBoxSurname.Text,
+                    PhoneNumber = TextBoxPhone.Text
+
+                });
+                MessageBox.Show("Регистрация прошла успешно!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DialogResult = false;
+            Close();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace TourFirmBusinessLogic.ViewModels
 {
     public class ExcursionViewModel
     {
-        public int? ID { get; set; }
+        public int ID { get; set; }
         [DisplayName("Название")] public string Name { get; set; }
         [DisplayName("Стоимость")] public decimal Price { get; set; }
         [DisplayName("Продолжительность")] public int Duration { get; set; }

@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using TourFirmBusinessLogic.BusinessLogic;
+using TourFirmBusinessLogic.Interfaces;
+using Unity;
 
 namespace TouristTourFirmView
 {
@@ -19,22 +10,39 @@ namespace TouristTourFirmView
     /// </summary>
     public partial class WindowSignIn : Window
     {
-        public WindowSignIn()
+        [Dependency]
+        public IUnityContainer Container { get; set; }
+
+        private readonly TouristLogic logic;
+        private readonly ITouristStorage touristStorage;
+        public WindowSignIn(TouristLogic logic, ITouristStorage touristStorage)
         {
             InitializeComponent();
+            this.logic = logic;
+            this.touristStorage = touristStorage;
         }
 
-        private void SignIn_Click(object sender, RoutedEventArgs e)
+        private void ButtonSignIn_Click(object sender, RoutedEventArgs e)
         {
-            WindowMain window = new WindowMain();
-            window.Show();
-            this.Close();
+            if (string.IsNullOrEmpty(TextBoxLogin.Text))
+            {
+                MessageBox.Show("Введите логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(TextBoxPassword.Text))
+            {
+                MessageBox.Show("Введите логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
+            //TODO: Прописать проверку логина и пароля
         }
-        private void GoToSignUp_Click(object sender, RoutedEventArgs e)
+
+        private void ButtonGoToSignUp_Click(object sender, RoutedEventArgs e)
         {
-            WindowSignUp window = new WindowSignUp();
-            window.Show();
-            this.Close();
+            var form = Container.Resolve<WindowSignUp>();
+            form.ShowDialog();
         }
     }
 }
