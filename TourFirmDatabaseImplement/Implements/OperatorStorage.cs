@@ -59,13 +59,7 @@ namespace TourFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        Operator _operator = new Operator
-                        {
-                            Name = model.Name,
-                        };
-                        context.Operators.Add(_operator);
-                        context.SaveChanges();
-                        CreateModel(model, _operator, context);
+                        context.Operators.Add(CreateModel(model, new Operator(), context));
                         context.SaveChanges();
                         transaction.Commit();
                     }

@@ -159,7 +159,7 @@ namespace TourFirmDatabaseImplement.Migrations
                         column: x => x.OperatorID,
                         principalTable: "Operators",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

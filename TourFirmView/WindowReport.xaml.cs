@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace TourFirmView
 {
     /// <summary>
-    /// Логика взаимодействия для WindowListStop.xaml
+    /// Логика взаимодействия для WindowReport.xaml
     /// </summary>
-    public partial class WindowListStop : Window
+    public partial class WindowReport : Window
     {
-        public WindowListStop()
+        public WindowReport()
         {
             InitializeComponent();
         }

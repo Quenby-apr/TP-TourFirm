@@ -97,10 +97,14 @@ namespace TourFirmDatabaseImplement.Implements
                         Guide guide = new Guide
                         {
                             Name = model.Name,
+                            Surname = model.Surname,
+                            PhoneNumber = model.PhoneNumber,
+                            WorkPlace = model.WorkPlace,
+                            MainLanguage = model.MainLanguage,
                         };
                         context.Guides.Add(guide);
                         context.SaveChanges();
-                        CreateModel(model, guide, context);
+                        CreateModel(model,guide, context);
                         context.SaveChanges();
                         transaction.Commit();
                     }
