@@ -18,6 +18,7 @@ namespace TouristTourFirmView
 
         private readonly ExcursionLogic excursionLogic;
         private readonly PlaceLogic placeLogic;
+        private Dictionary<int, string> excursionGuides;
 
         public int Id { set { id = value; } }
         private int? id;
@@ -61,7 +62,8 @@ namespace TouristTourFirmView
                     Price = Convert.ToDecimal(TextBoxPrice.Text),
                     Duration = Convert.ToInt32(TextBoxDuration.Text),
                     PlaceID = Convert.ToInt32(ComboBoxPlaces.SelectedValue),
-                    TouristID = App.Tourist.ID 
+                    TouristID = App.Tourist.ID,
+                    ExcursionGuides = excursionGuides
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -81,19 +83,36 @@ namespace TouristTourFirmView
 
         private void WindowExcursion_Load(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                List<PlaceViewModel> listPlaces = placeLogic.Read(null);
+            List<PlaceViewModel> listPlaces = placeLogic.Read(null);
 
-                if (listPlaces != null)
+            if (listPlaces != null)
+            {
+                ComboBoxPlaces.ItemsSource = listPlaces;
+                ComboBoxPlaces.SelectedItem = null;
+            }
+
+            if (id.HasValue)
+            {
+                try
                 {
-                    ComboBoxPlaces.ItemsSource = listPlaces;
-                    ComboBoxPlaces.SelectedItem = null;
+                    var view = excursionLogic.Read(new ExcursionBindingModel { ID = id })?[0];
+
+                    if (view != null)
+                    {
+                        TextBoxName.Text = view.Name;
+                        TextBoxPrice.Text = view.Price.ToString();
+                        TextBoxDuration.Text = view.Duration.ToString();
+                        excursionGuides = view.ExcursionGuides;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                excursionGuides = new Dictionary<int, string>();
             }
         }
     }
