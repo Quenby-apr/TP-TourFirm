@@ -33,7 +33,7 @@ namespace TourFirmDatabaseImplement.Implements
                     OperatorID = tour.OperatorID,
                     HaltID = tour.HaltID,
                     TourGuides = tour.TourGuides
-                    .ToDictionary(recTG => recTG.GuideID, recTG => (recTG.Guide?.Name))
+                    .ToDictionary(recTG => recTG.GuideID, recTG => (recTG.Guide?.Surname))
                 } :
                 null;
             }
@@ -61,7 +61,7 @@ namespace TourFirmDatabaseImplement.Implements
                         OperatorID = rec.OperatorID,
                         HaltID = rec.HaltID,
                         TourGuides = rec.TourGuides
-                    .ToDictionary(recTG => recTG.GuideID, recTG => (recTG.Guide?.Name))
+                    .ToDictionary(recTG => recTG.GuideID, recTG => (recTG.Guide?.Surname))
                     })
                     .ToList();
             }
@@ -84,7 +84,7 @@ namespace TourFirmDatabaseImplement.Implements
                         OperatorID = rec.OperatorID,
                         HaltID = rec.HaltID,
                         TourGuides = rec.TourGuides
-                    .ToDictionary(recTG => recTG.GuideID, recTG => (recTG.Guide?.Name))
+                    .ToDictionary(recTG => recTG.GuideID, recTG => (recTG.Guide?.Surname))
                     })
                     .ToList();
             }
@@ -101,6 +101,8 @@ namespace TourFirmDatabaseImplement.Implements
                         Tour tour = new Tour
                         {
                             Name = model.Name,
+                            Price = model.Price,
+                            Country = model.Country
                         };
                         context.Tours.Add(tour);
                         context.SaveChanges();

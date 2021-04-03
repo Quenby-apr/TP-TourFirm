@@ -101,19 +101,6 @@ namespace TourFirmView
                 }
             }
         }
-        private void ButtonBindingTour_Click(object sender, RoutedEventArgs e)
-        {
-            if (gridHalts.SelectedItems.Count == 1)
-            {
-                var form = Container.Resolve<WindowBindingTour>();
-                form.Id = ((HaltViewModel)gridHalts.SelectedItems[0]).ID;
-                if (form.ShowDialog() == true)
-                {
-                    LoadData();
-                }
-            }
-        }
-
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
             LoadData();

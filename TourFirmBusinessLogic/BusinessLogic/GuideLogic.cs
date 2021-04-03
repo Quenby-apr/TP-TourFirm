@@ -21,7 +21,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             {
                 return _guideStorage.GetFullList();
             }
-            if (model.ID.HasValue)
+            if (model.ID.HasValue || model.Surname != null)
             {
                 return new List<GuideViewModel> { _guideStorage.GetElement(model) };
             }

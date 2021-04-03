@@ -21,7 +21,7 @@ namespace TourFirmDatabaseImplement.Implements
             using (var context = new TourFirmDatabase())
             {
                 var guide = context.Guides
-              .FirstOrDefault(rec =>  rec.ID == model.ID);
+              .FirstOrDefault(rec =>  rec.ID == model.ID || rec.Surname == model.Surname);
                 return guide != null ? new GuideViewModel
                 {
                     ID = guide.ID,
@@ -94,17 +94,7 @@ namespace TourFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        Guide guide = new Guide
-                        {
-                            Name = model.Name,
-                            Surname = model.Surname,
-                            PhoneNumber = model.PhoneNumber,
-                            WorkPlace = model.WorkPlace,
-                            MainLanguage = model.MainLanguage,
-                        };
-                        context.Guides.Add(guide);
-                        context.SaveChanges();
-                        CreateModel(model,guide, context);
+                        context.Guides.Add(CreateModel(model,new Guide(), context));
                         context.SaveChanges();
                         transaction.Commit();
                     }

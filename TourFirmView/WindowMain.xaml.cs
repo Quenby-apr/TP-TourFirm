@@ -23,20 +23,9 @@ namespace TourFirmView
     {
         [Dependency]
         public IUnityContainer Container { get; set; }
-        OperatorViewModel oper = new OperatorViewModel
-        {
-            ID = 0,
-            Name = "asd",
-            Surname = "abs",
-            Login = "abs",
-            Password = "asd",
-            Mail = "sada",
-            PhoneNumber = "gdf"
-        };
         public WindowMain()
         {
             InitializeComponent();
-            App.Operator = oper;
         }
 
         private void MenuItemGuides_Click(object sender, RoutedEventArgs e)

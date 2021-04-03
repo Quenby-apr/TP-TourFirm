@@ -21,11 +21,11 @@
     <Grid>
         <StackPanel Margin="20,0" VerticalAlignment="Top"  HorizontalAlignment="Center" Height="150" Width="350" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" Grid.RowSpan="2" >
             <Label Content="Название"  Margin="0,0,0,0" Height="35"/>
-            <TextBox x:Name="NameTextBox" IsReadOnly="True"/>
+            <ComboBox HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="329"/>
             <Label Content="Адрес" />
             <TextBox x:Name="AddressTextBox" IsReadOnly="True"/>
         </StackPanel>
-        <ComboBox HorizontalAlignment="Left" Margin="30,180,0,0" VerticalAlignment="Top" Width="329"/>
+        <TextBox x:Name="NameTextBox" IsReadOnly="True" HorizontalAlignment="Left" Margin="30,180,0,0" VerticalAlignment="Top" Width="329"/>
         <Label Content="Выбранный тур" HorizontalAlignment="Left" Margin="30,150,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="70,260,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="210,260,0,0" VerticalAlignment="Top" Width="75"/>

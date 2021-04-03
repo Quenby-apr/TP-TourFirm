@@ -50,7 +50,6 @@ namespace TourFirmDatabaseImplement.Implements
                 null;
             }
         }
-
         public void Insert(TouristBindingModel model)
         {
             using (var context = new TourFirmDatabase())

@@ -20,6 +20,7 @@ namespace TourFirmView
     public partial class WindowBindingTour : Window
     {
         public int Id { set { Id = value; } }
+        public string NameTour { get; set; }
         public WindowBindingTour()
         {
             InitializeComponent();

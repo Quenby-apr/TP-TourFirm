@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Список остановок" Height="400" Width="600">
+        Title="Список остановок" Height="400" Width="614">
     <Grid>
         <DataGrid x:Name="gridHalts" HorizontalAlignment="Left" Height="370" VerticalAlignment="Top" Width="500"/>
         <Button x:Name="ButtonCreate" Click="ButtonCreate_Click" Content="Создать" HorizontalAlignment="Left" Margin="510,40,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonUpdate" Click="ButtonUpdate_Click" Content="Обновить" HorizontalAlignment="Left" Margin="510,100,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonDelete" Click="ButtonDelete_Click" Content="Удалить" HorizontalAlignment="Left" Margin="510,160,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Обновить" HorizontalAlignment="Left" Margin="510,220,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonBindTour" Click="ButtonRefresh_Click" Content="Привязать тур" HorizontalAlignment="Left" Margin="500,280,0,0" VerticalAlignment="Top" Width="92"/>
     </Grid>
 </Window>

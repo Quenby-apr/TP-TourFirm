@@ -47,32 +47,34 @@ namespace TourFirmView
 
         private void LoadData()
         {
-            try
+            var tours = logic.Read(null);
+            foreach (var tour in tours)
             {
-                var listAvailableGuides = Guidelogic.Read(null);
-                var tours = logic.Read(null);
-                foreach (var tour in tours)
+                if (tour.ID == id)
                 {
-                    if (tour.ID == id)
-                    {
-                        this.tour = tour;
-                    }
+                    this.tour = tour;
                 }
+            }
+            var listbindmodels = Guidelogic.Read(null);
+            foreach (var guide in listbindmodels)
+            {
+                ListBoxAvailable.Items.Add(guide.Surname);
+            }
+            if (tour != null)
+            {
                 var listSelectedGuides = tour.TourGuides.ToList();
-                if (listAvailableGuides != null)
+                foreach (var guide in listSelectedGuides)
                 {
-                    ListBoxAvailable.ItemsSource = listAvailableGuides;
-                    ListBoxSelected.ItemsSource = listSelectedGuides;
-                    foreach (var guide in ListBoxSelected.Items)
+                    ListBoxSelected.Items.Add(Guidelogic.Read(new GuideBindingModel
                     {
-                        ListBoxAvailable.Items.Remove(guide);
-                    }
+                        ID = guide.Key
+                    })[0].Surname);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                foreach (var guide in ListBoxSelected.Items)
+                {
+                    ListBoxAvailable.Items.Remove(guide);
+                }
+            }    
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -82,8 +84,8 @@ namespace TourFirmView
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            ListBoxSelected.Items.Remove(ListBoxSelected.SelectedItem);
             ListBoxAvailable.Items.Add(ListBoxSelected.SelectedItem);
+            ListBoxSelected.Items.Remove(ListBoxSelected.SelectedItem);
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -103,35 +105,44 @@ namespace TourFirmView
                 MessageBox.Show("Введите стоимость", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            try
+            Dictionary<int, string> _TourGuides = new Dictionary<int, string>();
+            foreach (var guide in ListBoxSelected.Items)
             {
-
-                Dictionary<int, string> _TourGuides = new Dictionary<int, string>
+                _TourGuides.Add(Guidelogic.Read(new GuideBindingModel
                 {
-
-                };
-                logic.CreateOrUpdate(new TourBindingModel
-                {
-                    ID = id,
-                    Name = NameTextBox.Text,
-                    Country = CountryTextBox.Text,
-                    Price = decimal.Parse(PriceTextBox.Text),
-                    OperatorID = App.Operator.ID,
-
-                });
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                DialogResult = true;
-                Close();
+                    Surname = guide.ToString()
+                })[0].ID, guide.ToString());
             }
-            catch (Exception ex)
+            logic.CreateOrUpdate(new TourBindingModel
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                ID = id,
+                Name = NameTextBox.Text,
+                Country = CountryTextBox.Text,
+                Price = decimal.Parse(PriceTextBox.Text),
+                TourGuides = _TourGuides,
+                OperatorID = App.Operator.ID,
+
+            });
+            MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+            DialogResult = true;
+            Close();
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = false;
+            Close();
         }
+        private void ButtonBindTour_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowBindingTour>();
+            form.NameTour = NameTextBox.Text;
+            if (form.ShowDialog() == true)
+            {
+                LoadData();
+            }
+        }
+    }
+
     }
 }
