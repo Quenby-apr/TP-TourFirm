@@ -38,7 +38,7 @@ namespace TourFirmDatabaseImplement.Implements
             using (var context = new TourFirmDatabase())
             {
                 var _operator = context.Operators
-              .FirstOrDefault(rec => rec.ID == model.ID);
+              .FirstOrDefault(rec => rec.ID == model.ID || rec.Login == model.Login);
                 return _operator != null ? new OperatorViewModel
                 {
                     ID = _operator.ID,

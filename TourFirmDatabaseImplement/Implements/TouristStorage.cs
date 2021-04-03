@@ -55,7 +55,7 @@ namespace TourFirmDatabaseImplement.Implements
         {
             using (var context = new TourFirmDatabase())
             {
-                CreateModel(model, new Tourist());
+                context.Tourists.Add(CreateModel(model, new Tourist()));
                 context.SaveChanges();
             }
         }
