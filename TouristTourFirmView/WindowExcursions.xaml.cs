@@ -56,55 +56,50 @@ namespace TouristTourFirmView
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridExcursions.SelectedItems.Count == 1)
+            if (DataGridExcursions.SelectedItems.Count == 0)
             {
-                var form = Container.Resolve<WindowExcursion>();
-                form.Id = ((ExcursionViewModel)DataGridExcursions.SelectedItems[0]).ID;
-
-                if (form.ShowDialog() == true)
-                {
-                    LoadData();
-                }
+                MessageBox.Show("Выберите экскурсию", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-        }
 
-        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataGridExcursions.SelectedItems.Count == 1)
-            {
-                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    int id = ((ExcursionViewModel)DataGridExcursions.SelectedItems[0]).ID;
-
-                    try
-                    {
-                        logic.Delete(new ExcursionBindingModel { ID = id });
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    LoadData();
-                }
-            }
-        }
-
-        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            LoadData();
-        }
-
-        private void ButtonBondToTravel_Click(object sender, RoutedEventArgs e)
-        {
-            var form = Container.Resolve<WindowBondExcursionTravel>();
+            var form = Container.Resolve<WindowExcursion>();
             form.Id = ((ExcursionViewModel)DataGridExcursions.SelectedItems[0]).ID;
 
             if (form.ShowDialog() == true)
             {
                 LoadData();
             }
+
+        }
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridExcursions.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Выберите экскурсию", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                int id = ((ExcursionViewModel)DataGridExcursions.SelectedItems[0]).ID;
+
+                try
+                {
+                    logic.Delete(new ExcursionBindingModel { ID = id });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                LoadData();
+            }
+        }
+
+        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            LoadData();
         }
     }
 }

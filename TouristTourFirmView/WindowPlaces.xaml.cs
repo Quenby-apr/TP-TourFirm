@@ -56,39 +56,47 @@ namespace TouristTourFirmView
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridPlaces.SelectedItems.Count == 1)
+            if (DataGridPlaces.SelectedItems.Count == 0)
             {
-                var form = Container.Resolve<WindowPlace>();
-                form.Id = ((PlaceViewModel)DataGridPlaces.SelectedItems[0]).ID;
-
-                if (form.ShowDialog() == true)
-                {
-                    LoadData();
-                }
+                MessageBox.Show("Выберите место", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+            var form = Container.Resolve<WindowPlace>();
+            form.Id = ((PlaceViewModel)DataGridPlaces.SelectedItems[0]).ID;
+
+            if (form.ShowDialog() == true)
+            {
+                LoadData();
+            }
+
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridPlaces.SelectedItems.Count == 1)
+            if (DataGridPlaces.SelectedItems.Count == 0)
             {
-                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    int id = ((PlaceViewModel)DataGridPlaces.SelectedItems[0]).ID;
-
-                    try
-                    {
-                        logic.Delete(new PlaceBindingModel { ID = id });
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    LoadData();
-                }
+                MessageBox.Show("Выберите место", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+            MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                int id = ((PlaceViewModel)DataGridPlaces.SelectedItems[0]).ID;
+
+                try
+                {
+                    logic.Delete(new PlaceBindingModel { ID = id });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                LoadData();
+            }
+
         }
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)

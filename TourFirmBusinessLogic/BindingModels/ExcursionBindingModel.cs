@@ -11,6 +11,5 @@ namespace TourFirmBusinessLogic.BindingModels
         public int PlaceID { get; set; }
         public int TouristID { get; set; }
         public Dictionary<int,string> ExcursionGuides { get; set; }
-        public Dictionary<int, string> ExcursionTravels { get; set; }
     }
 }

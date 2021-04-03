@@ -15,9 +15,9 @@
                 <DataGridTextColumn Header="Тип" Binding="{Binding Path=Type}" Width="0.5*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="ButtonCreate" Content="Создать" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonUpdate" Content="Изменить" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonDelete" Content="Удалить" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonRefresh" Content="Обновить" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="ButtonCreate" Content="Создать" Click="ButtonAdd_Click" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="ButtonUpdate" Content="Изменить" Click="ButtonUpdate_Click" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="ButtonDelete" Content="Удалить" Click="ButtonDelete_Click" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="ButtonRefresh" Content="Обновить" Click="ButtonRefresh_Click" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

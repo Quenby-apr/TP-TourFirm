@@ -19,9 +19,6 @@
         <Button x:Name="ButtonAdd" Click="ButtonAdd_Click" Content="Создать" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="85"/>
         <Button x:Name="ButtonUpdate" Click="ButtonUpdate_Click" Content="Изменить" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="85"/>
         <Button x:Name="ButtonDelete" Click="ButtonDelete_Click" Content="Удалить" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Обновить" HorizontalAlignment="Left" Margin="710,280,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button x:Name="ButtonBondToTravel" Click="ButtonBondToTravel_Click" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="85">
-            <TextBlock TextAlignment="Center"> Привязать к <LineBreak/> путешествию </TextBlock>
-        </Button>
+        <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Обновить" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="85"/>
     </Grid>
 </Window>

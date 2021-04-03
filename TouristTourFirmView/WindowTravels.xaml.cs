@@ -56,44 +56,71 @@ namespace TouristTourFirmView
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridTravels.SelectedItems.Count == 1)
+            if (DataGridTravels.SelectedItems.Count == 0)
             {
-                var form = Container.Resolve<WindowTravel>();
-                form.Id = ((TravelViewModel)DataGridTravels.SelectedItems[0]).ID;
-
-                if (form.ShowDialog() == true)
-                {
-                    LoadData();
-                }
+                MessageBox.Show("Выберите путешествие", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+
+            var form = Container.Resolve<WindowTravel>();
+            form.Id = ((TravelViewModel)DataGridTravels.SelectedItems[0]).ID;
+
+            if (form.ShowDialog() == true)
+            {
+                LoadData();
+            }
+
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridTravels.SelectedItems.Count == 1)
+            if (DataGridTravels.SelectedItems.Count == 0)
             {
-                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    int id = ((TravelViewModel)DataGridTravels.SelectedItems[0]).ID;
-                    
-                    try
-                    {
-                        logic.Delete(new TravelBindingModel { ID = id });
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    LoadData();
-                }
+                MessageBox.Show("Выберите путешествие", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+
+            MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                int id = ((TravelViewModel)DataGridTravels.SelectedItems[0]).ID;
+
+                try
+                {
+                    logic.Delete(new TravelBindingModel { ID = id });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                LoadData();
+            }
+
         }
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
             LoadData();
+        }
+
+        private void ButtonBondExcursions_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridTravels.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Выберите путешествие", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var form = Container.Resolve<WindowBondTravelExcursions>();
+            form.Id = ((TravelViewModel)DataGridTravels.SelectedItems[0]).ID;
+
+            if (form.ShowDialog() == true)
+            {
+                LoadData();
+            }
         }
     }
 }
