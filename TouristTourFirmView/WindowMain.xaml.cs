@@ -50,7 +50,7 @@ namespace TouristTourFirmView
         {
             App.Tourist = null;
             var windowSignIn = Container.Resolve<WindowSignIn>();
-            Close();
+         //   Close();
             windowSignIn.ShowDialog();
         }
     }

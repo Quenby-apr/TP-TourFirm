@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TourFirmBusinessLogic.BindingModels;
+using TourFirmBusinessLogic.BusinessLogic;
+using Unity;
 
 namespace TouristTourFirmView
 {
@@ -19,9 +11,56 @@ namespace TouristTourFirmView
     /// </summary>
     public partial class WindowPlace : Window
     {
-        public WindowPlace()
+        [Dependency]
+        public IUnityContainer Container { get; set; }
+
+        private readonly PlaceLogic logic;
+
+        public int Id { set { id = value; } }
+        private int? id;
+
+        public WindowPlace(PlaceLogic logic)
         {
             InitializeComponent();
+            this.logic = logic;
+        }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(TextBoxName.Text))
+            {
+                MessageBox.Show("Введите название места", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(TextBoxType.Text))
+            {
+                MessageBox.Show("Выберите тип места", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                logic.CreateOrUpdate(new PlaceBindingModel
+                {
+                    ID = id,
+                    Name = TextBoxName.Text,
+                    Type = TextBoxType.Text,
+                    TouristID = App.Tourist.ID
+                });
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
         }
     }
 }

@@ -162,8 +162,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WindowBondExcursionTravel.xaml.cs">
-      <DependentUpon>WindowBondExcursionTravel.xaml</DependentUpon>
+    <Compile Include="WindowBondTravelExcursions.xaml.cs">
+      <DependentUpon>WindowBondTravelExcursions.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowExcursion.xaml.cs">
       <DependentUpon>WindowExcursion.xaml</DependentUpon>
@@ -237,7 +237,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="WindowBondExcursionTravel.xaml">
+    <Page Include="WindowBondTravelExcursions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

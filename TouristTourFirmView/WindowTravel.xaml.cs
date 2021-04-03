@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
-using TourFirmBusinessLogic.Interfaces;
+using TourFirmBusinessLogic.ViewModels;
 using Unity;
 
 namespace TouristTourFirmView
@@ -17,51 +17,37 @@ namespace TouristTourFirmView
         public IUnityContainer Container { get; set; }
 
         private readonly TravelLogic travelLogic;
-        private readonly ITourStorage tourStorage;
+        private readonly List<TourViewModel> listAllTours;
 
         public int Id { set { id = value; } }
         private int? id;
 
         private Dictionary<int, string> travelTours;
+        private Dictionary<int, string> travelExcursions;
 
-        public WindowTravel(TravelLogic travelLogic, ITourStorage tourStorage)
+        public WindowTravel(TravelLogic travelLogic, TourLogic tourLogic, ExcursionLogic excursionLogic)
         {
             InitializeComponent();
             this.travelLogic = travelLogic;
-            this.tourStorage = tourStorage;
+            listAllTours = tourLogic.Read(null);
         }
 
         private void WindowTravel_Load(object sender, RoutedEventArgs e)
         {
-            var avaliableTours = tourStorage.GetFullList();
-            ListBoxAvaliableTours.ItemsSource = avaliableTours;
-
             if (id.HasValue)
             {
                 try
                 {
                     var view = travelLogic.Read(new TravelBindingModel { ID = id })?[0];
-                    
+
                     if (view != null)
                     {
                         TextBoxName.Text = view.Name;
                         DatePickerStart.SelectedDate = view.DateStart;
                         DatePickerEnd.SelectedDate = view.DateEnd;
                         travelTours = view.TravelTours;
-
-                        //TODO: перепроверить
-                        ListBoxSelectedTours.ItemsSource = travelTours;
-
-                        foreach (var tourFromAll in avaliableTours)
-                        {
-                            foreach (var tourFromSelected in travelTours)
-                            {
-                                if (tourFromAll.ID == tourFromSelected.Key)
-                                {
-                                    ListBoxAvaliableTours.Items.Remove(tourFromSelected);
-                                }
-                            }
-                        }
+                        travelExcursions = view.TravelExcursions;
+                        LoadData();
                     }
                 }
                 catch (Exception ex)
@@ -72,6 +58,52 @@ namespace TouristTourFirmView
             else
             {
                 travelTours = new Dictionary<int, string>();
+                travelExcursions = new Dictionary<int, string>();
+                ListBoxAvaliableTours.ItemsSource = listAllTours;
+
+                //Нужно ли?
+                ListBoxSelectedTours.ItemsSource = travelTours;
+            }
+        }
+
+        private void LoadData()
+        {
+            try
+            {
+                //Если к путешествию уже привязаны какие-то туры, в ListBox с доступными турами 
+                //оставляем только непривязанные туры
+                if (travelTours != null)
+                {
+                    ListBoxSelectedTours.ItemsSource = travelTours;
+                    ListBoxAvaliableTours.Items.Clear();
+
+
+                    foreach (var tourFromAll in listAllTours)
+                    {
+                        foreach (var tourFromSelected in travelTours)
+                        {
+                            if (tourFromAll.ID != tourFromSelected.Key)
+                            {
+                                ListBoxAvaliableTours.Items.Add(tourFromSelected);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ListBoxAvaliableTours.ItemsSource = listAllTours;
+
+                    //Нужно ли?
+                    ListBoxSelectedTours.ItemsSource = travelTours;
+                }
+                if (travelExcursions != null)
+                {
+                    ListBoxExcursions.ItemsSource = travelExcursions;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -84,8 +116,11 @@ namespace TouristTourFirmView
             }
 
             //TODO: перепроверить - не уверена, что это будет работать
-            ListBoxSelectedTours.Items.Add(ListBoxAvaliableTours.SelectedItem);
-            ListBoxAvaliableTours.Items.Remove(ListBoxAvaliableTours.SelectedItem);
+            var selectedTour = ListBoxAvaliableTours.SelectedItem;
+            travelTours.Add((int)ListBoxAvaliableTours.SelectedValue, ((TourViewModel)selectedTour).Name);
+
+            ListBoxSelectedTours.Items.Add(selectedTour);
+            ListBoxAvaliableTours.Items.Remove(selectedTour);
         }
 
         private void ButtonRemoveTour_Click(object sender, RoutedEventArgs e)
@@ -96,9 +131,24 @@ namespace TouristTourFirmView
                 return;
             }
 
-            //TODO: перепроверить - не уверена, что это будет работать
-            ListBoxAvaliableTours.Items.Add(ListBoxSelectedTours.SelectedItem);
-            ListBoxSelectedTours.Items.Remove(ListBoxSelectedTours.SelectedItem);
+            MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    travelTours.Remove((int)ListBoxSelectedTours.SelectedValue);
+
+                    //TODO: перепроверить - не уверена, что это будет работать
+                    var selectedTour = ListBoxSelectedTours.SelectedItem;
+                    ListBoxAvaliableTours.Items.Add(selectedTour);
+                    ListBoxSelectedTours.Items.Remove(selectedTour);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -129,20 +179,6 @@ namespace TouristTourFirmView
                 return;
             }
 
-            //Ищем в общем списке туров те, что были выбраны пользователем в соотв. ListBox и сохраняем их в словарь
-            var allTours = tourStorage.GetFullList();
-            Dictionary<int, string> selectedTours = new Dictionary<int, string>();
-            foreach (var tourFromAll in allTours)
-            {
-                foreach (var selectedTourItem in ListBoxSelectedTours.Items)
-                {
-                    if (selectedTourItem.ToString().Equals(tourFromAll.Name))
-                    {
-                        selectedTours.Add(tourFromAll.ID, tourFromAll.Name);
-                    }
-                }
-            }
-
             try
             {
                 travelLogic.CreateOrUpdate(new TravelBindingModel
@@ -152,8 +188,8 @@ namespace TouristTourFirmView
                     DateStart = (DateTime)DatePickerStart.SelectedDate,
                     DateEnd = (DateTime)DatePickerEnd.SelectedDate,
                     TouristID = App.Tourist.ID,
-                    //TODO: продумать. + что делать с travelExcursions?
-                    TravelTours = selectedTours
+                    TravelTours = travelTours,
+                    TravelExcursions = travelExcursions
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
