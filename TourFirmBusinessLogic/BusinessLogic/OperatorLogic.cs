@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
+using TourFirmBusinessLogic.ViewModels;
 
 namespace TourFirmBusinessLogic.BusinessLogic
 {
@@ -14,11 +15,23 @@ namespace TourFirmBusinessLogic.BusinessLogic
         {
             _operatorStorage = operatorStorage;
         }
+        public List<OperatorViewModel> Read(OperatorBindingModel model)
+        {
+            if (model == null)
+            {
+                return _operatorStorage.GetFullList();
+            }
+            if (model.ID.HasValue)
+            {
+                return new List<OperatorViewModel> { _operatorStorage.GetElement(model) };
+            }
+            return null;
+        }
         public void CreateOrUpdate(OperatorBindingModel model)
         {
             var element = _operatorStorage.GetElement(new OperatorBindingModel
             {
-                Name = model.Name
+                Login = model.Login
             });
             if (element != null && element.ID != model.ID)
             {

@@ -19,22 +19,21 @@ using Unity;
 namespace TourFirmView
 {
     /// <summary>
-    /// Логика взаимодействия для WindowTours.xaml
+    /// Логика взаимодействия для WindowListStop.xaml
     /// </summary>
-    public partial class WindowTours : Window
+    public partial class WindowListHalt : Window
     {
-
         [Dependency]
         public IUnityContainer Container { get; set; }
-        private readonly TourLogic logic;
+        private readonly HaltLogic logic;
 
-        public WindowTours (TourLogic logic)
+        public WindowListHalt(HaltLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
 
-        private void WindowTours_Load(object sender, RoutedEventArgs e)
+        private void WindowListHalt_Load(object sender, RoutedEventArgs e)
         {
             LoadData();
         }
@@ -47,7 +46,7 @@ namespace TourFirmView
 
                 if (list != null)
                 {
-                    toursGrid.ItemsSource = list;
+                    gridHalts.ItemsSource = list;
                 }
             }
             catch (Exception ex)
@@ -58,7 +57,7 @@ namespace TourFirmView
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowEditTour>();
+            var form = Container.Resolve<WindowEditHalt>();
 
             if (form.ShowDialog() == true)
             {
@@ -68,10 +67,10 @@ namespace TourFirmView
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-           if (toursGrid.SelectedItems.Count == 1)
+            if (gridHalts.SelectedItems.Count == 1)
             {
-                var form = Container.Resolve<WindowEditTour>();
-                form.Id = ((TourViewModel)toursGrid.SelectedItems[0]).ID;
+                var form = Container.Resolve<WindowEditHalt>();
+                form.Id = ((HaltViewModel)gridHalts.SelectedItems[0]).ID;
 
                 if (form.ShowDialog() == true)
                 {
@@ -82,22 +81,34 @@ namespace TourFirmView
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (toursGrid.SelectedItems.Count == 1)
+            if (gridHalts.SelectedItems.Count == 1)
             {
                 MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    int id = ((TourViewModel)toursGrid.SelectedItems[0]).ID;
+                    int id = ((HaltViewModel)gridHalts.SelectedItems[0]).ID;
 
                     try
                     {
-                        logic.Delete(new TourBindingModel { ID = id });
+                        logic.Delete(new HaltBindingModel { ID = id });
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+                    LoadData();
+                }
+            }
+        }
+        private void ButtonBindingTour_Click(object sender, RoutedEventArgs e)
+        {
+            if (gridHalts.SelectedItems.Count == 1)
+            {
+                var form = Container.Resolve<WindowBindingTour>();
+                form.Id = ((HaltViewModel)gridHalts.SelectedItems[0]).ID;
+                if (form.ShowDialog() == true)
+                {
                     LoadData();
                 }
             }
@@ -109,3 +120,4 @@ namespace TourFirmView
         }
     }
 }
+

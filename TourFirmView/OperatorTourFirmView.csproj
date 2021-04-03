@@ -167,8 +167,8 @@
     <Compile Include="WindowEditGuide.xaml.cs">
       <DependentUpon>WindowEditGuide.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowEditStop.xaml.cs">
-      <DependentUpon>WindowEditStop.xaml</DependentUpon>
+    <Compile Include="WindowEditHalt.xaml.cs">
+      <DependentUpon>WindowEditHalt.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowEditTour.xaml.cs">
       <DependentUpon>WindowEditTour.xaml</DependentUpon>
@@ -179,11 +179,14 @@
     <Compile Include="WindowListExcursions.xaml.cs">
       <DependentUpon>WindowListExcursions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowListStop.xaml.cs">
-      <DependentUpon>WindowListStop.xaml</DependentUpon>
+    <Compile Include="WindowListHalt.xaml.cs">
+      <DependentUpon>WindowListHalt.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowReport.xaml.cs">
+      <DependentUpon>WindowReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowSignIn.xaml.cs">
       <DependentUpon>WindowSignIn.xaml</DependentUpon>
@@ -210,7 +213,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowEditStop.xaml">
+    <Page Include="WindowEditHalt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,11 +229,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowListStop.xaml">
+    <Page Include="WindowListHalt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

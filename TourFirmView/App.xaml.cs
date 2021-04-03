@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.Interfaces;
+using TourFirmBusinessLogic.ViewModels;
 using TourFirmDatabaseImplement.Implements;
 using Unity;
 using Unity.Lifetime;
@@ -16,11 +17,14 @@ namespace TourFirmView
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
+   
     public partial class App : Application
     {
+        public static OperatorViewModel Operator { get; set; }
         [STAThread]
-        private void Application_Startup(object sender, StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);  
             var container = BuildUnityContainer();
             var Window = container.Resolve<WindowSignIn>();
             Window.ShowDialog();
@@ -34,6 +38,7 @@ namespace TourFirmView
             currentContainer.RegisterType<IHaltStorage, HaltStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOperatorStorage, OperatorStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ITourStorage, TourStorage>(new HierarchicalLifetimeManager());
+
             currentContainer.RegisterType<ExcursionLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<GuideLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<HaltLogic>(new HierarchicalLifetimeManager());

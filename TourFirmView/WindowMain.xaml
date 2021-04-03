@@ -8,12 +8,12 @@
         Title="Главная" Height="380" Width="725">
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="Гиды"></MenuItem>
-            <MenuItem Header="Эксурсионные туры" ></MenuItem>
-            <MenuItem Header="Остановки" ></MenuItem>
-            <MenuItem Header="Список экскурсий" ></MenuItem>
-            <MenuItem Header="Отчёт" ></MenuItem>
-            <MenuItem Header="Привязка гида к экскурсии" ></MenuItem>
+            <MenuItem x:Name="MenuItemGuides" Header="Гиды" Click="MenuItemGuides_Click"> </MenuItem>
+            <MenuItem x:Name="MenuItemTours" Header="Эксурсионные туры"  Click="MenuItemTours_Click"></MenuItem>
+            <MenuItem x:Name="MenuItemStops" Header="Остановки"  Click="MenuItemStop_Click"></MenuItem>
+            <MenuItem x:Name="MenuItemExcursions" Header="Список экскурсий"  Click="MenuItemExcursions_Click"></MenuItem>
+            <MenuItem x:Name="MenuItemReport" Header="Отчёт"  Click="MenuItemReport_Click"></MenuItem>
+            <MenuItem x:Name="MenuItemBindingGuide" Header="Привязка гида к экскурсии"  Click="MenuItemBindingGuide_Click"></MenuItem>
         </Menu>
         <Image HorizontalAlignment="Left" Height="321" Margin="0,25,0,0" 
                VerticalAlignment="Top" Width="731" Source="logo.png" Stretch="UniformToFill"/>

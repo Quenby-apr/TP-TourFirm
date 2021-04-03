@@ -13,25 +13,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
-using TourFirmBusinessLogic.Interfaces;
 using Unity;
 
-namespace TouristTourFirmView
+namespace TourFirmView
 {
     /// <summary>
-    /// Логика взаимодействия для WindowExcursion.xaml
+    /// Логика взаимодействия для WindowEditHalt.xaml
     /// </summary>
-    public partial class WindowExcursion : Window
+    public partial class WindowEditHalt : Window
     {
         [Dependency]
         public IUnityContainer Container { get; set; }
 
-        private readonly ExcursionLogic logic;
+        private readonly HaltLogic logic;
 
         public int Id { set { id = value; } }
         private int? id;
 
-        public WindowExcursion(ExcursionLogic logic)
+        public WindowEditHalt(HaltLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
@@ -39,34 +38,24 @@ namespace TouristTourFirmView
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(TextBoxName.Text))
+            if (string.IsNullOrEmpty(NameTextBox.Text))
             {
-                MessageBox.Show("Введите название экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите название остановки", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(TextBoxPrice.Text))
+            if (string.IsNullOrEmpty(AddressTextBox.Text))
             {
-                MessageBox.Show("Выберите стоимость экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите адрес остановки", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(TextBoxDuration.Text))
-            {
-                MessageBox.Show("Введите продолжительность экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrEmpty(TextBoxType.Text))
-            {
-                MessageBox.Show("Введите тип экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             try
             {
-                logic.CreateOrUpdate(new ExcursionBindingModel
+                logic.CreateOrUpdate(new HaltBindingModel
                 {
                     ID = id,
-                    Name = TextBoxName.Text,
-                    TouristID = App.Tourist.ID,
+                    Name = NameTextBox.Text,
+                    Address = AddressTextBox.Text,
+                    OperatorID = App.Operator.ID,
                     
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
