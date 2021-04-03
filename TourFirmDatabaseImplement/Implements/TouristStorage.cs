@@ -55,19 +55,8 @@ namespace TourFirmDatabaseImplement.Implements
         {
             using (var context = new TourFirmDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        CreateModel(model, new Tourist());
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
+                CreateModel(model, new Tourist());
+                context.SaveChanges();
             }
         }
 

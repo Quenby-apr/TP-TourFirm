@@ -16,6 +16,8 @@ namespace TouristTourFirmView
         public IUnityContainer Container { get; set; }
 
         private readonly TouristLogic logic;
+        public int Id { set { id = value; } }
+        private int? id;
 
         public WindowSignUp(TouristLogic logic)
         {
@@ -73,7 +75,6 @@ namespace TouristTourFirmView
                     Surname = TextBoxSurname.Text,
                     Mail = TextBoxSurname.Text,
                     PhoneNumber = TextBoxPhone.Text
-
                 });
                 MessageBox.Show("Регистрация прошла успешно!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -85,10 +86,11 @@ namespace TouristTourFirmView
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+/*        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DialogResult = false;
-            Close();
-        }
+           
+            //Close();
+        }*/
     }
 }

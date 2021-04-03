@@ -19,7 +19,7 @@ namespace TouristTourFirmView
         {
             base.OnStartup(e);
             var container = BuildUnityContainer();
-            var authWindow = container.Resolve<WindowMain>();
+            var authWindow = container.Resolve<WindowSignIn>();
             authWindow.ShowDialog();
         }
 

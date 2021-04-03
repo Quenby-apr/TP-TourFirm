@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
+using TourFirmBusinessLogic.ViewModels;
 
 namespace TourFirmBusinessLogic.BusinessLogic
 {
@@ -11,6 +13,20 @@ namespace TourFirmBusinessLogic.BusinessLogic
         public TouristLogic(ITouristStorage touristStorage)
         {
             _touristStorage = touristStorage;
+        }
+
+        public List<TouristViewModel> Read(TouristBindingModel model)
+        {
+            if (model == null)
+            {
+                return _touristStorage.GetFullList();
+            }
+
+            if (model.ID.HasValue)
+            {
+                return new List<TouristViewModel> { _touristStorage.GetElement(model) };
+            }
+            return null;
         }
 
         public void CreateOrUpdate(TouristBindingModel model)

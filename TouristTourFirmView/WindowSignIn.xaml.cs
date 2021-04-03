@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.Interfaces;
+using TourFirmBusinessLogic.ViewModels;
 using Unity;
 
 namespace TouristTourFirmView
@@ -14,12 +15,10 @@ namespace TouristTourFirmView
         public IUnityContainer Container { get; set; }
 
         private readonly TouristLogic logic;
-        private readonly ITouristStorage touristStorage;
-        public WindowSignIn(TouristLogic logic, ITouristStorage touristStorage)
+        public WindowSignIn(TouristLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
-            this.touristStorage = touristStorage;
         }
 
         private void ButtonSignIn_Click(object sender, RoutedEventArgs e)
@@ -31,12 +30,35 @@ namespace TouristTourFirmView
             }
             if (string.IsNullOrEmpty(TextBoxPassword.Text))
             {
-                MessageBox.Show("Введите логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
 
-            //TODO: Прописать проверку логина и пароля
+            var tourists = logic.Read(null);
+            
+            TouristViewModel touristView = null;
+
+            foreach (var tourist in tourists)
+            {
+                if (tourist.Login == TextBoxLogin.Text && tourist.Password == TextBoxPassword.Text)
+                {
+                    touristView = tourist;
+                }
+            }
+
+            if (touristView != null)
+            {
+                App.Tourist = touristView;
+                var form = Container.Resolve<WindowMain>();
+                form.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Данные некорректны", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
 
         private void ButtonGoToSignUp_Click(object sender, RoutedEventArgs e)
