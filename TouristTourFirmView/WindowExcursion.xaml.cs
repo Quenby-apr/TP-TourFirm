@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
-using TourFirmBusinessLogic.Interfaces;
+using TourFirmBusinessLogic.ViewModels;
 using Unity;
 
 namespace TouristTourFirmView
@@ -26,15 +16,17 @@ namespace TouristTourFirmView
         [Dependency]
         public IUnityContainer Container { get; set; }
 
-        private readonly ExcursionLogic logic;
+        private readonly ExcursionLogic excursionLogic;
+        private readonly PlaceLogic placeLogic;
 
         public int Id { set { id = value; } }
         private int? id;
 
-        public WindowExcursion(ExcursionLogic logic)
+        public WindowExcursion(ExcursionLogic excursionLogic, PlaceLogic placeLogic)
         {
             InitializeComponent();
-            this.logic = logic;
+            this.excursionLogic = excursionLogic;
+            this.placeLogic = placeLogic;
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -54,21 +46,22 @@ namespace TouristTourFirmView
                 MessageBox.Show("Введите продолжительность экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(TextBoxType.Text))
+            if (ComboBoxPlaces.SelectedItem == null)
             {
-                MessageBox.Show("Введите тип экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Выберите место проведения эксурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             try
             {
-                logic.CreateOrUpdate(new ExcursionBindingModel
+                excursionLogic.CreateOrUpdate(new ExcursionBindingModel
                 {
                     ID = id,
                     Name = TextBoxName.Text,
-                    Price = Text
-                    TouristID = App.Tourist.ID,
-                    
+                    Price = Convert.ToDecimal(TextBoxPrice.Text),
+                    Duration = Convert.ToInt32(TextBoxDuration.Text),
+                    PlaceID = Convert.ToInt32(ComboBoxPlaces.SelectedValue),
+                    TouristID = App.Tourist.ID 
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -84,6 +77,24 @@ namespace TouristTourFirmView
         {
             DialogResult = false;
             Close();
+        }
+
+        private void WindowExcursion_Load(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<PlaceViewModel> listPlaces = placeLogic.Read(null);
+
+                if (listPlaces != null)
+                {
+                    ComboBoxPlaces.ItemsSource = listPlaces;
+                    ComboBoxPlaces.SelectedItem = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

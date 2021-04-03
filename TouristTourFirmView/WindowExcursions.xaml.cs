@@ -99,6 +99,7 @@ namespace TouristTourFirmView
         private void ButtonBondToTravel_Click(object sender, RoutedEventArgs e)
         {
             var form = Container.Resolve<WindowBondExcursionTravel>();
+            form.Id = ((ExcursionViewModel)DataGridExcursions.SelectedItems[0]).ID;
 
             if (form.ShowDialog() == true)
             {

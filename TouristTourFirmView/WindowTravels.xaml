@@ -8,7 +8,15 @@
         Loaded="WindowTravels_Load"
         Title="Путешествия" Height="450" Width="800" ResizeMode="NoResize" >
     <Grid>
-        <DataGrid x:Name="DataGridTravels" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700"/>
+        <DataGrid x:Name="DataGridTravels" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700" AutoGenerateColumns="False" CanUserAddRows="false" CanUserReorderColumns="False" >
+            <DataGrid.Columns >
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=ID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата начала" Binding="{Binding Path=DateStart}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата окончания" Binding="{Binding Path=DateEnd}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+                  
         <Button x:Name="ButtonAdd" Content="Создать" Click="ButtonAdd_Click" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonUpdate" Content="Изменить" Click="ButtonUpdate_Click" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonDelete" Content="Удалить" Click="ButtonDelete_Click" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="75"/>

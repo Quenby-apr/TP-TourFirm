@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
+        Loaded="WindowBondExcursionTravel_Load"
         Title="Привязать экскурсию к путешествию" Height="450" Width="450">
     <Window.Resources>
 
@@ -16,11 +17,12 @@
     </Window.Resources>
     <Grid>
         <Label Content="Выберите путешествия:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="33" Width="195"/>
-        <DataGrid HorizontalAlignment="Left" Height="315" Margin="0,48,0,0" VerticalAlignment="Top" Width="443" HeadersVisibility="Column">
+        <DataGrid x:Name="DataGridTravels" HorizontalAlignment="Left" Height="315" Margin="0,48,0,0" VerticalAlignment="Top" Width="443" AutoGenerateColumns="False" CanUserAddRows="false" CanUserReorderColumns="False">
             <DataGrid.Columns >
-                <DataGridCheckBoxColumn Header="Название" IsReadOnly="True" />
+                <DataGridTextColumn Header="Название" Width="0.5*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="ButtonBond" Content="Привязать" HorizontalAlignment="Center" Margin="0,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Button x:Name="ButtonBond" Content="Привязать" HorizontalAlignment="Center" Margin="-160,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Center" Margin="160,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
     </Grid>
 </Window>

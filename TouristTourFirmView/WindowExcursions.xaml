@@ -8,7 +8,14 @@
         Loaded="WindowExcursions_Load"
         Title="Экскурсии" Height="450" Width="810">
     <Grid>
-        <DataGrid x:Name="DataGridExcursions" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700"/>
+        <DataGrid x:Name="DataGridExcursions" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700" AutoGenerateColumns="False" CanUserAddRows="false" CanUserReorderColumns="False" >
+            <DataGrid.Columns >
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=ID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Продолжительность" Binding="{Binding Path=Duration}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="ButtonAdd" Click="ButtonAdd_Click" Content="Создать" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="85"/>
         <Button x:Name="ButtonUpdate" Click="ButtonUpdate_Click" Content="Изменить" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="85"/>
         <Button x:Name="ButtonDelete" Click="ButtonDelete_Click" Content="Удалить" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="85"/>

@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
+        Loaded="WindowPlaces_Load"
         Title="Места" Height="450" Width="800">
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700"/>
+        <DataGrid x:Name="DataGridPlaces" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700" AutoGenerateColumns="False" CanUserAddRows="false" CanUserReorderColumns="False" >
+            <DataGrid.Columns >
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=ID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Path=Type}" Width="0.5*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="ButtonCreate" Content="Создать" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonUpdate" Content="Изменить" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonDelete" Content="Удалить" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ButtonRefresh" Content="Обновить" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="75"/>
-
     </Grid>
 </Window>

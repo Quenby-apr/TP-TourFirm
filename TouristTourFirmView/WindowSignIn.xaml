@@ -22,9 +22,9 @@
             <Label Content="Пароль" />
             <TextBox x:Name="TextBoxPassword" Height="20" Margin="10,0,10,10"/>
             <Button x:Name="ButtonSignIn" Content="Войти" FontSize="20" FontFamily="Consolas" Background="#FF140F0B" Foreground="White" Margin="10 10 10 0" 
-                     Click="SignIn_Click" Height="35"></Button>
+                     Click="ButtonSignIn_Click" Height="35"></Button>
             <Button x:Name="ButtonSignUp" Content="Зарегистрироваться" FontSize="16" FontFamily="Consolas" Background="#FF7D7F7D" Foreground="#FFf5f5dc"
-                    Margin="40,30,40,0"  Click="GoToSignUp_Click" Height="35"></Button>
+                    Margin="40,30,40,0"  Click="ButtonGoToSignUp_Click" Height="35"></Button>
         </StackPanel>
     </Grid>
 </Window>
