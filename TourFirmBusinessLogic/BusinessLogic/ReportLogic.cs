@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TourFirmBusinessLogic.BindingModels;
+using TourFirmBusinessLogic.HelperModels;
 using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
 
@@ -46,7 +47,52 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 AdditionalLanguage = x.AdditionalLanguage,
                 TourName = 
             })
-           .ToList();
-        }*/
+           .ToList();*/
+        public List<ReportTourExcursionViewModel> GetTourExcursions(List<TourViewModel> tours)
+        {
+            var list = new List<ReportTourExcursionViewModel>();
+            foreach (var tour in tours)
+            {
+                var record = new ReportTourExcursionViewModel
+                {
+                    TourName = tour.Name,
+                    Excursions = new List<ExcursionViewModel>(),
+                };
+                foreach (var _guide in tour.TourGuides)
+                {
+                    var guide = _guideStorage.GetElement(new GuideBindingModel
+                    {
+                        ID = _guide.Key
+                    });
+                    var listExcursions = guide.ExcursionGuides.ToList();
+                    for (int i = 0; i < listExcursions.Count; i++) {
+                        record.Excursions.Add(_excursionStorage.GetElement(new ExcursionBindingModel {
+                            ID = listExcursions[i].Key
+                        }));
+                    }
+                }
+                list.Add(record);
+            }
+            return list;
+        }
+        public void SaveTourExcurionToWordFile(ReportTourBindingModel model)
+        {
+            OperatorSaveToWord.CreateDoc(new OperatorWordInfo
+            {
+                FileName = model.FileName,
+                Title = "Список экскурсий по указанным турам",
+                TourExcursions = GetTourExcursions(model.Tours)
+            });
+        }
+
+        public void SaveTourExcurionToExcelFile(ReportTourBindingModel model)
+        {
+            OperatorSaveToExcel.CreateDoc(new OperatorExcelInfo
+            {
+                FileName = model.FileName,
+                Title = "Список экскурсий по указанным турам",
+                TourExcursions = GetTourExcursions(model.Tours)
+            });
+        }
     }
 }

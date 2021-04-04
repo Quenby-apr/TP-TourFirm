@@ -105,7 +105,20 @@ namespace TourFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        context.Guides.Add(CreateModel(model,new Guide(), context));
+                        Guide guide = new Guide
+                        {
+                            Name = model.Name,
+                            Surname = model.Surname,
+                            PhoneNumber = model.PhoneNumber,
+                            WorkPlace = model.WorkPlace,
+                            MainLanguage=model.MainLanguage,
+                            AdditionalLanguage = model.AdditionalLanguage,
+                            DateWork=DateTime.Now,
+                            OperatorID = model.OperatorID
+                        };
+                        context.Guides.Add(guide);
+                        context.SaveChanges();
+                        CreateModel(model, guide, context);
                         context.SaveChanges();
                         transaction.Commit();
                     }
@@ -170,24 +183,27 @@ namespace TourFirmDatabaseImplement.Implements
             guide.AdditionalLanguage = model.AdditionalLanguage;
             guide.DateWork = model.DateWork;
             guide.OperatorID = model.OperatorID;
-            if (model.ID.HasValue)
+            if (model.ExcursionGuides != null)
             {
-                var excursionGuides = context.ExcursionGuides.Where(rec =>
-               rec.GuideID == model.ID.Value).ToList();
-                // удалили те, которых нет в модели
-                context.ExcursionGuides.RemoveRange(excursionGuides.Where(rec =>
-               !model.ExcursionGuides.ContainsKey(rec.ExcursionID)).ToList());
-                context.SaveChanges();
-            }
-            // добавили новые
-            foreach (var eg in model.ExcursionGuides)
-            {
-                context.ExcursionGuides.Add(new ExcursionGuide
+                if (model.ID.HasValue)
                 {
-                    GuideID = guide.ID,
-                    ExcursionID = eg.Key,
-                });
-                context.SaveChanges();
+                    var excursionGuides = context.ExcursionGuides.Where(rec =>
+                   rec.GuideID == model.ID.Value).ToList();
+                    // удалили те, которых нет в модели
+                    context.ExcursionGuides.RemoveRange(excursionGuides.Where(rec =>
+                   !model.ExcursionGuides.ContainsKey(rec.ExcursionID)).ToList());
+                    context.SaveChanges();
+                }
+                // добавили новые
+                foreach (var eg in model.ExcursionGuides)
+                {
+                    context.ExcursionGuides.Add(new ExcursionGuide
+                    {
+                        GuideID = guide.ID,
+                        ExcursionID = eg.Key,
+                    });
+                    context.SaveChanges();
+                }
             }
             return guide;
         }
