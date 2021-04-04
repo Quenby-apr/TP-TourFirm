@@ -94,8 +94,7 @@ namespace TourFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        context.Excursions.Add(CreateModel(model, new Excursion(), context));
-                        context.SaveChanges();
+                        CreateModel(model, new Excursion(), context);
                         transaction.Commit();
                     }
                     catch
@@ -156,6 +155,13 @@ namespace TourFirmDatabaseImplement.Implements
             excursion.Duration = model.Duration;
             excursion.PlaceID = model.PlaceID;
             excursion.TouristID = model.TouristID;
+
+            if (excursion.ID == 0)
+            {
+                context.Excursions.Add(excursion);
+                context.SaveChanges();
+            }
+
             if (model.ID.HasValue)
             {
                 var excursionGuides = context.ExcursionGuides.Where(rec =>
@@ -164,7 +170,18 @@ namespace TourFirmDatabaseImplement.Implements
                 context.ExcursionGuides.RemoveRange(excursionGuides.Where(rec =>
                !model.ExcursionGuides.ContainsKey(rec.GuideID)).ToList());
                 context.SaveChanges();
+
+
+                // Убираем повторы
+                foreach (var excursionGuide in excursionGuides)
+                {
+                    if (model.ExcursionGuides.ContainsKey(excursionGuide.GuideID))
+                    {
+                        model.ExcursionGuides.Remove(excursionGuide.ExcursionID);
+                    }
+                }
             }
+
             // добавили новые
             foreach (var eg in model.ExcursionGuides)
             {
@@ -175,6 +192,7 @@ namespace TourFirmDatabaseImplement.Implements
                 });
                 context.SaveChanges();
             }
+
             return excursion;
         }
     }

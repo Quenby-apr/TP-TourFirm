@@ -16,7 +16,7 @@ namespace TouristTourFirmView
         [Dependency]
         public IUnityContainer Container { get; set; }
 
-        private readonly TravelLogic logic;
+        private readonly TravelLogic travelLogic;
         private readonly List<ExcursionViewModel> listAllExcursions;
 
         public int Id { set { id = value; } }
@@ -27,7 +27,7 @@ namespace TouristTourFirmView
         public WindowBondTravelExcursions(TravelLogic travelLogic, ExcursionLogic excursionLogic)
         {
             InitializeComponent();
-            logic = travelLogic;
+            this.travelLogic = travelLogic;
             listAllExcursions = excursionLogic.Read(null);
         }
 
@@ -35,7 +35,7 @@ namespace TouristTourFirmView
         {
                 try
                 {
-                    var view = logic.Read(new TravelBindingModel { ID = id })?[0];
+                    var view = travelLogic.Read(new TravelBindingModel { ID = id })?[0];
 
                     if (view != null)
                     {
@@ -57,23 +57,27 @@ namespace TouristTourFirmView
                 //оставляем только непривязанные экскурсии
                 if (travelExcursions != null)
                 {
-                    ListBoxSelectedExcursions.ItemsSource = travelExcursions;
+                    foreach (var excursion in travelExcursions)
+                    {
+                        ListBoxSelectedExcursions.Items.Add(excursion);
+                    }
+
                     ListBoxAvaliableExcursions.Items.Clear();
 
                     foreach (var excursionFromAll in listAllExcursions)
                     {
-                        foreach (var excursionFromSelected in travelExcursions)
+                        if (!travelExcursions.ContainsKey(excursionFromAll.ID))
                         {
-                            if (excursionFromAll.ID != excursionFromSelected.Key)
-                            {
-                                ListBoxAvaliableExcursions.Items.Add(excursionFromSelected);
-                            }
+                            ListBoxAvaliableExcursions.Items.Add(excursionFromAll);
                         }
                     }
                 }
                 else
                 {
-                    ListBoxAvaliableExcursions.ItemsSource = listAllExcursions;
+                    foreach (var excursionFromAll in listAllExcursions)
+                    {
+                        ListBoxAvaliableExcursions.Items.Add(excursionFromAll);
+                    }
                 }
             }
             catch (Exception ex)
@@ -86,38 +90,31 @@ namespace TouristTourFirmView
         {
             if (ListBoxAvaliableExcursions.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Эскурсия не выбрана", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Экскурсия не выбрана", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            //TODO: перепроверить - не уверена, что это будет работать
-            var selectedExcursion = ListBoxAvaliableExcursions.SelectedItem;
-            travelExcursions.Add((int)ListBoxAvaliableExcursions.SelectedValue, ((TourViewModel)selectedExcursion).Name);
-
-            ListBoxSelectedExcursions.Items.Add(selectedExcursion);
-            ListBoxAvaliableExcursions.Items.Remove(selectedExcursion);
+            travelExcursions.Add((int)ListBoxAvaliableExcursions.SelectedValue, ((ExcursionViewModel)ListBoxAvaliableExcursions.SelectedItem).Name);
+            Listboxes_Reload();
         }
+
 
         private void ButtonRemoveExcursion_Click(object sender, RoutedEventArgs e)
         {
             if (ListBoxSelectedExcursions.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Эскурсия не выбрана", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Экскурсия не выбрана", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("Убрать экскурсию?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
                 try
                 {
                     travelExcursions.Remove((int)ListBoxSelectedExcursions.SelectedValue);
-
-                    //TODO: перепроверить - не уверена, что это будет работать
-                    var selectedExcursion = ListBoxSelectedExcursions.SelectedItem;
-                    ListBoxAvaliableExcursions.Items.Add(selectedExcursion);
-                    ListBoxSelectedExcursions.Items.Remove(selectedExcursion);
+                    Listboxes_Reload();
                 }
                 catch (Exception ex)
                 {
@@ -126,25 +123,38 @@ namespace TouristTourFirmView
             }
         }
 
-        private void ButtonBond_Click(object sender, RoutedEventArgs e)
+        private void Listboxes_Reload()
         {
-            if (ListBoxSelectedExcursions.Items.Count == 0)
+            ListBoxAvaliableExcursions.Items.Clear();
+            ListBoxSelectedExcursions.Items.Clear();
+
+            foreach (var selectedExcursion in travelExcursions)
             {
-                MessageBox.Show("Выберите экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                ListBoxSelectedExcursions.Items.Add(selectedExcursion);
             }
 
+            foreach (var tourFromAll in listAllExcursions)
+            {
+                if (!travelExcursions.ContainsKey(tourFromAll.ID))
+                {
+                    ListBoxAvaliableExcursions.Items.Add(tourFromAll);
+                }
+            }
+        }
+
+        private void ButtonBond_Click(object sender, RoutedEventArgs e)
+        {
             try
             {
-                var travel = logic.Read(new TravelBindingModel { ID = id })?[0];
+                var travel = travelLogic.Read(new TravelBindingModel { ID = id })?[0];
 
-                logic.CreateOrUpdate(new TravelBindingModel
+                travelLogic.CreateOrUpdate(new TravelBindingModel
                 {
                     ID = id,
                     Name = travel.Name,
                     DateStart = travel.DateStart,
                     DateEnd = travel.DateEnd,
-                    TouristID = travel.TouristID,
+                    TouristID = App.Tourist.ID,
                     TravelTours = travel.TravelTours,
                     TravelExcursions = travelExcursions
                 });

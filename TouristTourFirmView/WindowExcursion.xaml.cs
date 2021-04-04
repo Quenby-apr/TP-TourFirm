@@ -39,7 +39,7 @@ namespace TouristTourFirmView
             }
             if (string.IsNullOrEmpty(TextBoxPrice.Text))
             {
-                MessageBox.Show("Выберите стоимость экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Укажите стоимость экскурсии", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrEmpty(TextBoxDuration.Text))
@@ -88,7 +88,6 @@ namespace TouristTourFirmView
             if (listPlaces != null)
             {
                 ComboBoxPlaces.ItemsSource = listPlaces;
-                ComboBoxPlaces.SelectedItem = null;
             }
 
             if (id.HasValue)
@@ -103,6 +102,7 @@ namespace TouristTourFirmView
                         TextBoxPrice.Text = view.Price.ToString();
                         TextBoxDuration.Text = view.Duration.ToString();
                         excursionGuides = view.ExcursionGuides;
+                        ComboBoxPlaces.SelectedValue = view.PlaceID;
                     }
                 }
                 catch (Exception ex)
@@ -113,6 +113,7 @@ namespace TouristTourFirmView
             else
             {
                 excursionGuides = new Dictionary<int, string>();
+                ComboBoxPlaces.SelectedItem = null;
             }
         }
     }

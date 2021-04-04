@@ -46,11 +46,11 @@ namespace TouristTourFirmView
             form.ShowDialog();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             App.Tourist = null;
             var windowSignIn = Container.Resolve<WindowSignIn>();
-         //   Close();
+            Close();
             windowSignIn.ShowDialog();
         }
     }

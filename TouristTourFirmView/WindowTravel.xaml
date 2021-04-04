@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
         Loaded="WindowTravel_Load"
-        Title="Формирование путешествия" Height="450" Width="1150">
+        Title="Формирование путешествия" Height="450" Width="1200">
     <Window.Resources>
         <Style  TargetType="Label">
             <Setter Property="FontSize" Value="16" />
@@ -20,11 +20,11 @@
 
     <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="561*"/>
-            <ColumnDefinition Width="306*"/>
-            <ColumnDefinition Width="275*"/>
+            <ColumnDefinition Width="586*"/>
+            <ColumnDefinition Width="277*"/>
+            <ColumnDefinition Width="330*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="20,109.5,0,109.5" VerticalAlignment="Center"  HorizontalAlignment="Left" Height="200" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" >
+        <StackPanel Margin="20,110,0,110" VerticalAlignment="Center"  HorizontalAlignment="Left" Height="200" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" >
             <Label Content="Название:"  Margin="0,0,0,0" Height="35"/>
             <TextBox x:Name="TextBoxName"/>
             <Label Content="Дата начала:" />
@@ -39,17 +39,17 @@
         <Border BorderBrush="Black" BorderThickness="0.5" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="20,110,0,0"/>
 
         <ListBox x:Name="ListBoxSelectedTours" DisplayMemberPath="Value" SelectedValuePath="Key" HorizontalAlignment="Left" Height="290" Margin="245,60,0,0" VerticalAlignment="Top" Width="250"/>
-        <ListBox x:Name="ListBoxAvaliableTours" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Height="290" Margin="28,60,0,0" VerticalAlignment="Top" Width="250" Grid.Column="1"/>
-        <ListBox x:Name="ListBoxExcursions" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Height="290" Margin="30,60,0,0" VerticalAlignment="Top" Width="220" Focusable="False" Grid.Column="2"/>
+        <ListBox x:Name="ListBoxAvaliableTours" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Height="290" Margin="9.6,59,0,0" VerticalAlignment="Top" Width="250" Grid.Column="1"/>
+        <ListBox x:Name="ListBoxExcursions" DisplayMemberPath="Value" HorizontalAlignment="Left" Height="290" Margin="28.8,60,0,0" VerticalAlignment="Top" Width="278" Focusable="False" Grid.Column="2"/>
 
-        <Button x:Name="ButtonAddTour" Click="ButtonAddTour_Click" Content="&lt;-" HorizontalAlignment="Left" Margin="505,140,0,0" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2" Height="20"/>
-        <Button x:Name="ButtonRemoveTour" Click="ButtonRemoveTour_Click" Content="->" HorizontalAlignment="Left" Margin="505,220,0,0" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2" Height="20"/>
+        <Button x:Name="ButtonAddTour" Click="ButtonAddTour_Click" Content="&lt;-" HorizontalAlignment="Left" Margin="505,140,0,0" VerticalAlignment="Top" Width="70" Height="20"/>
+        <Button x:Name="ButtonRemoveTour" Click="ButtonRemoveTour_Click" Content="->" HorizontalAlignment="Left" Margin="505,220,0,0" VerticalAlignment="Top" Width="70" Height="20"/>
 
         <Label Content="Выбранные туры:" HorizontalAlignment="Left" Margin="240,20,0,0" VerticalAlignment="Top" Height="29" Width="142"/>
-        <Label Content="Доступные туры:" HorizontalAlignment="Left" Margin="28,20,0,0" VerticalAlignment="Top" Grid.Column="1" Height="29" Width="142"/>
-        <Label Content="Привязанные экскурсии:" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top" Grid.Column="2" Width="220" Height="29"/>
+        <Label Content="Доступные туры:" HorizontalAlignment="Left" Margin="27.6,20,0,0" VerticalAlignment="Top" Grid.Column="1" Height="29" Width="142"/>
+        <Label Content="Привязанные экскурсии:" HorizontalAlignment="Left" Margin="28.8,20,0,0" VerticalAlignment="Top" Grid.Column="2" Width="220" Height="29" RenderTransformOrigin="0.408,0.583"/>
 
-        <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Сохранить" HorizontalAlignment="Center" Margin="-150,370,29,0" VerticalAlignment="Top" Width="86" Height="30" Grid.ColumnSpan="3"/>
-        <Button x:Name="ButtonCancel" Click="ButtonCancel_Click" Content="Отмена" HorizontalAlignment="Center" Margin="150,370,19,0" VerticalAlignment="Top" Width="86" Height="30" Grid.ColumnSpan="3"/>
+        <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Сохранить" HorizontalAlignment="Center" Margin="464,370,36.4,0" VerticalAlignment="Top" Width="86" Height="30"/>
+        <Button x:Name="ButtonCancel" Click="ButtonCancel_Click" Content="Отмена" HorizontalAlignment="Center" Margin="15.6,370,175.2,0" VerticalAlignment="Top" Width="86" Height="30" Grid.Column="1"/>
     </Grid>
 </Window>
