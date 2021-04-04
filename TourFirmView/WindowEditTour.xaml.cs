@@ -74,7 +74,7 @@ namespace TourFirmView
                 {
                     ListBoxAvailable.Items.Remove(guide);
                 }
-            }    
+            }
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -144,5 +144,4 @@ namespace TourFirmView
         }
     }
 
-    }
 }

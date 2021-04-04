@@ -206,6 +206,24 @@ namespace TourFirmDatabaseImplement.Implements
                     .Where(rec => !model.TravelExcursions.ContainsKey(rec.ExcursionID)).ToList());
 
                 context.SaveChanges();
+
+                // Убираем повторы
+                foreach (var travelTour in travelTours)
+                {
+                    if (model.TravelTours.ContainsKey(travelTour.TourID))
+                    {
+                        model.TravelTours.Remove(travelTour.TourID);
+                    }
+                }
+
+                foreach (var travelExcursion in travelExcursions)
+                {
+                    if (model.TravelExcursions.ContainsKey(travelExcursion.ExcursionID))
+                    {
+                        model.TravelTours.Remove(travelExcursion.ExcursionID);
+                    }
+                }
+                context.SaveChanges();
             }
 
             foreach (var tt in model.TravelTours)

@@ -59,10 +59,11 @@ namespace TouristTourFirmView
             {
                 travelTours = new Dictionary<int, string>();
                 travelExcursions = new Dictionary<int, string>();
-                ListBoxAvaliableTours.ItemsSource = listAllTours;
 
-                //Нужно ли?
-                ListBoxSelectedTours.ItemsSource = travelTours;
+                foreach (var tour in listAllTours)
+                {
+                    ListBoxAvaliableTours.Items.Add(tour);
+                }
             }
         }
 
@@ -74,28 +75,22 @@ namespace TouristTourFirmView
                 //оставляем только непривязанные туры
                 if (travelTours != null)
                 {
-                    ListBoxSelectedTours.ItemsSource = travelTours;
-                    ListBoxAvaliableTours.Items.Clear();
+                    foreach (var tour in travelTours)
+                    {
+                        ListBoxSelectedTours.Items.Add(tour);
+                    }
 
+                    ListBoxAvaliableTours.Items.Clear();
 
                     foreach (var tourFromAll in listAllTours)
                     {
-                        foreach (var tourFromSelected in travelTours)
+                        if (!travelTours.ContainsKey(tourFromAll.ID))
                         {
-                            if (tourFromAll.ID != tourFromSelected.Key)
-                            {
-                                ListBoxAvaliableTours.Items.Add(tourFromSelected);
-                            }
+                            ListBoxAvaliableTours.Items.Add(tourFromAll);
                         }
                     }
                 }
-                else
-                {
-                    ListBoxAvaliableTours.ItemsSource = listAllTours;
 
-                    //Нужно ли?
-                    ListBoxSelectedTours.ItemsSource = travelTours;
-                }
                 if (travelExcursions != null)
                 {
                     ListBoxExcursions.ItemsSource = travelExcursions;
@@ -115,13 +110,10 @@ namespace TouristTourFirmView
                 return;
             }
 
-            //TODO: перепроверить - не уверена, что это будет работать
-            var selectedTour = ListBoxAvaliableTours.SelectedItem;
-            travelTours.Add((int)ListBoxAvaliableTours.SelectedValue, ((TourViewModel)selectedTour).Name);
-
-            ListBoxSelectedTours.Items.Add(selectedTour);
-            ListBoxAvaliableTours.Items.Remove(selectedTour);
+            travelTours.Add((int)ListBoxAvaliableTours.SelectedValue, ((TourViewModel)ListBoxAvaliableTours.SelectedItem).Name);
+            Listboxes_Reload();
         }
+
 
         private void ButtonRemoveTour_Click(object sender, RoutedEventArgs e)
         {
@@ -131,22 +123,37 @@ namespace TouristTourFirmView
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("Удалить запись?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
                 try
                 {
                     travelTours.Remove((int)ListBoxSelectedTours.SelectedValue);
-
-                    //TODO: перепроверить - не уверена, что это будет работать
-                    var selectedTour = ListBoxSelectedTours.SelectedItem;
-                    ListBoxAvaliableTours.Items.Add(selectedTour);
-                    ListBoxSelectedTours.Items.Remove(selectedTour);
+                    Listboxes_Reload();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void Listboxes_Reload()
+        {
+            ListBoxAvaliableTours.Items.Clear();
+            ListBoxSelectedTours.Items.Clear();
+
+            foreach (var selectedTour in travelTours)
+            {
+                ListBoxSelectedTours.Items.Add(selectedTour);
+            }
+
+            foreach (var tourFromAll in listAllTours)
+            {
+                if (!travelTours.ContainsKey(tourFromAll.ID))
+                {
+                    ListBoxAvaliableTours.Items.Add(tourFromAll);
                 }
             }
         }

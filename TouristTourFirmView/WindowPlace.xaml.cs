@@ -25,6 +25,27 @@ namespace TouristTourFirmView
             this.logic = logic;
         }
 
+        private void WindowPlace_Load(object sender, RoutedEventArgs e)
+        {
+            if (id.HasValue)
+            {
+                try
+                {
+                    var view = logic.Read(new PlaceBindingModel { ID = id })?[0];
+
+                    if (view != null)
+                    {
+                        TextBoxName.Text = view.Name;
+                        TextBoxType.Text = view.Type;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(TextBoxName.Text))

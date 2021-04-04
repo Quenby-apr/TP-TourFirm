@@ -38,7 +38,7 @@
         <Label Content="Данные по путешествию:" HorizontalAlignment="Left" Margin="20,59,0,0" VerticalAlignment="Top" Height="33" Width="195"/>
         <Border BorderBrush="Black" BorderThickness="0.5" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="20,110,0,0"/>
 
-        <ListBox x:Name="ListBoxSelectedTours" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Height="290" Margin="245,60,0,0" VerticalAlignment="Top" Width="250"/>
+        <ListBox x:Name="ListBoxSelectedTours" DisplayMemberPath="Value" SelectedValuePath="Key" HorizontalAlignment="Left" Height="290" Margin="245,60,0,0" VerticalAlignment="Top" Width="250"/>
         <ListBox x:Name="ListBoxAvaliableTours" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Height="290" Margin="28,60,0,0" VerticalAlignment="Top" Width="250" Grid.Column="1"/>
         <ListBox x:Name="ListBoxExcursions" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Height="290" Margin="30,60,0,0" VerticalAlignment="Top" Width="220" Focusable="False" Grid.Column="2"/>
 

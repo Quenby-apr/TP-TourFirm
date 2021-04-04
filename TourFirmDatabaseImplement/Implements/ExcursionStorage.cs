@@ -29,7 +29,7 @@ namespace TourFirmDatabaseImplement.Implements
                     Name = excursion.Name,
                     Price = excursion.Price,
                     Duration = excursion.Duration,
-                    PlaceID=excursion.PlaceID,
+                    PlaceID =excursion.PlaceID,
                     TouristID=excursion.TouristID,
                     ExcursionGuides=excursion.ExcursionGuides
                     .ToDictionary(recEX => recEX.GuideID, recEX => (recEX.Guide?.Name))
@@ -94,13 +94,7 @@ namespace TourFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        Excursion excursion = new Excursion
-                        {
-                            Name = model.Name,
-                        };
-                        context.Excursions.Add(excursion);
-                        context.SaveChanges();
-                        CreateModel(model, excursion, context);
+                        context.Excursions.Add(CreateModel(model, new Excursion(), context));
                         context.SaveChanges();
                         transaction.Commit();
                     }
