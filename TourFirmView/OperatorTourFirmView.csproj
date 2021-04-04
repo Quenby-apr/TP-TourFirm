@@ -161,9 +161,6 @@
     <Compile Include="WindowBindingExcursions.xaml.cs">
       <DependentUpon>WindowBindingExcursions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowBindingTour.xaml.cs">
-      <DependentUpon>WindowBindingTour.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WindowEditGuide.xaml.cs">
       <DependentUpon>WindowEditGuide.xaml</DependentUpon>
     </Compile>
@@ -202,10 +199,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="WindowBindingExcursions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowBindingTour.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

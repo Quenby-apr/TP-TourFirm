@@ -29,8 +29,8 @@
             <Label Content="Адрес" />
             <TextBox x:Name="AddressTextBox"/>
         </StackPanel>
-        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="80,180,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.341,0.148" Grid.ColumnSpan="2"/>
-        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="80.135,180,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="80,180,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.341,0.148" Grid.ColumnSpan="2" Click="ButtonSave_Click"/>
+        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="80.135,180,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="ButtonCancel_Click"/>
 
     </Grid>
 </Window>

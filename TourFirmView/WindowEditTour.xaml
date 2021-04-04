@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="WindowEditTour" Height="450" Width="900" Loaded="WindowEditTour_Load">
+        Title="WindowEditTour" Height="450" Width="1200" Loaded="WindowEditTour_Load">
     <Window.Resources>
 
         <Style  TargetType="Label">
@@ -19,7 +19,7 @@
 
     </Window.Resources>
     <Grid Margin="0,0,0,0">
-        <StackPanel Margin="20,110,0,110" VerticalAlignment="Center"  HorizontalAlignment="Left" Height="200" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" >
+        <StackPanel Margin="20,10,0,110" VerticalAlignment="Center"  HorizontalAlignment="Left" Height="200" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" >
             <Label Content="Название"  Margin="0,0,0,0" Height="35"/>
             <TextBox x:Name="NameTextBox"/>
             <Label Content="Страна" />
@@ -27,17 +27,21 @@
             <Label Content="Стоимость" />
             <TextBox x:Name="PriceTextBox"/>
         </StackPanel>
-        <Label Content="Данные по туру:" HorizontalAlignment="Left" Margin="20,59,0,0" VerticalAlignment="Top" Height="33" Width="175"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="20,110,0,0"/>
+        <Label Content="Название" Margin="900,70,0,313"/>
+        <ComboBox x:Name="ComboBoxHalts" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Margin="900,120,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ComboBoxHalts_SelectionChanged"/>
+        <Label Content="Адрес"  Margin="900,160,0,225" HorizontalAlignment="Left" Width="210" />
+        <TextBox x:Name="AddressTextBox" Margin="900,0,0,0" HorizontalAlignment="Left" IsReadOnly="True" Width="210"/>
+        <Label Content="Данные по туру:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="33" Width="175"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="20,60,0,0"/>
         <ListBox x:Name="ListBoxSelected" HorizontalAlignment="Left" Height="290" Margin="245,60,0,0" VerticalAlignment="Top" Width="250"/>
-        <ListBox x:Name="ListBoxAvailable" HorizontalAlignment="Left" Height="290" Margin="590,60,0,0" VerticalAlignment="Top" Width="250"/>
+        <ListBox x:Name="ListBoxAvailable" HorizontalAlignment="Left" Height="290" Margin="590,60,0,0" VerticalAlignment="Top" Width="250" IsSynchronizedWithCurrentItem="False"/>
         <Button x:Name="ButtonAdd" Content="Добавить" HorizontalAlignment="Left" Margin="505,120,0,0" VerticalAlignment="Top" Width="70" Click="ButtonAdd_Click"/>
         <Button x:Name="ButtonDelete" Content="Убрать" HorizontalAlignment="Left" Margin="505,200,0,0" VerticalAlignment="Top" Width="70" Click="ButtonDelete_Click"/>
         <Label Content="Выбранные гиды:" HorizontalAlignment="Left" Margin="240,20,0,0" VerticalAlignment="Top"/>
         <Label Content="Доступные гиды:" HorizontalAlignment="Left" Margin="590,20,0,0" VerticalAlignment="Top"/>
         <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="680,380,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.341,0.148" Grid.ColumnSpan="2" Click="ButtonSave_Click"/>
         <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="780,380,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="ButtonCancel_Click"/>
-        <Button x:Name="ButtonBindTour" Content="Привязать тур" HorizontalAlignment="Left" Margin="245,380,0,0" VerticalAlignment="Top" Width="127"/>
+        <Label Content="Данные по остановке:" HorizontalAlignment="Left" Margin="900,20,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

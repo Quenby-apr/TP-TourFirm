@@ -68,15 +68,22 @@ namespace TourFirmView
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-           if (toursGrid.SelectedItems.Count == 1)
+            try
             {
-                var form = Container.Resolve<WindowEditTour>();
-                form.Id = ((TourViewModel)toursGrid.SelectedItems[0]).ID;
-
-                if (form.ShowDialog() == true)
+                if (toursGrid.SelectedItems.Count == 1)
                 {
-                    LoadData();
+                    var form = Container.Resolve<WindowEditTour>();
+                    form.Id = ((TourViewModel)toursGrid.SelectedItems[0]).ID;
+
+                    if (form.ShowDialog() == true)
+                    {
+                        LoadData();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

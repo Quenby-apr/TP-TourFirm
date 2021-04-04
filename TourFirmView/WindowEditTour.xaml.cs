@@ -23,7 +23,6 @@ namespace TourFirmView
     /// </summary>
     public partial class WindowEditTour : Window
     {
-
         [Dependency]
         public IUnityContainer Container { get; set; }
 
@@ -47,6 +46,8 @@ namespace TourFirmView
 
         private void LoadData()
         {
+            ComboBoxHalts.ItemsSource = Hlogic.Read(null);
+            ComboBoxHalts.SelectedItem = null;
             var tours = logic.Read(null);
             foreach (var tour in tours)
             {
@@ -74,18 +75,27 @@ namespace TourFirmView
                 {
                     ListBoxAvailable.Items.Remove(guide);
                 }
-            }
+                NameTextBox.Text = tour.Name;
+                CountryTextBox.Text = tour.Country;
+                PriceTextBox.Text = tour.Price.ToString();
+            }    
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            ListBoxSelected.Items.Add(ListBoxAvailable.SelectedItem);
-            ListBoxAvailable.Items.Remove(ListBoxAvailable.SelectedItem);
+            if (ListBoxAvailable.SelectedItem != null)
+            {
+                ListBoxSelected.Items.Add(ListBoxAvailable.SelectedItem);
+                ListBoxAvailable.Items.Remove(ListBoxAvailable.SelectedItem);
+            }
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            ListBoxAvailable.Items.Add(ListBoxSelected.SelectedItem);
-            ListBoxSelected.Items.Remove(ListBoxSelected.SelectedItem);
+            if (ListBoxSelected.SelectedItem != null)
+            {
+                ListBoxAvailable.Items.Add(ListBoxSelected.SelectedItem);
+                ListBoxSelected.Items.Remove(ListBoxSelected.SelectedItem);
+            }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -105,6 +115,7 @@ namespace TourFirmView
                 MessageBox.Show("Введите стоимость", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            HaltViewModel halt = (HaltViewModel)ComboBoxHalts.SelectedItem;
             Dictionary<int, string> _TourGuides = new Dictionary<int, string>();
             foreach (var guide in ListBoxSelected.Items)
             {
@@ -113,6 +124,10 @@ namespace TourFirmView
                     Surname = guide.ToString()
                 })[0].ID, guide.ToString());
             }
+            foreach (var zap in _TourGuides)
+            {
+                Console.WriteLine(zap.Key);
+            }
             logic.CreateOrUpdate(new TourBindingModel
             {
                 ID = id,
@@ -120,6 +135,7 @@ namespace TourFirmView
                 Country = CountryTextBox.Text,
                 Price = decimal.Parse(PriceTextBox.Text),
                 TourGuides = _TourGuides,
+                HaltID = halt.ID,
                 OperatorID = App.Operator.ID,
 
             });
@@ -133,14 +149,11 @@ namespace TourFirmView
             DialogResult = false;
             Close();
         }
-        private void ButtonBindTour_Click(object sender, RoutedEventArgs e)
+
+        private void ComboBoxHalts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var form = Container.Resolve<WindowBindingTour>();
-            form.NameTour = NameTextBox.Text;
-            if (form.ShowDialog() == true)
-            {
-                LoadData();
-            }
+            HaltViewModel halt = (HaltViewModel)ComboBoxHalts.SelectedItem;
+            AddressTextBox.Text = halt.Address;
         }
     }
 

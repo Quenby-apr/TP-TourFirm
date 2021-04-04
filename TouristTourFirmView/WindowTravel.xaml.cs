@@ -110,7 +110,8 @@ namespace TouristTourFirmView
                 return;
             }
 
-            travelTours.Add((int)ListBoxAvaliableTours.SelectedValue, ((TourViewModel)ListBoxAvaliableTours.SelectedItem).Name);
+            travelTours.Add((int)ListBoxAvaliableTours.SelectedValue, 
+                ((TourViewModel)ListBoxAvaliableTours.SelectedItem).Name);
             Listboxes_Reload();
         }
 

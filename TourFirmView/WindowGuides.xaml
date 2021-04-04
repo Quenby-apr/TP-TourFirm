@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Список гидов" Height="450" Width="813.2" Loaded="WindowGuides_Load">
+        Title="Список гидов" Height="450" Width="827.6" Loaded="WindowGuides_Load">
     <Grid>
         <DataGrid x:Name="GridGuides" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700" ItemsSource="{Binding Mode=OneWay}">
             <DataGrid.Columns>

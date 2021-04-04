@@ -20,8 +20,6 @@ namespace TourFirmDatabaseImplement.Implements
             using (var context = new TourFirmDatabase())
             {
                 var excursion = context.Excursions
-               .Include(rec => rec.ExcursionGuides)
-              .ThenInclude(rec => rec.Guide)
               .FirstOrDefault(rec => rec.Name == model.Name || rec.ID == model.ID);
                 return excursion != null ? new ExcursionViewModel
                 {
@@ -31,8 +29,6 @@ namespace TourFirmDatabaseImplement.Implements
                     Duration = excursion.Duration,
                     PlaceID =excursion.PlaceID,
                     TouristID=excursion.TouristID,
-                    ExcursionGuides=excursion.ExcursionGuides
-                    .ToDictionary(recEX => recEX.GuideID, recEX => (recEX.Guide?.Name))
                 } :
                 null;
             }
@@ -48,17 +44,14 @@ namespace TourFirmDatabaseImplement.Implements
             using (var context = new TourFirmDatabase())
             {
                 return context.Excursions
-                    .Include(rec => rec.ExcursionGuides)
-                    .ThenInclude(rec => rec.Guide).ToList().Select(rec => new ExcursionViewModel
+                    .Select(rec => new ExcursionViewModel
                     {
                         ID = rec.ID,
                         Name = rec.Name,
                         Price = rec.Price,
                         Duration = rec.Duration,
                         PlaceID = rec.PlaceID,
-                        TouristID = rec.TouristID,
-                        ExcursionGuides = rec.ExcursionGuides
-                        .ToDictionary(recPC => recPC.GuideID, recPC => (recPC.Guide?.Name))
+                        TouristID = rec.TouristID,      
                     })
                     .ToList();
             }
@@ -68,8 +61,7 @@ namespace TourFirmDatabaseImplement.Implements
         {
             using (var context = new TourFirmDatabase())
             {
-                return context.Excursions.Include(rec => rec.ExcursionGuides)
-                    .ThenInclude(rec => rec.Guide)
+                return context.Excursions
                     .Where(rec => rec.TouristID.Equals(UserID))
                     .ToList().Select(rec => new ExcursionViewModel
                     {
@@ -79,8 +71,6 @@ namespace TourFirmDatabaseImplement.Implements
                         Duration = rec.Duration,
                         PlaceID = rec.PlaceID,
                         TouristID = rec.TouristID,
-                        ExcursionGuides = rec.ExcursionGuides
-                        .ToDictionary(recPC => recPC.GuideID, recPC => (recPC.Guide?.Name))
                     })
                     .ToList();
             }
@@ -156,25 +146,6 @@ namespace TourFirmDatabaseImplement.Implements
             excursion.Duration = model.Duration;
             excursion.PlaceID = model.PlaceID;
             excursion.TouristID = model.TouristID;
-            if (model.ID.HasValue)
-            {
-                var excursionGuides = context.ExcursionGuides.Where(rec =>
-               rec.ExcursionID == model.ID.Value).ToList();
-                // удалили те, которых нет в модели
-                context.ExcursionGuides.RemoveRange(excursionGuides.Where(rec =>
-               !model.ExcursionGuides.ContainsKey(rec.GuideID)).ToList());
-                context.SaveChanges();
-            }
-            // добавили новые
-            foreach (var eg in model.ExcursionGuides)
-            {
-                context.ExcursionGuides.Add(new ExcursionGuide
-                {
-                    ExcursionID = excursion.ID,
-                    GuideID = eg.Key,
-                });
-                context.SaveChanges();
-            }
             return excursion;
         }
     }

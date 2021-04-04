@@ -102,7 +102,9 @@ namespace TourFirmDatabaseImplement.Implements
                         {
                             Name = model.Name,
                             Price = model.Price,
-                            Country = model.Country
+                            Country = model.Country,
+                            HaltID = model.HaltID,
+                            OperatorID = model.OperatorID
                         };
                         context.Tours.Add(tour);
                         context.SaveChanges();

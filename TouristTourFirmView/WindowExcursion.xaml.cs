@@ -63,7 +63,6 @@ namespace TouristTourFirmView
                     Duration = Convert.ToInt32(TextBoxDuration.Text),
                     PlaceID = Convert.ToInt32(ComboBoxPlaces.SelectedValue),
                     TouristID = App.Tourist.ID,
-                    ExcursionGuides = excursionGuides
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -102,7 +101,6 @@ namespace TouristTourFirmView
                         TextBoxName.Text = view.Name;
                         TextBoxPrice.Text = view.Price.ToString();
                         TextBoxDuration.Text = view.Duration.ToString();
-                        excursionGuides = view.ExcursionGuides;
                     }
                 }
                 catch (Exception ex)

@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Привязка экскурсий" Height="400" Width="400">
+        Title="Привязка экскурсий" Height="400" Width="400" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="ChoosenGuide"  HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="340" IsReadOnly="True"/>
+        <ComboBox x:Name="ComboBoxChoosenGuide" DisplayMemberPath="Surname" SelectedValuePath="ID" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="340" IsReadOnly="True"/>
         <Label Content="Выбранный гид:" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top"/>
-        <ListBox HorizontalAlignment="Left" Height="240" Margin="20,70,0,0" VerticalAlignment="Top" Width="340"/>
-        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="70,330,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="210,330,0,0" VerticalAlignment="Top" Width="75"/>
+        <ListBox x:Name="ListBoxExcursion" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionMode="Multiple" HorizontalAlignment="Left" Height="240" Margin="20,70,0,0" VerticalAlignment="Top" Width="340"/>
+        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="70,330,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSave_Click"/>
+        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="210,330,0,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
     </Grid>
 </Window>

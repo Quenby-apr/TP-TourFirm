@@ -21,6 +21,8 @@ namespace TourFirmDatabaseImplement.Implements
             using (var context = new TourFirmDatabase())
             {
                 var guide = context.Guides
+              .Include(rec => rec.ExcursionGuides)
+              .ThenInclude(rec => rec.Excursion)
               .FirstOrDefault(rec =>  rec.ID == model.ID || rec.Surname == model.Surname);
                 return guide != null ? new GuideViewModel
                 {
@@ -33,6 +35,8 @@ namespace TourFirmDatabaseImplement.Implements
                     AdditionalLanguage = guide.AdditionalLanguage,
                     DateWork = guide.DateWork,
                     OperatorID = guide.OperatorID,
+                    ExcursionGuides = guide.ExcursionGuides
+                    .ToDictionary(recEX => recEX.ExcursionID, recEX => (recEX.Excursion?.Name))
                 } :
                 null;
             }
@@ -48,6 +52,8 @@ namespace TourFirmDatabaseImplement.Implements
             using (var context = new TourFirmDatabase())
             {
                 return context.Guides
+                    .Include(rec => rec.ExcursionGuides)
+                    .ThenInclude(rec => rec.Excursion).ToList()
                    .Select(rec => new GuideViewModel
                    {
                        ID = rec.ID,
@@ -59,6 +65,8 @@ namespace TourFirmDatabaseImplement.Implements
                        AdditionalLanguage = rec.AdditionalLanguage,
                        DateWork = rec.DateWork,
                        OperatorID = rec.OperatorID,
+                       ExcursionGuides = rec.ExcursionGuides
+                        .ToDictionary(recPC => recPC.ExcursionID, recPC => (recPC.Excursion?.Name))
                    })
                     .ToList();
             }
@@ -68,7 +76,8 @@ namespace TourFirmDatabaseImplement.Implements
         {
             using (var context = new TourFirmDatabase())
             {
-                return context.Guides
+                return context.Guides.Include(rec => rec.ExcursionGuides)
+                    .ThenInclude(rec => rec.Excursion)
                    .Where(rec => rec.OperatorID.Equals(UserID))
                    .Select(rec => new GuideViewModel
                    {
@@ -81,6 +90,8 @@ namespace TourFirmDatabaseImplement.Implements
                        AdditionalLanguage = rec.AdditionalLanguage,
                        DateWork = rec.DateWork,
                        OperatorID = rec.OperatorID,
+                       ExcursionGuides = rec.ExcursionGuides
+                        .ToDictionary(recEG => recEG.ExcursionID, recEG => recEG.Excursion.Name)
                    })
                     .ToList();
             }
@@ -159,6 +170,25 @@ namespace TourFirmDatabaseImplement.Implements
             guide.AdditionalLanguage = model.AdditionalLanguage;
             guide.DateWork = model.DateWork;
             guide.OperatorID = model.OperatorID;
+            if (model.ID.HasValue)
+            {
+                var excursionGuides = context.ExcursionGuides.Where(rec =>
+               rec.GuideID == model.ID.Value).ToList();
+                // удалили те, которых нет в модели
+                context.ExcursionGuides.RemoveRange(excursionGuides.Where(rec =>
+               !model.ExcursionGuides.ContainsKey(rec.ExcursionID)).ToList());
+                context.SaveChanges();
+            }
+            // добавили новые
+            foreach (var eg in model.ExcursionGuides)
+            {
+                context.ExcursionGuides.Add(new ExcursionGuide
+                {
+                    GuideID = guide.ID,
+                    ExcursionID = eg.Key,
+                });
+                context.SaveChanges();
+            }
             return guide;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace TourFirmBusinessLogic.ViewModels
@@ -13,6 +14,7 @@ namespace TourFirmBusinessLogic.ViewModels
         [DisplayName("Основной язык")]  public string MainLanguage { get; set; }
         [DisplayName("Дополнительный язык")]  public string AdditionalLanguage { get; set; }
         [DisplayName("Дата экскурсии")] public DateTime DateWork { get; set; }
+        public Dictionary<int, string> ExcursionGuides { get; set; }
         public int OperatorID { get; set; }
     }
 }

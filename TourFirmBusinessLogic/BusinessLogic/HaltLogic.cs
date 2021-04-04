@@ -21,7 +21,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             {
                 return _haltStorage.GetFullList();
             }
-            if (model.ID.HasValue)
+            if (model.ID.HasValue || model.Name != null)
             {
                 return new List<HaltViewModel> { _haltStorage.GetElement(model) };
             }

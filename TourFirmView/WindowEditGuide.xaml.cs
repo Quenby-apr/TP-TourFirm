@@ -29,6 +29,7 @@ namespace TourFirmView
 
         public int Id { set { id = value; } }
         private int? id;
+        public int HaltID { get; set; }
 
         public WindowEditGuide(GuideLogic logic)
         {

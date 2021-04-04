@@ -75,13 +75,7 @@ namespace TourFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        Halt halt = new Halt
-                        {
-                            Name = model.Name,
-                        };
-                        context.Halts.Add(halt);
-                        context.SaveChanges();
-                        CreateModel(model, halt, context);
+                        context.Halts.Add(CreateModel(model, new Halt(), context));
                         context.SaveChanges();
                         transaction.Commit();
                     }
