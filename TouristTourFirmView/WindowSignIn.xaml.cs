@@ -34,7 +34,6 @@ namespace TouristTourFirmView
                 return;
             }
 
-
             var tourists = logic.Read(null);
             
             TouristViewModel touristView = null;

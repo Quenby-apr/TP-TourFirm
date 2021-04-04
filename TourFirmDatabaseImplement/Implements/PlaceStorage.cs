@@ -69,23 +69,6 @@ namespace TourFirmDatabaseImplement.Implements
             }
         }
 
-        public List<PlaceViewModel> GetUserList(int UserID)
-        {
-            using (var context = new TourFirmDatabase())
-            {
-                return context.Places
-                    .Where(rec => rec.TouristID.Equals(UserID))
-                    .ToList()
-                     .Select(rec => new PlaceViewModel
-                     {
-                         ID = rec.ID,
-                         Name = rec.Name,
-                         Type = rec.Type,
-                         TouristID = rec.TouristID
-                     }).ToList();
-            }
-        }
-
         public void Insert(PlaceBindingModel model)
         {
             using (var context = new TourFirmDatabase())

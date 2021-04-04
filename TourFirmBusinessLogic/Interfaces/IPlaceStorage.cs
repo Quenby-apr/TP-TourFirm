@@ -7,7 +7,6 @@ namespace TourFirmBusinessLogic.Interfaces
     public interface IPlaceStorage
     {
         List<PlaceViewModel> GetFullList();
-        List<PlaceViewModel> GetUserList(int UserID);
         List<PlaceViewModel> GetFilteredList(PlaceBindingModel model);
         PlaceViewModel GetElement(PlaceBindingModel model);
         void Insert(PlaceBindingModel model);

@@ -114,5 +114,10 @@ namespace TourFirmDatabaseImplement.Implements
             tourist.Password = model.Password;
             return tourist;
         }
+
+        public List<PlaceViewModel> GetFilteredList(TouristViewModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

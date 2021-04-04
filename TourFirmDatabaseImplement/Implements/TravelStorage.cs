@@ -20,7 +20,6 @@ namespace TourFirmDatabaseImplement.Implements
                     .ThenInclude(rec => rec.Tour)
                     .Include(rec => rec.TravelExcursions)
                     .ThenInclude(rec => rec.Excursion)
-                    .Include(rec => rec.Tourist)
                     .ToList()
                     .Select(rec => new TravelViewModel
                     {
@@ -49,7 +48,6 @@ namespace TourFirmDatabaseImplement.Implements
                     .ThenInclude(rec => rec.Tour)
                     .Include(rec => rec.TravelExcursions)
                     .ThenInclude(rec => rec.Excursion)
-                    .Include(rec => rec.Tourist)
                     .Where(rec => rec.Name.Contains(model.Name))
                     .ToList().
                     Select(rec => new TravelViewModel
@@ -79,7 +77,6 @@ namespace TourFirmDatabaseImplement.Implements
                     .ThenInclude(rec => rec.Tour)
                     .Include(rec => rec.TravelExcursions)
                     .ThenInclude(rec => rec.Excursion)
-                    .Include(rec => rec.Tourist)
                     .FirstOrDefault(rec => rec.Name == model.Name || rec.ID == model.ID);
                 return travel != null ? new TravelViewModel
                 {
@@ -91,30 +88,6 @@ namespace TourFirmDatabaseImplement.Implements
                     TravelTours = travel.TravelTours.ToDictionary(recTT => recTT.TourID, recTT => (recTT.Tour?.Name)),
                     TravelExcursions = travel.TravelExcursions.ToDictionary(recTE => recTE.ExcursionID, recTE => (recTE.Excursion?.Name))
                 } : null;
-            }
-        }
-
-        public List<TravelViewModel> GetUserList(int UserID)
-        {
-            using (var context = new TourFirmDatabase())
-            {
-                return context.Travels
-                    .Include(rec => rec.TravelTours)
-                    .ThenInclude(rec => rec.Tour)
-                    .Include(rec => rec.TravelExcursions)
-                    .ThenInclude(rec => rec.Excursion)
-                    .Where(rec => rec.TouristID.Equals(UserID))
-                    .ToList()
-                    .Select(rec => new TravelViewModel
-                    {
-                        ID = rec.ID,
-                        Name = rec.Name,
-                        DateStart = rec.DateStart,
-                        DateEnd = rec.DateEnd,
-                        TouristID = rec.TouristID,
-                        TravelTours = rec.TravelTours.ToDictionary(recTT => recTT.TourID, recTT => (recTT.Tour?.Name)),
-                        TravelExcursions = rec.TravelExcursions.ToDictionary(recTE => recTE.ExcursionID, recTE => (recTE.Excursion?.Name))
-                    }).ToList();
             }
         }
 

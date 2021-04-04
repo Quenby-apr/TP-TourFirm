@@ -8,8 +8,7 @@ namespace TourFirmBusinessLogic.Interfaces
     public interface ITouristStorage
     {
         List<TouristViewModel> GetFullList();
-        /*        ?
-                List<PlaceViewModel> GetFilteredList(TouristViewModel model);*/
+        List<PlaceViewModel> GetFilteredList(TouristViewModel model);
         TouristViewModel GetElement(TouristBindingModel model);
         void Insert(TouristBindingModel model);
         void Update(TouristBindingModel model);

@@ -7,7 +7,6 @@ namespace TourFirmBusinessLogic.Interfaces
     public interface IExcursionStorage
     {
         List<ExcursionViewModel> GetFullList();
-        List<ExcursionViewModel> GetUserList(int UserID);
         List<ExcursionViewModel> GetFilteredList(ExcursionBindingModel model);
         ExcursionViewModel GetElement(ExcursionBindingModel model);
         void Insert(ExcursionBindingModel model);

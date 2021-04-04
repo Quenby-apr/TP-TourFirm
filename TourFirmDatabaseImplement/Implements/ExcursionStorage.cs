@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
@@ -52,25 +51,6 @@ namespace TourFirmDatabaseImplement.Implements
                         Duration = rec.Duration,
                         PlaceID = rec.PlaceID,
                         TouristID = rec.TouristID,      
-                    })
-                    .ToList();
-            }
-        }
-
-        public List<ExcursionViewModel> GetUserList(int UserID)
-        {
-            using (var context = new TourFirmDatabase())
-            {
-                return context.Excursions
-                    .Where(rec => rec.TouristID.Equals(UserID))
-                    .ToList().Select(rec => new ExcursionViewModel
-                    {
-                        ID = rec.ID,
-                        Name = rec.Name,
-                        Price = rec.Price,
-                        Duration = rec.Duration,
-                        PlaceID = rec.PlaceID,
-                        TouristID = rec.TouristID,
                     })
                     .ToList();
             }
