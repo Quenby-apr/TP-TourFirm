@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using TourFirmBusinessLogic.BusinessLogic;
-using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
 using Unity;
 

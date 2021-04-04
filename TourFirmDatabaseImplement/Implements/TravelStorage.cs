@@ -20,6 +20,7 @@ namespace TourFirmDatabaseImplement.Implements
                     .ThenInclude(rec => rec.Tour)
                     .Include(rec => rec.TravelExcursions)
                     .ThenInclude(rec => rec.Excursion)
+                    .Include(rec => rec.Tourist)
                     .ToList()
                     .Select(rec => new TravelViewModel
                     {
@@ -48,6 +49,7 @@ namespace TourFirmDatabaseImplement.Implements
                     .ThenInclude(rec => rec.Tour)
                     .Include(rec => rec.TravelExcursions)
                     .ThenInclude(rec => rec.Excursion)
+                    .Include(rec => rec.Tourist)
                     .Where(rec => rec.Name.Contains(model.Name))
                     .ToList().
                     Select(rec => new TravelViewModel
@@ -77,6 +79,7 @@ namespace TourFirmDatabaseImplement.Implements
                     .ThenInclude(rec => rec.Tour)
                     .Include(rec => rec.TravelExcursions)
                     .ThenInclude(rec => rec.Excursion)
+                    .Include(rec => rec.Tourist)
                     .FirstOrDefault(rec => rec.Name == model.Name || rec.ID == model.ID);
                 return travel != null ? new TravelViewModel
                 {
