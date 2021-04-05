@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="WindowReport" Height="450" Width="800">
+        Title="Отчёт по гидам" Height="520" Width="1400">
     <Grid>
-        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50">
+            <Label Content="c" FontSize="14" Margin="10,5"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+            <DatePicker x:Name="DatePikerFrom" Height="25" Width="120">
+            </DatePicker>
+            <Label Content="по" FontSize="14" Margin="10,5"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+            <DatePicker x:Name="DatePikerTo" Height="25" Width="120">
+            </DatePicker>
+            <Button Content="Сформировать" Width="100"  Margin="10" Click="ButtonMake_Click"></Button>
+            <Button Content="в PDF" Width="100"  Margin="10" Click="ButtonToPdf_Click"></Button>
+            <Button Content="На почту" Width="100"  Margin="10"></Button>
+        </StackPanel>
+        <DataGrid x:Name="toursGrid" Margin="0,60,0,0" HorizontalAlignment="Center" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" Width="1300">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="300" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Country}" Width="220" />
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Path=Price}" Width="180" />
+                <DataGridTextColumn Header="Основной язык" Binding="{Binding Path=Price}" Width="180" />
+                <DataGridTextColumn Header="Дополнительный язык" Binding="{Binding Path=Price}" Width="180" />
+                <DataGridTextColumn Header="Дата трудоустройства" Binding="{Binding Path=Price}" Width="180" />
+                <DataGridTextColumn Header="Название тура" Binding="{Binding Path=Price}" Width="180" />
+                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=Price}" Width="180" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

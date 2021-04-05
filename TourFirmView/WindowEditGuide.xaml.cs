@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
+using TourFirmBusinessLogic.ViewModels;
 using Unity;
 
 namespace TourFirmView
@@ -76,10 +77,11 @@ namespace TourFirmView
                     Surname = SurnameTextBox.Text,
                     PhoneNumber = PhoneTextBox.Text,
                     WorkPlace = WorkPlaceTextBox.Text,
+                    DateWork=DateTime.Now,
                     MainLanguage =MainLanguageTextBox.Text,
                     AdditionalLanguage = AdditionalLanguageTextBox.Text,
                     OperatorID = App.Operator.ID,
-                });
+                });;
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
                 Close();
@@ -89,6 +91,24 @@ namespace TourFirmView
         {
             DialogResult = false;
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+        private void LoadData()
+        {
+            var guide = logic.Read(new GuideBindingModel
+            {
+                ID = id
+            })[0];
+            NameTextBox.Text = guide.Name;
+            SurnameTextBox.Text = guide.Surname;
+            WorkPlaceTextBox.Text = guide.WorkPlace;
+            PhoneTextBox.Text = guide.PhoneNumber;
+            MainLanguageTextBox.Text = guide.MainLanguage;
+            AdditionalLanguageTextBox.Text = guide.AdditionalLanguage;
         }
     }
 }
