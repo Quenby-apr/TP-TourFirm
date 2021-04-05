@@ -73,5 +73,22 @@ namespace TourFirmView
             DialogResult = false;
             Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+        private void LoadData()
+        {
+            if (id != null)
+            {
+                var halt = logic.Read(new HaltBindingModel
+                {
+                    ID = id
+                })[0];
+                NameTextBox.Text = halt.Name;
+                AddressTextBox.Text = halt.Address;
+            }
+        }
     }
 }

@@ -99,16 +99,19 @@ namespace TourFirmView
         }
         private void LoadData()
         {
-            var guide = logic.Read(new GuideBindingModel
+            if (id != null)
             {
-                ID = id
-            })[0];
-            NameTextBox.Text = guide.Name;
-            SurnameTextBox.Text = guide.Surname;
-            WorkPlaceTextBox.Text = guide.WorkPlace;
-            PhoneTextBox.Text = guide.PhoneNumber;
-            MainLanguageTextBox.Text = guide.MainLanguage;
-            AdditionalLanguageTextBox.Text = guide.AdditionalLanguage;
+                var guide = logic.Read(new GuideBindingModel
+                {
+                    ID = id
+                })[0];
+                NameTextBox.Text = guide.Name;
+                SurnameTextBox.Text = guide.Surname;
+                WorkPlaceTextBox.Text = guide.WorkPlace;
+                PhoneTextBox.Text = guide.PhoneNumber;
+                MainLanguageTextBox.Text = guide.MainLanguage;
+                AdditionalLanguageTextBox.Text = guide.AdditionalLanguage;
+            }
         }
     }
 }

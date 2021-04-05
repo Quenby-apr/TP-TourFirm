@@ -175,17 +175,16 @@ namespace TourFirmDatabaseImplement.Implements
                 var tourGuides = context.TourGuides.Where(rec =>
                rec.TourID == model.ID.Value).ToList();
                 // удалили те, которых нет в модели
-                context.TourGuides.RemoveRange(tourGuides.Where(rec =>
-               !model.TourGuides.ContainsKey(rec.GuideID)).ToList());
+                context.TourGuides.RemoveRange(tourGuides.ToList());
                 context.SaveChanges();
             }
             // добавили новые
-            foreach (var eg in model.TourGuides)
+            foreach (var tg in model.TourGuides)
             {
                 context.TourGuides.Add(new TourGuide
                 {
                     TourID = tour.ID,
-                    GuideID = eg.Key,
+                    GuideID = tg.Key,
                 });
                 context.SaveChanges();
             }

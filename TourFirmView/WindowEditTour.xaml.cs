@@ -128,20 +128,28 @@ namespace TourFirmView
             {
                 Console.WriteLine(zap.Key);
             }
-            logic.CreateOrUpdate(new TourBindingModel
+            try
             {
-                ID = id,
-                Name = NameTextBox.Text,
-                Country = CountryTextBox.Text,
-                Price = decimal.Parse(PriceTextBox.Text),
-                TourGuides = _TourGuides,
-                HaltID = halt.ID,
-                OperatorID = App.Operator.ID,
+                logic.CreateOrUpdate(new TourBindingModel
+                {
+                    ID = id,
+                    Name = NameTextBox.Text,
+                    Country = CountryTextBox.Text,
+                    Price = decimal.Parse(PriceTextBox.Text),
+                    TourGuides = _TourGuides,
+                    HaltID = halt.ID,
+                    OperatorID = App.Operator.ID,
 
-            });
-            MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-            DialogResult = true;
-            Close();
+                });
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Укажите остановку", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

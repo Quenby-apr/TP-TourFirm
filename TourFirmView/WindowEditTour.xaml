@@ -29,8 +29,8 @@
         </StackPanel>
         <Label Content="Название" Margin="900,70,0,313"/>
         <ComboBox x:Name="ComboBoxHalts" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Margin="900,120,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ComboBoxHalts_SelectionChanged"/>
-        <Label Content="Адрес"  Margin="900,160,0,225" HorizontalAlignment="Left" Width="210" />
-        <TextBox x:Name="AddressTextBox" Margin="900,0,0,0" HorizontalAlignment="Left" IsReadOnly="True" Width="210"/>
+        <Label Content="Адрес"  Margin="900,160,0,220" HorizontalAlignment="Left" Width="210" />
+        <TextBox x:Name="AddressTextBox" Margin="900,10,0,0" HorizontalAlignment="Left" IsReadOnly="True" Width="210"/>
         <Label Content="Данные по туру:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="33" Width="175"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="20,60,0,0"/>
         <ListBox x:Name="ListBoxSelected" HorizontalAlignment="Left" Height="290" Margin="245,60,0,0" VerticalAlignment="Top" Width="250"/>

@@ -86,7 +86,7 @@ namespace TourFirmView
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    int id = ((TourViewModel)GridGuides.SelectedItems[0]).ID;
+                    int id = ((GuideViewModel)GridGuides.SelectedItems[0]).ID;
 
                     try
                     {

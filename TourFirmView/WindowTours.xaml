@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Список туров" Height="450" Width="806.147" Loaded="WindowTours_Load">
     <Grid>
-        <DataGrid x:Name="toursGrid" HorizontalAlignment="Left" AutoGenerateColumns="False" Height="420" VerticalAlignment="Top" Width="700">
+        <DataGrid x:Name="toursGrid" CanUserAddRows="False" HorizontalAlignment="Left" AutoGenerateColumns="False" Height="420" VerticalAlignment="Top" Width="700">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="300" />
                 <DataGridTextColumn Header="Страна" Binding="{Binding Path=Country}" Width="220" />
