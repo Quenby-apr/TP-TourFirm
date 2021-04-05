@@ -29,11 +29,11 @@
             <TextBox x:Name="TextBoxName"/>
             <Label Content="Дата начала:" />
 
-            <DatePicker x:Name="DatePickerStart" SelectedDateFormat="Long"/>
+            <DatePicker x:Name="DatePickerStart" SelectedDateFormat="Short"/>
 
             <Label Content="Дата окончания:" />
 
-            <DatePicker x:Name="DatePickerEnd" SelectedDateFormat="Long"/>
+            <DatePicker x:Name="DatePickerEnd" SelectedDateFormat="Short"/>
         </StackPanel>
         <Label Content="Данные по путешествию:" HorizontalAlignment="Left" Margin="20,59,0,0" VerticalAlignment="Top" Height="33" Width="195"/>
         <Border BorderBrush="Black" BorderThickness="0.5" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="20,110,0,0"/>

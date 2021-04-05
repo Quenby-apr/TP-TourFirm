@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.HelperModels;
 using TourFirmBusinessLogic.Interfaces;
@@ -70,6 +69,50 @@ namespace TourFirmBusinessLogic.BusinessLogic
             return list;
         }
 
+        //Получение списка путешествий с расшифровкой по экскурсиям и гидам
+        public List<ReportTravelsViewModel> GetTravelExcursionsGuides(ReportTravelBindingModel model)
+        {
+            var travels = travelStorage.GetFilteredList(new TravelBindingModel
+            {
+                DateStart = model.DateFrom.Value,
+                DateEnd = model.DateTo.Value
+            });
+
+            var guides = guideStorage.GetFullList();
+
+            var travelsExcursionsGuides = new List<ReportTravelsViewModel>();
+
+            foreach (var travel in travels)
+            {
+                foreach (var travelExcursion in travel.TravelExcursions)
+                {
+                    foreach (var guide in guides)
+                    {
+                        foreach (var guideExcursion in guide.ExcursionGuides)
+                        {
+                            if (guideExcursion.Key == travelExcursion.Key)
+                            {
+                                var excursion = excursionStorage.GetElement(new ExcursionBindingModel
+                                {
+                                    ID = guideExcursion.Key
+                                });
+
+                                travelsExcursionsGuides.Add(new ReportTravelsViewModel
+                                {
+                                    TravelName = travel.Name,
+                                    DateStart = travel.DateStart,
+                                    DateEnd = travel.DateEnd,
+                                    ExcursionName = excursion.Name,
+                                    GuideName = guide.Name
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return travelsExcursionsGuides;
+        }
+
         public void SaveTravelGuidesToWord(ReportTravelBindingModel model)
         {
             TouristSaveToWord.CreateDoc(new TouristListTravelGuidesInfo
@@ -87,6 +130,18 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 FileName = model.FileName,
                 Title = "Список гидов по выбранным путешествиям",
                 TravelGuides = GetTravelGuides(model.Travels)
+            });
+        }
+
+        public void SaveTravelsExcursionsGuidesToPdf(ReportTravelBindingModel model)
+        {
+            TouristSaveToPdf.CreateDoc(new TouristPdfInfo
+            {
+                FileName = model.FileName,
+                Title = "Список экскурсий и гидов по выбранным путешествиям",
+                DateStart = model.DateFrom.Value,
+                DateEnd = model.DateTo.Value,
+                TravelExcursionsGuides = GetTravelExcursionsGuides(model)
             });
         }
     }

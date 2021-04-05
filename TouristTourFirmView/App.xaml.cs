@@ -35,11 +35,13 @@ namespace TouristTourFirmView
 
             currentContainer.RegisterType<TravelLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<TouristReportLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ExcursionLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<PlaceLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<GuideLogic>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<TouristStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<TouristLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TourLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<HaltLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

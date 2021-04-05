@@ -3,7 +3,7 @@ using MigraDoc.DocumentObjectModel.Tables;
 
 namespace TourFirmBusinessLogic.HelperModels
 {
-    class PdfCellParameterscs
+    class PdfCellParameters
     {
         public Cell Cell { get; set; }
         public string Text { get; set; }

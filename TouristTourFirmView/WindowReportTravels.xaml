@@ -13,6 +13,11 @@
         </Style>
     </Window.Resources>
     <Grid>
-        
+        <Label Content="C:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePickerStart" HorizontalAlignment="Left" Margin="47,16,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" Width="157"/>
+        <Label Content="по:" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="273,16,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" Width="181"/>
+        <Button Content="Pdf" Click="ButtonToPdf_Click" HorizontalAlignment="Left" Margin="486,18,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button Content="Отправить на почту" HorizontalAlignment="Left" Margin="613,18,0,0" VerticalAlignment="Top" Width="139"/>
     </Grid>
 </Window>
