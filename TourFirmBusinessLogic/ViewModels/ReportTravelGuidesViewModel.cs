@@ -5,6 +5,6 @@ namespace TourFirmBusinessLogic.ViewModels
     public class ReportTravelGuidesViewModel
     {
         public string TravelName { get; set; }
-        public Dictionary<int, string> Guides { get; set; }
+        public List<GuideViewModel> Guides { get; set; }
     }
 }

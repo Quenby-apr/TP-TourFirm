@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using TourFirmBusinessLogic.BindingModels;
@@ -16,9 +17,9 @@ namespace TouristTourFirmView
         [Dependency]
         public IUnityContainer Container { get; set; }
         private readonly TravelLogic travelLogic;
-        private readonly ReportLogic reportLogic;
+        private readonly TouristReportLogic reportLogic;
 
-        public WindowGetTravelGuides(TravelLogic travelLogic, ReportLogic reportLogic)
+        public WindowGetTravelGuides(TravelLogic travelLogic, TouristReportLogic reportLogic)
         {
             InitializeComponent();
             this.travelLogic = travelLogic;
@@ -66,7 +67,7 @@ namespace TouristTourFirmView
                         list.Add((TravelViewModel)travel);
                     }
 
-                    reportLogic.SaveTravelGuidesToExcel(new TouristReportBindingModel
+                    reportLogic.SaveTravelGuidesToExcel(new ReportTravelBindingModel
                     {
                         FileName = dialog.FileName,
                         Travels = list
@@ -103,7 +104,7 @@ namespace TouristTourFirmView
                         list.Add((TravelViewModel)travel);
                     }
 
-                    reportLogic.SaveTravelGuidesToWord(new TouristReportBindingModel
+                    reportLogic.SaveTravelGuidesToWord(new ReportTravelBindingModel
                     {
                         FileName = dialog.FileName,
                         Travels = list

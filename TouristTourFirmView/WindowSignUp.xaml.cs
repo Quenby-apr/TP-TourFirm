@@ -73,7 +73,7 @@ namespace TouristTourFirmView
                     Password = TextBoxPassword.Text,
                     Name = TextBoxName.Text,
                     Surname = TextBoxSurname.Text,
-                    Mail = TextBoxSurname.Text,
+                    Mail = TextBoxMail.Text,
                     PhoneNumber = TextBoxPhone.Text
                 });
                 MessageBox.Show("Регистрация прошла успешно!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);

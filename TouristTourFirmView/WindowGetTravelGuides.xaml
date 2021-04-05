@@ -20,7 +20,7 @@
             <ColumnDefinition Width="54*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Выберите путешествия:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="33" Width="195"/>
-        <ListBox x:Name="ListBoxTravels" DisplayMemberPath="Name" HorizontalAlignment="Left" Height="315" Margin="0,48,-1,0" VerticalAlignment="Top" Width="443" Grid.ColumnSpan="2">
+        <ListBox x:Name="ListBoxTravels" DisplayMemberPath="Name" SelectionMode="Multiple" HorizontalAlignment="Left" Height="315" Margin="0,48,-1,0" VerticalAlignment="Top" Width="443" Grid.ColumnSpan="2">
         </ListBox>
         <Button x:Name="ButtonExcel" Content="Excel" Click="ButtonSaveToExcel_Click" HorizontalAlignment="Left" Margin="15,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
         <Button x:Name="ButtonWord" Content="Word" Click="ButtonSaveToWord_Click" HorizontalAlignment="Left" Margin="165,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
