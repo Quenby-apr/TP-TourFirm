@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
+        Loaded="WindowGetTravelGuides_Load"
         Title="Получение списка гидов" Height="450" Width="450">
     <Window.Resources>
         <Style  TargetType="Label">
@@ -14,14 +15,15 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="167*"/>
+            <ColumnDefinition Width="54*"/>
+        </Grid.ColumnDefinitions>
         <Label Content="Выберите путешествия:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="33" Width="195"/>
-        <DataGrid HorizontalAlignment="Left" Height="315" Margin="0,48,0,0" VerticalAlignment="Top" Width="443" HeadersVisibility="Column">
-            <DataGrid.Columns >
-                <DataGridCheckBoxColumn Header="Название" IsReadOnly="True" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="ButtonExcel" Content="Excel" HorizontalAlignment="Left" Margin="15,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Button x:Name="ButtonWord" Content="Word" HorizontalAlignment="Left" Margin="165,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Button x:Name="ButtonCancel" Content="Отмена" Margin="313,380,10,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <ListBox x:Name="ListBoxTravels" DisplayMemberPath="Name" HorizontalAlignment="Left" Height="315" Margin="0,48,-1,0" VerticalAlignment="Top" Width="443" Grid.ColumnSpan="2">
+        </ListBox>
+        <Button x:Name="ButtonExcel" Content="Excel" Click="ButtonSaveToExcel_Click" HorizontalAlignment="Left" Margin="15,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Button x:Name="ButtonWord" Content="Word" Click="ButtonSaveToWord_Click" HorizontalAlignment="Left" Margin="165,380,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Button x:Name="ButtonCancel" Content="Отмена" Click="ButtonCancel_Click" Margin="313,380,9,0" VerticalAlignment="Top" Width="120" Height="30" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
