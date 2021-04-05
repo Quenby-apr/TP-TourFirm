@@ -14,40 +14,64 @@ namespace TourFirmBusinessLogic.BusinessLogic
         private readonly IGuideStorage _guideStorage;
         private readonly IExcursionStorage _excursionStorage;
         private readonly ITourStorage _tourStorage;
+        private readonly ITravelStorage _travelStorage;
 
-        public ReportLogic(IGuideStorage guideStorage, IExcursionStorage excursionStorage, ITourStorage tourStorage)
+        public ReportLogic(IGuideStorage guideStorage, IExcursionStorage excursionStorage, ITourStorage tourStorage, ITravelStorage travelStorage)
         {
             _guideStorage = guideStorage;
             _excursionStorage = excursionStorage;
             _tourStorage = tourStorage;
+            _travelStorage = travelStorage;
         }
         /// <summary>
         /// Получение списка смен гидов за определенный период с указанием туров и экскурсий 
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        /*public List<WorkViewModel> GetWorks(ReportBindingModel model)
+        public List<ReportGuideViewModel> GetGuides(ReportBindingModel model)
         {
-            var tours = _tourStorage.GetFullList();
-            var excursions = _excursionStorage.GetFullList();
-            return _guideStorage.GetFilteredList(new GuideBindingModel
+            var list = new List<ReportGuideViewModel>();
+            var travels = _travelStorage.GetFilteredList(new TravelBindingModel
             {
-                DateFrom = model.DateFrom,
-                DateTo = model.DateTo
-            })
-            .Select(x => 
-            new WorkViewModel
+                DateStart = (DateTime)model.DateFrom,
+                DateEnd = (DateTime)model.DateTo
+            });
+            foreach (var travel in travels)
             {
-                DateStart = x.DateWork,
-                DateEnd= x.DateWork + new TimeSpan (4,0,0),//заменить на значение у экскурсии
-                GuideName = x.Name,
-                GuideSurname = x.Surname,
-                PhoneNumber = x.PhoneNumber,
-                MainLanguage = x.MainLanguage,
-                AdditionalLanguage = x.AdditionalLanguage,
-                TourName = 
-            })
-           .ToList();*/
+                foreach (var TT in travel.TravelTours)
+                {
+                    var tour = _tourStorage.GetElement(new TourBindingModel
+                    {
+                        ID = TT.Key
+                    });
+                    foreach (var TG in tour.TourGuides)
+                    {
+                        var guide = _guideStorage.GetElement(new GuideBindingModel
+                        {
+                            ID = TG.Key
+                        });
+                        foreach (var GE in guide.ExcursionGuides)
+                        {
+                            var excursion = _excursionStorage.GetElement(new ExcursionBindingModel
+                            {
+                                ID = GE.Key
+                            });
+                            var record = new ReportGuideViewModel
+                            {
+                                DateStartTravel = travel.DateStart,
+                                GuideSurname = guide.Surname,
+                                GuideName = guide.Name,
+                                GuideWorkPlace = guide.WorkPlace,
+                                ExcursionName = excursion.Name,
+                                TourName = tour.Name
+                            };
+                            list.Add(record);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
         public List<ReportTourExcursionViewModel> GetTourExcursions(List<TourViewModel> tours)
         {
             var list = new List<ReportTourExcursionViewModel>();
@@ -92,6 +116,17 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 FileName = model.FileName,
                 Title = "Список экскурсий по указанным турам",
                 TourExcursions = GetTourExcursions(model.Tours)
+            });
+        }
+        public void SaveGuidesToPdfFile(ReportBindingModel model)
+        {
+            OperatorSaveToPdf.CreateDoc(new OperatorPdfInfo
+            {
+                FileName = model.FileName,
+                Title = "Список гидов",
+                DateFrom = model.DateFrom.Value,
+                DateTo = model.DateTo.Value,
+                Guides = GetGuides(model)
             });
         }
     }

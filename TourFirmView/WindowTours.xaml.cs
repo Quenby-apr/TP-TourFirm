@@ -41,19 +41,18 @@ namespace TourFirmView
 
         private void LoadData()
         {
-            try
-            {
+            
                 var list = logic.Read(null);
 
                 if (list != null)
                 {
                     toursGrid.ItemsSource = list;
                 }
-            }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            }*/
         }
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)

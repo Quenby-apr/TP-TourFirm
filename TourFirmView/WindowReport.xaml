@@ -18,16 +18,14 @@
             <Button Content="в PDF" Width="100"  Margin="10" Click="ButtonToPdf_Click"></Button>
             <Button Content="На почту" Width="100"  Margin="10"></Button>
         </StackPanel>
-        <DataGrid x:Name="toursGrid" Margin="0,60,0,0" HorizontalAlignment="Center" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" Width="1300">
+        <DataGrid x:Name="GuidesGrid" Margin="0,60,0,0"  HorizontalAlignment="Center" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" Width="1300">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="300" />
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Country}" Width="220" />
-                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Path=Price}" Width="180" />
-                <DataGridTextColumn Header="Основной язык" Binding="{Binding Path=Price}" Width="180" />
-                <DataGridTextColumn Header="Дополнительный язык" Binding="{Binding Path=Price}" Width="180" />
-                <DataGridTextColumn Header="Дата трудоустройства" Binding="{Binding Path=Price}" Width="180" />
-                <DataGridTextColumn Header="Название тура" Binding="{Binding Path=Price}" Width="180" />
-                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=Price}" Width="180" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=DateStartTravel}" Width="300" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=GuideSurname}" Width="220" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=GuideName}" Width="300" />
+                <DataGridTextColumn Header="Место работы" Binding="{Binding Path=GuideWorkPlace}" Width="180" />
+                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=ExcursionName}" Width="180" />
+                <DataGridTextColumn Header="Название тура" Binding="{Binding Path=TourName}" Width="180" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
