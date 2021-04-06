@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.ViewModels;
@@ -30,6 +31,7 @@ namespace TourFirmView
         private readonly HaltLogic Hlogic;
         private readonly GuideLogic Guidelogic;
         TourViewModel tour;
+        private readonly Logger logger;
         public int Id { set { id = value; } }
         private int? id;
         public WindowEditTour(TourLogic logic, GuideLogic Guidelogic, HaltLogic Hlogic)
@@ -38,6 +40,7 @@ namespace TourFirmView
             this.logic = logic;
             this.Guidelogic = Guidelogic;
             this.Hlogic = Hlogic;
+            logger = LogManager.GetCurrentClassLogger();
         }
         private void WindowEditTour_Load(object sender, RoutedEventArgs e)
         {
@@ -147,8 +150,8 @@ namespace TourFirmView
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Укажите остановку", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме редактирования тура");
             }
         }
 

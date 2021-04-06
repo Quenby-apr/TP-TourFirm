@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.ViewModels;
@@ -26,11 +27,13 @@ namespace TourFirmView
         [Dependency]
         public IUnityContainer Container { get; set; }
         private readonly HaltLogic logic;
+        private readonly Logger logger;
 
         public WindowListHalt(HaltLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void WindowListHalt_Load(object sender, RoutedEventArgs e)
@@ -57,25 +60,41 @@ namespace TourFirmView
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowEditHalt>();
-
-            if (form.ShowDialog() == true)
-            {
-                LoadData();
-            }
-        }
-
-        private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            if (gridHalts.SelectedItems.Count == 1)
+            try
             {
                 var form = Container.Resolve<WindowEditHalt>();
-                form.Id = ((HaltViewModel)gridHalts.SelectedItems[0]).ID;
 
                 if (form.ShowDialog() == true)
                 {
                     LoadData();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме списка остановок при создании");
+            }
+        }
+
+        private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (gridHalts.SelectedItems.Count == 1)
+                {
+                    var form = Container.Resolve<WindowEditHalt>();
+                    form.Id = ((HaltViewModel)gridHalts.SelectedItems[0]).ID;
+
+                    if (form.ShowDialog() == true)
+                    {
+                        LoadData();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме списка остановок при редактировании");
             }
         }
 
@@ -96,6 +115,7 @@ namespace TourFirmView
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        logger.Warn("Ошибка в форме списка остановок при удалении");
                     }
                     LoadData();
                 }

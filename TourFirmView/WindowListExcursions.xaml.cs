@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.ViewModels;
@@ -31,6 +32,7 @@ namespace TourFirmView
         private readonly ExcursionLogic excursionlogic;
         private readonly TourLogic tourlogic;
         private ReportLogic reportlogic;
+        private readonly Logger logger;
         public WindowListExcursions(GuideLogic guidelogic, ExcursionLogic excursionlogic, TourLogic tourlogic, ReportLogic reportlogic)
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace TourFirmView
             this.excursionlogic = excursionlogic;
             this.tourlogic = tourlogic;
             this.reportlogic = reportlogic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -82,6 +85,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме списка экскурсий при отчёте в ворд");
             }
         }
 
@@ -114,6 +118,7 @@ namespace TourFirmView
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
                    MessageBoxImage.Error);
+                    logger.Warn("Ошибка в форме списка экскурсий при отчёте в эксель");
                 }
             }
         }

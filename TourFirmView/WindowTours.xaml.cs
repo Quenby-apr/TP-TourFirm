@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.ViewModels;
@@ -27,11 +28,13 @@ namespace TourFirmView
         [Dependency]
         public IUnityContainer Container { get; set; }
         private readonly TourLogic logic;
+        private readonly Logger logger;
 
         public WindowTours (TourLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void WindowTours_Load(object sender, RoutedEventArgs e)
@@ -41,27 +44,37 @@ namespace TourFirmView
 
         private void LoadData()
         {
-            
+            try
+            {
                 var list = logic.Read(null);
 
                 if (list != null)
                 {
                     toursGrid.ItemsSource = list;
                 }
-            /*}
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }*/
+                logger.Warn("Ошибка в форме cписка туров при загрузке данных");
+            }
         }
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowEditTour>();
-
-            if (form.ShowDialog() == true)
+            try
             {
-                LoadData();
+                var form = Container.Resolve<WindowEditTour>();
+
+                if (form.ShowDialog() == true)
+                {
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме cписка туров при сохранении");
             }
         }
 
@@ -83,6 +96,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме cписка туров при загрузке обновлении");
             }
         }
 
@@ -103,6 +117,7 @@ namespace TourFirmView
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        logger.Warn("Ошибка в форме cписка туров при удалении");
                     }
                     LoadData();
                 }

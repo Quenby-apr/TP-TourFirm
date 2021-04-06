@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using Unity;
@@ -26,10 +27,12 @@ namespace TourFirmView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly ReportLogic logic;
+        private readonly Logger logger;
         public WindowReport(ReportLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
         private void ButtonMake_Click(object sender, RoutedEventArgs e)
         {
@@ -49,8 +52,8 @@ namespace TourFirmView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
-               MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме отчёта при формирании");
             }
         }
         private void ButtonToPdf_Click(object sender, RoutedEventArgs e)
@@ -64,7 +67,8 @@ namespace TourFirmView
             {
                 if (dialog.ShowDialog() == true)
                 {
-
+                    try
+                    {
                         logic.SaveGuidesToPdfFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName,
@@ -73,8 +77,12 @@ namespace TourFirmView
                         });
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,
                        MessageBoxImage.Information);
-                    
-
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        logger.Warn("Ошибка в форме отчёта при отправки через пдф");
+                    }
                 }
             }
         }

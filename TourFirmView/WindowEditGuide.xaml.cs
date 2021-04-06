@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
-using TourFirmBusinessLogic.ViewModels;
 using Unity;
 
 namespace TourFirmView
@@ -27,6 +16,7 @@ namespace TourFirmView
         public IUnityContainer Container { get; set; }
 
         private readonly GuideLogic logic;
+        private readonly Logger logger;
 
         public int Id { set { id = value; } }
         private int? id;
@@ -36,6 +26,7 @@ namespace TourFirmView
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -70,6 +61,8 @@ namespace TourFirmView
                 MessageBox.Show("Введите дополнительный язык гида", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            try
+            {
                 logic.CreateOrUpdate(new GuideBindingModel
                 {
                     ID = id,
@@ -77,16 +70,21 @@ namespace TourFirmView
                     Surname = SurnameTextBox.Text,
                     PhoneNumber = PhoneTextBox.Text,
                     WorkPlace = WorkPlaceTextBox.Text,
-                    DateWork=DateTime.Now,
-                    MainLanguage =MainLanguageTextBox.Text,
+                    DateWork = DateTime.Now,
+                    MainLanguage = MainLanguageTextBox.Text,
                     AdditionalLanguage = AdditionalLanguageTextBox.Text,
                     OperatorID = App.Operator.ID,
-                });;
+                }); ;
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
                 Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме редактирования гида при сохранении");
+            }
         }
-
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;

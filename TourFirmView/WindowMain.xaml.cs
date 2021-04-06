@@ -63,13 +63,5 @@ namespace TourFirmView
             var form = Container.Resolve<WindowBindingExcursions>();
             form.ShowDialog();
         }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            App.Operator = null;
-            var windowSignIn = Container.Resolve<WindowSignIn>();
-            Close();
-            windowSignIn.ShowDialog();
-        }
     }
 }

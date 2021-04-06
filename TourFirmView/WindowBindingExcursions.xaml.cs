@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.ViewModels;
@@ -28,11 +29,13 @@ namespace TourFirmView
 
         private readonly GuideLogic guidelogic;
         private readonly ExcursionLogic excursionlogic;
+        private readonly Logger logger;
         public WindowBindingExcursions(GuideLogic guideLogic, ExcursionLogic excursionLogic)
         {
             InitializeComponent();
             guidelogic = guideLogic;
             excursionlogic = excursionLogic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -59,28 +62,36 @@ namespace TourFirmView
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<int, string> excursionGuides = new Dictionary<int, string>();
-            foreach (var exc in ListBoxExcursion.SelectedItems)
+            try
             {
-                var excursion = (ExcursionViewModel)exc;
-                excursionGuides.Add(excursion.ID, excursion.Name);
+                Dictionary<int, string> excursionGuides = new Dictionary<int, string>();
+                foreach (var exc in ListBoxExcursion.SelectedItems)
+                {
+                    var excursion = (ExcursionViewModel)exc;
+                    excursionGuides.Add(excursion.ID, excursion.Name);
+                }
+                GuideViewModel guide = (GuideViewModel)ComboBoxChoosenGuide.SelectedItem;
+                guidelogic.CreateOrUpdate(new GuideBindingModel
+                {
+                    ID = guide.ID,
+                    Name = guide.Name,
+                    Surname = guide.Surname,
+                    WorkPlace = guide.WorkPlace,
+                    PhoneNumber = guide.PhoneNumber,
+                    MainLanguage = guide.MainLanguage,
+                    AdditionalLanguage = guide.AdditionalLanguage,
+                    OperatorID = App.Operator.ID,
+                    ExcursionGuides = excursionGuides
+                });
+                MessageBox.Show("Привязка прошла успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
+                Close();
             }
-            GuideViewModel guide = (GuideViewModel)ComboBoxChoosenGuide.SelectedItem;
-            guidelogic.CreateOrUpdate(new GuideBindingModel
+            catch (Exception ex)
             {
-                ID = guide.ID,
-                Name = guide.Name,
-                Surname = guide.Surname,
-                WorkPlace = guide.WorkPlace,
-                PhoneNumber = guide.PhoneNumber,
-                MainLanguage = guide.MainLanguage,
-                AdditionalLanguage = guide.AdditionalLanguage,
-                OperatorID = App.Operator.ID,
-                ExcursionGuides = excursionGuides
-            });
-            MessageBox.Show("Привязка прошла успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-            DialogResult = true;
-            Close();
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме привязки гиды-экскурсии при сохранении");
+            }
         }
     }
 }

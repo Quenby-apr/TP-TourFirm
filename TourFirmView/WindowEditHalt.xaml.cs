@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using Unity;
@@ -26,6 +27,7 @@ namespace TourFirmView
         public IUnityContainer Container { get; set; }
 
         private readonly HaltLogic logic;
+        private readonly Logger logger;
 
         public int Id { set { id = value; } }
         private int? id;
@@ -34,6 +36,7 @@ namespace TourFirmView
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -65,6 +68,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме редактирования остановки");
             }
         }
 

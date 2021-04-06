@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.ViewModels;
@@ -26,11 +27,13 @@ namespace TourFirmView
         [Dependency]
         public IUnityContainer Container { get; set; }
         private readonly GuideLogic logic;
+        private readonly Logger logger;
 
         public WindowGuides(GuideLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void WindowGuides_Load(object sender, RoutedEventArgs e)
@@ -52,29 +55,46 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме списка гидов при загрузке данных");
             }
         }
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowEditGuide>();
-            if (form.ShowDialog() == true)
+            try
             {
-                LoadData();
+                var form = Container.Resolve<WindowEditGuide>();
+                if (form.ShowDialog() == true)
+                {
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме списка гидов при создании");
             }
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (GridGuides.SelectedItems.Count == 1)
+            try
             {
-                var form = Container.Resolve<WindowEditGuide>();
-                form.Id = ((GuideViewModel)GridGuides.SelectedItems[0]).ID;
-
-                if (form.ShowDialog() == true)
+                if (GridGuides.SelectedItems.Count == 1)
                 {
-                    LoadData();
+                    var form = Container.Resolve<WindowEditGuide>();
+                    form.Id = ((GuideViewModel)GridGuides.SelectedItems[0]).ID;
+
+                    if (form.ShowDialog() == true)
+                    {
+                        LoadData();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка в форме списка гидов при редактировании");
             }
         }
 
@@ -95,6 +115,7 @@ namespace TourFirmView
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        logger.Warn("Ошибка в форме списка гидов при удалении");
                     }
                     LoadData();
                 }
