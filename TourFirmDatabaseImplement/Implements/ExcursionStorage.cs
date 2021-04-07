@@ -35,7 +35,26 @@ namespace TourFirmDatabaseImplement.Implements
 
         public List<ExcursionViewModel> GetFilteredList(ExcursionBindingModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return null;
+            }
+
+            using (var context = new TourFirmDatabase())
+            {
+                return context.Excursions
+                    .Where(rec => rec.TouristID == model.TouristID)
+                    .Select(rec => new ExcursionViewModel
+                    {
+                        ID = rec.ID,
+                        Name = rec.Name,
+                        Price = rec.Price,
+                        Duration = rec.Duration,
+                        PlaceID = rec.PlaceID,
+                        TouristID = rec.TouristID,
+                    })
+                    .ToList();
+            }
         }
 
         public List<ExcursionViewModel> GetFullList()

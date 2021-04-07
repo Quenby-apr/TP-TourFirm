@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using TourFirmBusinessLogic.BindingModels;
@@ -16,13 +17,13 @@ namespace TouristTourFirmView
         public IUnityContainer Container { get; set; }
 
         private readonly TouristLogic logic;
-        public int Id { set { id = value; } }
-        private int? id;
+        private readonly Logger logger;
 
         public WindowSignUp(TouristLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void ButtonSignUp_Click(object sender, RoutedEventArgs e)
@@ -83,14 +84,8 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке регистрации нового пользователя");
             }
         }
-
-/*        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            DialogResult = false;
-           
-            //Close();
-        }*/
     }
 }

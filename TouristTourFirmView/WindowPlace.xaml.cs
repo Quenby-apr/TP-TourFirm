@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Windows;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
@@ -15,6 +16,7 @@ namespace TouristTourFirmView
         public IUnityContainer Container { get; set; }
 
         private readonly PlaceLogic logic;
+        private readonly Logger logger;
 
         public int Id { set { id = value; } }
         private int? id;
@@ -23,6 +25,7 @@ namespace TouristTourFirmView
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void WindowPlace_Load(object sender, RoutedEventArgs e)
@@ -42,6 +45,7 @@ namespace TouristTourFirmView
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Warn("Ошибка при попытке загрузки данных о месте");
                 }
             }
         }
@@ -75,6 +79,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке сохранения данных");
             }
         }
 

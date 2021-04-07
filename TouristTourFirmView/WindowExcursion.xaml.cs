@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using TourFirmBusinessLogic.BindingModels;
@@ -18,7 +19,7 @@ namespace TouristTourFirmView
 
         private readonly ExcursionLogic excursionLogic;
         private readonly PlaceLogic placeLogic;
-        private Dictionary<int, string> excursionGuides;
+        private readonly Logger logger;
 
         public int Id { set { id = value; } }
         private int? id;
@@ -28,6 +29,7 @@ namespace TouristTourFirmView
             InitializeComponent();
             this.excursionLogic = excursionLogic;
             this.placeLogic = placeLogic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -71,6 +73,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке сохранения данных");
             }
         }
 
@@ -82,7 +85,10 @@ namespace TouristTourFirmView
 
         private void WindowExcursion_Load(object sender, RoutedEventArgs e)
         {
-            List<PlaceViewModel> listPlaces = placeLogic.Read(null);
+            List<PlaceViewModel> listPlaces = placeLogic.Read(new PlaceBindingModel
+            {
+                TouristID = App.Tourist.ID
+            });
 
             if (listPlaces != null)
             {
@@ -106,11 +112,8 @@ namespace TouristTourFirmView
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Warn("Ошибка при попытке загрузки данных об экскурсии");
                 }
-            }
-            else
-            {
-                excursionGuides = new Dictionary<int, string>();
             }
         }
     }

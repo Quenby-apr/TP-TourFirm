@@ -17,13 +17,13 @@ namespace TourFirmBusinessLogic.BusinessLogic
             paragraph.Format.SpaceAfter = "1cm";
             paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "NormalTitle";
-            paragraph = section.AddParagraph($"с {info.DateStart.ToShortDateString()} по { info.DateEnd.ToShortDateString()}");
+            paragraph = section.AddParagraph($"с {info.DateFrom.ToShortDateString()} по { info.DateTo.ToShortDateString()}");
             paragraph.Format.SpaceAfter = "1cm";
             paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "Normal";
 
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "5cm", "3cm", "3cm", "5cm", "4cm" };
+            List<string> columns = new List<string> { "4cm", "2cm", "2cm", "4cm", "3cm" };
 
             foreach (var elem in columns)
             {
@@ -32,21 +32,23 @@ namespace TourFirmBusinessLogic.BusinessLogic
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Путешествие", "Дата начала", "Дата окончания", "Экскурсии", "Гиды" },
+                Texts = new List<string> { "Путешествие", "Дата начала", "Дата окончания", "Экскурсия", "Гид" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
             foreach (var travelExcursionGuide in info.TravelExcursionsGuides)
             {
+                string guideFIO = travelExcursionGuide.GuideSurname + " " + travelExcursionGuide.GuideName;
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
+                    
                     Texts = new List<string> {
                                 travelExcursionGuide.TravelName,
                                 travelExcursionGuide.DateStart.ToShortDateString(),
                                 travelExcursionGuide.DateEnd.ToShortDateString(),
                                 travelExcursionGuide.ExcursionName,
-                                travelExcursionGuide.GuideName
+                                guideFIO
                             },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left
@@ -66,7 +68,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
         {
             Style style = document.Styles["Normal"];
             style.Font.Name = "Times New Roman";
-            style.Font.Size = 14;
+            style.Font.Size = 11;
             style = document.Styles.AddStyle("NormalTitle", "Normal");
             style.Font.Bold = true;
         }

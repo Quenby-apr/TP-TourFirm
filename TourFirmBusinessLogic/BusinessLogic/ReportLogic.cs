@@ -33,8 +33,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
             var list = new List<ReportGuideViewModel>();
             var travels = _travelStorage.GetFilteredList(new TravelBindingModel
             {
-                DateStart = (DateTime)model.DateFrom,
-                DateEnd = (DateTime)model.DateTo
+                DateStart = model.DateFrom.Value,
+                DateEnd = model.DateTo.Value
             });
             foreach (var travel in travels)
             {

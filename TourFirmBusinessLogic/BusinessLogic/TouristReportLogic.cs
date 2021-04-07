@@ -74,8 +74,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
         {
             var travels = travelStorage.GetFilteredList(new TravelBindingModel
             {
-                DateStart = model.DateFrom.Value,
-                DateEnd = model.DateTo.Value
+                DateFrom = model.DateFrom.Value,
+                DateTo = model.DateTo.Value
             });
 
             var guides = guideStorage.GetFullList();
@@ -103,7 +103,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
                                     DateStart = travel.DateStart,
                                     DateEnd = travel.DateEnd,
                                     ExcursionName = excursion.Name,
-                                    GuideName = guide.Name
+                                    GuideName = guide.Name,
+                                    GuideSurname = guide.Surname
                                 });
                             }
                         }
@@ -139,8 +140,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
             {
                 FileName = model.FileName,
                 Title = "Список экскурсий и гидов по выбранным путешествиям",
-                DateStart = model.DateFrom.Value,
-                DateEnd = model.DateTo.Value,
+                DateFrom = model.DateFrom.Value,
+                DateTo = model.DateTo.Value,
                 TravelExcursionsGuides = GetTravelExcursionsGuides(model)
             });
         }

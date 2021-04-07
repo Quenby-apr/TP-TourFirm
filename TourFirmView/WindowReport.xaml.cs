@@ -25,7 +25,7 @@ namespace TourFirmView
     public partial class WindowReport : Window
     {
         [Dependency]
-        public new IUnityContainer Container { get; set; }
+        public  IUnityContainer Container { get; set; }
         private readonly ReportLogic logic;
         private readonly Logger logger;
         public WindowReport(ReportLogic logic)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -18,12 +19,14 @@ namespace TouristTourFirmView
         public IUnityContainer Container { get; set; }
         private readonly TravelLogic travelLogic;
         private readonly TouristReportLogic reportLogic;
+        private readonly Logger logger;
 
         public WindowGetTravelGuides(TravelLogic travelLogic, TouristReportLogic reportLogic)
         {
             InitializeComponent();
             this.travelLogic = travelLogic;
             this.reportLogic = reportLogic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void WindowGetTravelGuides_Load(object sender, RoutedEventArgs e)
@@ -44,6 +47,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Question);
+                logger.Warn("Ошибка при попытке загрузки списка путешествий");
             }
         }
 
@@ -78,8 +82,8 @@ namespace TouristTourFirmView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
-                   MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Warn("Ошибка при попытке формирования отчёта Excel");
                 }
             }
         }
@@ -117,6 +121,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке формирования отчёта Word");
             }
         }
 

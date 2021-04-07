@@ -36,7 +36,7 @@ namespace TourFirmDatabaseImplement.Implements
             using (var context = new TourFirmDatabase())
             {
                 return context.Places
-                    .Where(rec => rec.Name.Contains(model.Name))
+                    .Where(rec => rec.TouristID == model.TouristID)
                     .ToList()
                     .Select(rec => new PlaceViewModel
                     {
