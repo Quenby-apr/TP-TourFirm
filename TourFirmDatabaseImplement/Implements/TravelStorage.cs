@@ -50,7 +50,7 @@ namespace TourFirmDatabaseImplement.Implements
                     .ThenInclude(rec => rec.Excursion)
                     .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateStart.Date == model.DateStart.Date) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateStart.Date >= model.DateFrom.Value.Date &&
-                rec.DateEnd.Date <= model.DateTo.Value.Date) || (rec.TouristID == model.TouristID))
+                rec.DateEnd.Date <= model.DateTo.Value.Date && rec.TouristID == model.TouristID) || (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.TouristID == model.TouristID))
                     .ToList().
                     Select(rec => new TravelViewModel
                     {

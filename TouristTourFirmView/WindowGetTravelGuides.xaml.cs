@@ -38,7 +38,11 @@ namespace TouristTourFirmView
         {
             try
             {
-                var list = travelLogic.Read(null);
+                var list = travelLogic.Read(new TravelBindingModel
+                {
+                    TouristID = App.Tourist.ID
+                });
+
                 if (list != null)
                 {
                     ListBoxTravels.ItemsSource = list;

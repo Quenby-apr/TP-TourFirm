@@ -36,7 +36,8 @@ namespace TouristTourFirmView
                 var dataSource = logic.GetTravelExcursionsGuides(new ReportTravelBindingModel
                 {
                     DateFrom = DatePickerFrom.SelectedDate,
-                    DateTo = DatePickerTo.SelectedDate
+                    DateTo = DatePickerTo.SelectedDate,
+                    TouristID = App.Tourist.ID
                 });
                 GuidesGrid.ItemsSource = dataSource;
             }
@@ -64,7 +65,8 @@ namespace TouristTourFirmView
                         {
                             FileName = dialog.FileName,
                             DateFrom = DatePickerFrom.SelectedDate,
-                            DateTo = DatePickerTo.SelectedDate
+                            DateTo = DatePickerTo.SelectedDate,
+                            TouristID = App.Tourist.ID
                         });
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,  MessageBoxImage.Information);
                     }

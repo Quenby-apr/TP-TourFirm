@@ -75,7 +75,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
             var travels = travelStorage.GetFilteredList(new TravelBindingModel
             {
                 DateFrom = model.DateFrom.Value,
-                DateTo = model.DateTo.Value
+                DateTo = model.DateTo.Value,
+                TouristID = model.TouristID
             });
 
             var guides = guideStorage.GetFullList();
