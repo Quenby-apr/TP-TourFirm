@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
@@ -23,7 +22,7 @@ namespace TourFirmDatabaseImplement.Implements
                 var guide = context.Guides
               .Include(rec => rec.ExcursionGuides)
               .ThenInclude(rec => rec.Excursion)
-              .FirstOrDefault(rec =>  rec.ID == model.ID || rec.Surname == model.Surname);
+              .FirstOrDefault(rec => rec.ID == model.ID || rec.Surname == model.Surname);
                 return guide != null ? new GuideViewModel
                 {
                     ID = guide.ID,
@@ -111,9 +110,9 @@ namespace TourFirmDatabaseImplement.Implements
                             Surname = model.Surname,
                             PhoneNumber = model.PhoneNumber,
                             WorkPlace = model.WorkPlace,
-                            MainLanguage=model.MainLanguage,
+                            MainLanguage = model.MainLanguage,
                             AdditionalLanguage = model.AdditionalLanguage,
-                            DateWork=DateTime.Now,
+                            DateWork = DateTime.Now,
                             OperatorID = model.OperatorID
                         };
                         context.Guides.Add(guide);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
@@ -33,7 +32,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             {
                 Login = model.Login
             });
-            if (element != null && element.ID != model.ID )
+            if (element != null && element.ID != model.ID)
             {
                 throw new Exception("Данный пользователь уже зарегистрирован");
             }

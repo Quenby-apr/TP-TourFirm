@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Office2013.Excel;
@@ -93,7 +90,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                             ShareStringPart = shareStringPart,
                             ColumnName = "C",
                             RowIndex = rowIndex,
-                            Text = excursion.Price.ToString() +" рублей",
+                            Text = excursion.Price.ToString() + " рублей",
                             StyleIndex = 1U
                         });
                         InsertCellInWorksheet(new ExcelCellParameters

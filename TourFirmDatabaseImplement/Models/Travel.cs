@@ -13,7 +13,7 @@ namespace TourFirmDatabaseImplement.Models
         public DateTime DateEnd { get; set; }
         public int TouristID { get; set; }
 
-        [ForeignKey("TravelID")] 
+        [ForeignKey("TravelID")]
         public virtual List<TravelTour> TravelTours { get; set; }
 
         [ForeignKey("TravelID")]

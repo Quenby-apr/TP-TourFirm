@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DocumentFormat.OpenXml.Math;
+﻿using DocumentFormat.OpenXml.Math;
 
 namespace TourFirmBusinessLogic.HelperModels
 {

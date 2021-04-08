@@ -14,7 +14,7 @@ namespace TourFirmDatabaseImplement.Models
         [Required] public string Password { get; set; }
         [Required] public string Mail { get; set; }
 
-        [ForeignKey("TouristID")] 
+        [ForeignKey("TouristID")]
         public virtual List<Travel> Travels { get; set; }
 
         [ForeignKey("TouristID")]

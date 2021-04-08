@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TourFirmBusinessLogic.BindingModels
+﻿namespace TourFirmBusinessLogic.BindingModels
 {
     public class ExcursionBindingModel
     {

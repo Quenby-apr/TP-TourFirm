@@ -1,7 +1,7 @@
-﻿using MigraDoc.DocumentObjectModel;
+﻿using System.Collections.Generic;
+using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
-using System.Collections.Generic;
 using TourFirmBusinessLogic.HelperModels;
 
 namespace TourFirmBusinessLogic.BusinessLogic

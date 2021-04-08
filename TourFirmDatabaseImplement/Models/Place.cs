@@ -11,7 +11,7 @@ namespace TourFirmDatabaseImplement.Models
         [Required] public string Type { get; set; }
         public int TouristID { get; set; }
 
-        [ForeignKey("PlaceID")] 
+        [ForeignKey("PlaceID")]
         public virtual List<Excursion> Excursions { get; set; }
 
         public virtual Tourist Tourist { get; set; }

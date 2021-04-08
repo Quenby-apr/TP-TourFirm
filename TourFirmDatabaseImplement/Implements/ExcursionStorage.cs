@@ -26,8 +26,8 @@ namespace TourFirmDatabaseImplement.Implements
                     Name = excursion.Name,
                     Price = excursion.Price,
                     Duration = excursion.Duration,
-                    PlaceID =excursion.PlaceID,
-                    TouristID=excursion.TouristID,
+                    PlaceID = excursion.PlaceID,
+                    TouristID = excursion.TouristID,
                 } :
                 null;
             }
@@ -50,7 +50,7 @@ namespace TourFirmDatabaseImplement.Implements
                         Price = rec.Price,
                         Duration = rec.Duration,
                         PlaceID = rec.PlaceID,
-                        TouristID = rec.TouristID,      
+                        TouristID = rec.TouristID,
                     })
                     .ToList();
             }

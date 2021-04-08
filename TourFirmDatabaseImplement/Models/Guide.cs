@@ -8,11 +8,11 @@ namespace TourFirmDatabaseImplement.Models
     public class Guide
     {
         public int ID { get; set; }
-        [Required]  public string Name { get; set; }
-        [Required]  public string Surname { get; set; }
-        [Required]  public string PhoneNumber { get; set; }
-        [Required]  public string WorkPlace { get; set; }
-        [Required]  public string MainLanguage { get; set; }
+        [Required] public string Name { get; set; }
+        [Required] public string Surname { get; set; }
+        [Required] public string PhoneNumber { get; set; }
+        [Required] public string WorkPlace { get; set; }
+        [Required] public string MainLanguage { get; set; }
         public string AdditionalLanguage { get; set; }
         public DateTime DateWork { get; set; }
         public int OperatorID { get; set; }

@@ -103,7 +103,7 @@ namespace TourFirmDatabaseImplement.Implements
                 }
             }
         }
-        
+
         private Tourist CreateModel(TouristBindingModel model, Tourist tourist)
         {
             tourist.Name = model.Name;

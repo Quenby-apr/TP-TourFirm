@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.HelperModels;
 using TourFirmBusinessLogic.Interfaces;
@@ -89,8 +88,10 @@ namespace TourFirmBusinessLogic.BusinessLogic
                         ID = _guide.Key
                     });
                     var listExcursions = guide.ExcursionGuides.ToList();
-                    for (int i = 0; i < listExcursions.Count; i++) {
-                        record.Excursions.Add(_excursionStorage.GetElement(new ExcursionBindingModel {
+                    for (int i = 0; i < listExcursions.Count; i++)
+                    {
+                        record.Excursions.Add(_excursionStorage.GetElement(new ExcursionBindingModel
+                        {
                             ID = listExcursions[i].Key
                         }));
                     }

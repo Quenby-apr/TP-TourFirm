@@ -13,7 +13,7 @@ namespace TourFirmDatabaseImplement.Models
         public int OperatorID { get; set; }
         public int HaltID { get; set; }
 
-        [ForeignKey("TourID")] 
+        [ForeignKey("TourID")]
         public virtual List<TourGuide> TourGuides { get; set; }
 
         [ForeignKey("TourID")]

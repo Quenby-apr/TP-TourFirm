@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
@@ -52,18 +51,18 @@ namespace TourFirmDatabaseImplement.Implements
         }
 
         public List<HaltViewModel> GetUserList(int UserID)
-        {  
-             using (var context = new TourFirmDatabase())
+        {
+            using (var context = new TourFirmDatabase())
             {
                 return context.Halts
                     .Where(rec => rec.OperatorID.Equals(UserID))
                     .Select(rec => new HaltViewModel
-                {
-                    ID = rec.ID,
-                    Name = rec.Name,
-                    Address = rec.Address,
-                    OperatorID = rec.OperatorID
-                }).ToList();
+                    {
+                        ID = rec.ID,
+                        Name = rec.Name,
+                        Address = rec.Address,
+                        OperatorID = rec.OperatorID
+                    }).ToList();
             }
         }
 
