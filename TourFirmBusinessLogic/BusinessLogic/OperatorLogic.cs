@@ -14,6 +14,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
         {
             _operatorStorage = operatorStorage;
         }
+
         public List<OperatorViewModel> Read(OperatorBindingModel model)
         {
             if (model == null)
@@ -26,16 +27,27 @@ namespace TourFirmBusinessLogic.BusinessLogic
             }
             return null;
         }
+
         public void CreateOrUpdate(OperatorBindingModel model)
         {
-            var element = _operatorStorage.GetElement(new OperatorBindingModel
+            var elementByLogin = _operatorStorage.GetElement(new OperatorBindingModel
             {
                 Login = model.Login
             });
-            if (element != null && element.ID != model.ID)
+            if (elementByLogin != null && elementByLogin.ID != model.ID)
             {
-                throw new Exception("Данный пользователь уже зарегистрирован");
+                throw new Exception("Данный логин уже занят");
             }
+
+            var elementByMail = _operatorStorage.GetElement(new OperatorBindingModel
+            {
+                Mail = model.Mail
+            });
+            if (elementByMail != null && elementByMail.ID != model.ID)
+            {
+                throw new Exception("Данный электронная почта уже занята");
+            }
+
             if (model.ID.HasValue)
             {
                 _operatorStorage.Update(model);
@@ -57,4 +69,3 @@ namespace TourFirmBusinessLogic.BusinessLogic
         }
     }
 }
-

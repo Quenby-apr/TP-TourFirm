@@ -43,7 +43,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
                     foreach (var guide in guides)
                     {
-                        foreach (var guideExcursion in guide.ExcursionGuides)
+                        foreach (var guideExcursion in guide.GuideExcursions)
                         {
                             if (guideExcursion.Key == excursion.ID)
                             {
@@ -74,8 +74,9 @@ namespace TourFirmBusinessLogic.BusinessLogic
         {
             var travels = travelStorage.GetFilteredList(new TravelBindingModel
             {
-                DateStart = model.DateFrom.Value,
-                DateEnd = model.DateTo.Value
+                DateFrom = model.DateFrom.Value,
+                DateTo = model.DateTo.Value,
+                TouristID = model.TouristID
             });
 
             var guides = guideStorage.GetFullList();
@@ -88,7 +89,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 {
                     foreach (var guide in guides)
                     {
-                        foreach (var guideExcursion in guide.ExcursionGuides)
+                        foreach (var guideExcursion in guide.GuideExcursions)
                         {
                             if (guideExcursion.Key == travelExcursion.Key)
                             {
@@ -103,7 +104,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
                                     DateStart = travel.DateStart,
                                     DateEnd = travel.DateEnd,
                                     ExcursionName = excursion.Name,
-                                    GuideName = guide.Name
+                                    GuideName = guide.Name,
+                                    GuideSurname = guide.Surname
                                 });
                             }
                         }
@@ -115,7 +117,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
         public void SaveTravelGuidesToWord(ReportTravelBindingModel model)
         {
-            TouristSaveToWord.CreateDoc(new TouristListTravelGuidesInfo
+            TouristSaveToWord.CreateDoc(new TouristWordExcelInfo
             {
                 FileName = model.FileName,
                 Title = "Список гидов по выбранным путешествиям",
@@ -125,7 +127,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
         public void SaveTravelGuidesToExcel(ReportTravelBindingModel model)
         {
-            TouristSaveToExcel.CreateDoc(new TouristListTravelGuidesInfo
+            TouristSaveToExcel.CreateDoc(new TouristWordExcelInfo
             {
                 FileName = model.FileName,
                 Title = "Список гидов по выбранным путешествиям",
@@ -139,8 +141,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
             {
                 FileName = model.FileName,
                 Title = "Список экскурсий и гидов по выбранным путешествиям",
-                DateStart = model.DateFrom.Value,
-                DateEnd = model.DateTo.Value,
+                DateFrom = model.DateFrom.Value,
+                DateTo = model.DateTo.Value,
                 TravelExcursionsGuides = GetTravelExcursionsGuides(model)
             });
         }

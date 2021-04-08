@@ -19,6 +19,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
                 workbookpart.Workbook = new Workbook();
                 CreateStyles(workbookpart);
+
                 // Получаем/создаем хранилище текстов для книги
                 SharedStringTablePart shareStringPart =
                spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0
@@ -26,6 +27,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
                 :
                spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
+
                 // Создаем SharedStringTable, если его нет
                 if (shareStringPart.SharedStringTable == null)
                 {
@@ -34,9 +36,9 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 // Создаем лист в книгу
                 WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
                 worksheetPart.Worksheet = new Worksheet(new SheetData());
+
                 // Добавляем лист в книгу
-                Sheets sheets =
-               spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
+                Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild(new Sheets());
                 Sheet sheet = new Sheet()
                 {
                     Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart),
@@ -109,10 +111,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 workbookpart.Workbook.Save();
             }
         }
-        /// <summary>
-        /// Настройка стилей для файла
-        /// </summary>
-        /// <param name="workbookpart"></param>
+
+        // Настройка стилей для файла
         private static void CreateStyles(WorkbookPart workbookpart)
         {
             WorkbookStylesPart sp = workbookpart.AddNewPart<WorkbookStylesPart>();
@@ -122,8 +122,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             fontUsual.Append(new FontSize() { Val = 12D });
             fontUsual.Append(new DocumentFormat.OpenXml.Office2010.Excel.Color()
             {
-                Theme
-           = (UInt32Value)1U
+                Theme = (UInt32Value)1U
             });
             fontUsual.Append(new FontName() { Val = "Times New Roman" });
             fontUsual.Append(new FontFamilyNumbering() { Val = 2 });
@@ -133,8 +132,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             fontTitle.Append(new FontSize() { Val = 14D });
             fontTitle.Append(new DocumentFormat.OpenXml.Office2010.Excel.Color()
             {
-                Theme
-           = (UInt32Value)1U
+                Theme = (UInt32Value)1U
             });
             fontTitle.Append(new FontName() { Val = "Times New Roman" });
             fontTitle.Append(new FontFamilyNumbering() { Val = 2 });
@@ -176,8 +174,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             });
             BottomBorder bottomBorder = new BottomBorder()
             {
-                Style =
-           BorderStyleValues.Thin
+                Style = BorderStyleValues.Thin
             };
             bottomBorder.Append(new DocumentFormat.OpenXml.Office2010.Excel.Color()
             {
@@ -192,62 +189,52 @@ namespace TourFirmBusinessLogic.BusinessLogic
             borders.Append(borderThin);
             CellStyleFormats cellStyleFormats = new CellStyleFormats()
             {
-                Count =
-           (UInt32Value)1U
+                Count = (UInt32Value)1U
             };
             CellFormat cellFormatStyle = new CellFormat()
             {
-                NumberFormatId =
-           (UInt32Value)0U,
+                NumberFormatId = (UInt32Value)0U,
                 FontId = (UInt32Value)0U,
                 FillId = (UInt32Value)0U,
-                BorderId =
-           (UInt32Value)0U
+                BorderId = (UInt32Value)0U
             };
             cellStyleFormats.Append(cellFormatStyle);
             CellFormats cellFormats = new CellFormats() { Count = (UInt32Value)3U };
             CellFormat cellFormatFont = new CellFormat()
             {
-                NumberFormatId =
-           (UInt32Value)0U,
+                NumberFormatId = (UInt32Value)0U,
                 FontId = (UInt32Value)0U,
                 FillId = (UInt32Value)0U,
-                BorderId =
-           (UInt32Value)0U,
+                BorderId = (UInt32Value)0U,
                 FormatId = (UInt32Value)0U,
                 ApplyFont = true
             };
             CellFormat cellFormatFontAndBorder = new CellFormat()
             {
-                NumberFormatId =
-           (UInt32Value)0U,
+                NumberFormatId = (UInt32Value)0U,
                 FontId = (UInt32Value)0U,
                 FillId = (UInt32Value)0U,
-                BorderId =
-           (UInt32Value)1U,
+                BorderId = (UInt32Value)1U,
                 FormatId = (UInt32Value)0U,
                 ApplyFont = true,
                 ApplyBorder = true
             };
             CellFormat cellFormatTitle = new CellFormat()
             {
-                NumberFormatId =
-           (UInt32Value)0U,
+                NumberFormatId = (UInt32Value)0U,
                 FontId = (UInt32Value)1U,
                 FillId = (UInt32Value)0U,
-                BorderId =
-           (UInt32Value)0U,
+                BorderId = (UInt32Value)0U,
                 FormatId = (UInt32Value)0U,
                 Alignment = new Alignment()
                 {
-                    Vertical =
-           VerticalAlignmentValues.Center,
+                    Vertical = VerticalAlignmentValues.Center,
                     WrapText = true,
-                    Horizontal =
-           HorizontalAlignmentValues.Center
+                    Horizontal = HorizontalAlignmentValues.Center
                 },
                 ApplyFont = true
             };
+
             cellFormats.Append(cellFormatFont);
             cellFormats.Append(cellFormatFontAndBorder);
             cellFormats.Append(cellFormatTitle);
@@ -308,13 +295,12 @@ namespace TourFirmBusinessLogic.BusinessLogic
             sp.Stylesheet.Append(tableStyles);
             sp.Stylesheet.Append(stylesheetExtensionList);
         }
-        /// <summary>
-        /// Добавляем новую ячейку в лист
-        /// </summary>
-        /// <param name="cellParameters"></param>
+
+        // Добавляем новую ячейку в лист
         private static void InsertCellInWorksheet(ExcelCellParameters cellParameters)
         {
             SheetData sheetData = cellParameters.Worksheet.GetFirstChild<SheetData>();
+
             // Ищем строку, либо добавляем ее
             Row row;
             if (sheetData.Elements<Row>().Where(r => r.RowIndex ==
@@ -328,10 +314,10 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 row = new Row() { RowIndex = cellParameters.RowIndex };
                 sheetData.Append(row);
             }
+
             // Ищем нужную ячейку
             Cell cell;
-            if (row.Elements<Cell>().Where(c => c.CellReference.Value ==
-cellParameters.CellReference).Count() > 0)
+            if (row.Elements<Cell>().Where(c => c.CellReference.Value == cellParameters.CellReference).Count() > 0)
             {
                 cell = row.Elements<Cell>().Where(c => c.CellReference.Value ==
                cellParameters.CellReference).First();
@@ -367,10 +353,9 @@ cellParameters.CellReference).Count() > 0)
             cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
             cell.StyleIndex = cellParameters.StyleIndex;
         }
-        /// <summary>
-        /// Объединение ячеек
-        /// </summary>
-        /// <param name="mergeParameters"></param>
+
+
+        // Объединение ячеек
         private static void MergeCells(ExcelMergeParameters mergeParameters)
         {
             MergeCells mergeCells;

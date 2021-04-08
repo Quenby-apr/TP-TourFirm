@@ -9,6 +9,8 @@ namespace TourFirmBusinessLogic.BindingModels
         public string Name { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
         public int TouristID { get; set; }
         public Dictionary<int, string> TravelTours { get; set; }
         public Dictionary<int, string> TravelExcursions { get; set; }

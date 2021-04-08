@@ -2,7 +2,7 @@
 
 namespace TourFirmBusinessLogic.ViewModels
 {
-    public class ReportTourExcursionViewModel
+    public class ReportTourExcursionsViewModel
     {
         public string TourName { get; set; }
         public List<ExcursionViewModel> Excursions { get; set; }

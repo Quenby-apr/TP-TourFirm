@@ -8,9 +8,16 @@ namespace TourFirmDatabaseImplement.Models
     public class Travel
     {
         public int ID { get; set; }
-        [Required] public string Name { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
         public DateTime DateStart { get; set; }
+
+        [Required]
         public DateTime DateEnd { get; set; }
+
         public int TouristID { get; set; }
 
         [ForeignKey("TravelID")]

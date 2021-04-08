@@ -1,8 +1,35 @@
 ﻿<Application x:Class="TouristTourFirmView.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TouristTourFirmView">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="Button_fontFamily">Verdana</FontFamily>
+        <FontFamily x:Key="Label_fontFamily">Gautami</FontFamily>
+        <Style x:Key="General_button" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource General_backgroundBrush}"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource General_foregroundBrush}"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource Button_fontFamily}"></Setter>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Help" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#08244f"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="General_textbox" TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontFamily" Value="{StaticResource Button_fontFamily}"/>
+        </Style>
     </Application.Resources>
 </Application>

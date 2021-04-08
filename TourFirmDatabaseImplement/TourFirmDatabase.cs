@@ -19,7 +19,7 @@ namespace TourFirmDatabaseImplement
         public virtual DbSet<Tour> Tours { set; get; }
         public virtual DbSet<Excursion> Excursions { set; get; }
         public virtual DbSet<Operator> Operators { set; get; }
-        public virtual DbSet<ExcursionGuide> ExcursionGuides { set; get; }
+        public virtual DbSet<GuideExcursion> GuideExcursions { set; get; }
         public virtual DbSet<TourGuide> TourGuides { set; get; }
         public virtual DbSet<Travel> Travels { set; get; }
         public virtual DbSet<Place> Places { set; get; }

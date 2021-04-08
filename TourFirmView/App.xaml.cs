@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.Interfaces;
@@ -17,19 +12,19 @@ namespace TourFirmView
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
-   
+
     public partial class App : Application
     {
         public static OperatorViewModel Operator { get; set; }
         [STAThread]
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);  
+            base.OnStartup(e);
             var container = BuildUnityContainer();
             var Window = container.Resolve<WindowSignIn>();
             Window.ShowDialog();
         }
-          
+
         private static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
@@ -41,12 +36,10 @@ namespace TourFirmView
             currentContainer.RegisterType<ITravelStorage, TravelStorage>(new HierarchicalLifetimeManager());
 
             currentContainer.RegisterType<TravelLogic>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<OperatorReportLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TouristReportLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ExcursionLogic>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<PlaceLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<GuideLogic>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<TouristLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TourLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<HaltLogic>(new HierarchicalLifetimeManager());
             return currentContainer;

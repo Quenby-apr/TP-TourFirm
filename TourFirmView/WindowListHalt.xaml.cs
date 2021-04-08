@@ -61,7 +61,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме списка остановок при создании");
+                logger.Warn("Ошибка при попытке создания остановки");
             }
         }
 
@@ -83,7 +83,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме списка остановок при редактировании");
+                logger.Warn("Ошибка при попытке редактирования остановки");
             }
         }
 
@@ -104,7 +104,7 @@ namespace TourFirmView
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        logger.Warn("Ошибка в форме списка остановок при удалении");
+                        logger.Warn("Ошибка при попытке удаления остановки");
                     }
                     LoadData();
                 }
@@ -116,4 +116,3 @@ namespace TourFirmView
         }
     }
 }
-

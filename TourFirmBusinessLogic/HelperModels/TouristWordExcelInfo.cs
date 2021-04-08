@@ -3,7 +3,7 @@ using TourFirmBusinessLogic.ViewModels;
 
 namespace TourFirmBusinessLogic.HelperModels
 {
-    class TouristListTravelGuidesInfo
+    class TouristWordExcelInfo
     {
         public string FileName { get; set; }
         public string Title { get; set; }

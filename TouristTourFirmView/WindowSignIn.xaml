@@ -3,28 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
-         Title="Вход" Height="310" Width="280">
+         Title="Авторизация" Height="395" Width="380" ResizeMode="NoResize">
     <Window.Resources>
-
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontFamily" Value="{StaticResource Label_fontFamily}"/>
+            <Setter Property="Margin" Value="0, 10, 0, 0"/>
+            <Setter Property="FontWeight" Value="Medium"/>
         </Style>
-
     </Window.Resources>
-    <Grid Margin="0,30,0,0">
-        <StackPanel Margin="-1.515,-27.086,1.515,26.086" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="250px" 
-                    Height="294" Width="260"  ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False">
-            <Label Content="Логин" Margin="0,30,0,0" Height="35"/>
-            <TextBox x:Name="TextBoxLogin" Height="20" Margin="10,0,10,10"/>
-            <Label Content="Пароль" />
-            <TextBox x:Name="TextBoxPassword" Height="20" Margin="10,0,10,10"/>
-            <Button x:Name="ButtonSignIn" Content="Войти" FontSize="20" FontFamily="Consolas" Background="#FF140F0B" Foreground="White" Margin="10 10 10 0" 
-                     Click="ButtonSignIn_Click" Height="35"></Button>
-            <Button x:Name="ButtonSignUp" Content="Зарегистрироваться" FontSize="16" FontFamily="Consolas" Background="#FF7D7F7D" Foreground="#FFf5f5dc"
-                    Margin="40,30,40,0"  Click="ButtonGoToSignUp_Click" Height="35"></Button>
-        </StackPanel>
-    </Grid>
+    <StackPanel HorizontalAlignment="Stretch" Height="350" Margin="20">
+        <Label Content="Логин:" Margin="0, 30, 0, 0"/>
+        <TextBox x:Name="TextBoxLogin" Style="{StaticResource General_textbox}"/>
+        <Label Content="Пароль:"/>
+        <TextBox x:Name="TextBoxPassword" Style="{StaticResource General_textbox}"/>
+        <Button Content="Войти" Style="{StaticResource General_button}" Click="ButtonSignIn_Click" Margin="0, 40, 0, 0"/>
+        <Button Content="Зарегистрироваться" Style="{StaticResource General_button}" Background="#7c7b89" Margin="0, 20, 0, 0" Click="ButtonGoToSignUp_Click"/>
+    </StackPanel>
 </Window>

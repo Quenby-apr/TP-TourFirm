@@ -5,6 +5,7 @@ using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.ViewModels;
 using Unity;
+using NLog;
 
 namespace TouristTourFirmView
 {
@@ -18,6 +19,7 @@ namespace TouristTourFirmView
 
         private readonly TravelLogic travelLogic;
         private readonly List<ExcursionViewModel> listAllExcursions;
+        private readonly Logger logger;
 
         public int Id { set { id = value; } }
         private int? id;
@@ -28,26 +30,34 @@ namespace TouristTourFirmView
         {
             InitializeComponent();
             this.travelLogic = travelLogic;
-            listAllExcursions = excursionLogic.Read(null);
+            listAllExcursions = excursionLogic.Read(new ExcursionBindingModel
+            {
+                TouristID = App.Tourist.ID
+            });
+
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void WindowBondTravelExcursions_Load(object sender, RoutedEventArgs e)
         {
-                try
-                {
-                    var view = travelLogic.Read(new TravelBindingModel { ID = id })?[0];
+            try
+            {
+                var view = travelLogic.Read(new TravelBindingModel { ID = id })?[0];
 
-                    if (view != null)
-                    {
-                        travelExcursions = view.TravelExcursions;
-                        LoadData();
-                    }
-                }
-                catch (Exception ex)
+                if (view != null)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    travelExcursions = view.TravelExcursions;
+                    LoadData();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке загрузки списка доступных экскурсий");
+            }
         }
+
+
 
         private void LoadData()
         {
@@ -83,6 +93,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке загрузки списка доступных экскурсий");
             }
         }
 
@@ -119,6 +130,7 @@ namespace TouristTourFirmView
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Warn("Ошибка при попытке удаления экскурсии");
                 }
             }
         }
@@ -165,6 +177,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке привязки выбранных экскурсий");
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Windows;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
@@ -15,11 +16,13 @@ namespace TouristTourFirmView
         [Dependency]
         public IUnityContainer Container { get; set; }
         private readonly ExcursionLogic logic;
+        private readonly Logger logger;
 
         public WindowExcursions(ExcursionLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void WindowExcursions_Load(object sender, RoutedEventArgs e)
@@ -31,7 +34,10 @@ namespace TouristTourFirmView
         {
             try
             {
-                var list = logic.Read(null);
+                var list = logic.Read(new ExcursionBindingModel
+                {
+                    TouristID = App.Tourist.ID
+                });
 
                 if (list != null)
                 {
@@ -41,6 +47,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке загрузки списка экскурсий");
             }
         }
 
@@ -69,7 +76,6 @@ namespace TouristTourFirmView
             {
                 LoadData();
             }
-
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
@@ -92,6 +98,7 @@ namespace TouristTourFirmView
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Warn("Ошибка при попытке удаления экскурсии");
                 }
                 LoadData();
             }

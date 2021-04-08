@@ -8,7 +8,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
 {
     static class TouristSaveToWord
     {
-        public static void CreateDoc(TouristListTravelGuidesInfo info)
+        public static void CreateDoc(TouristWordExcelInfo info)
         {
             using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document))
             {

@@ -48,7 +48,6 @@ namespace TourFirmView
                     Name = NameTextBox.Text,
                     Address = AddressTextBox.Text,
                     OperatorID = App.Operator.ID,
-                    
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -57,7 +56,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме редактирования остановки");
+                logger.Warn("Ошибка при попытке сохранения данных об остановке");
             }
         }
 

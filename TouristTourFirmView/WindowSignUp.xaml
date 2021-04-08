@@ -3,36 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
-        Title="Регистрация" Height="500" Width="490">
+        Title="Регистрация" Height="650" Width="500" ResizeMode="NoResize">
     <Window.Resources>
-
-        <Style  TargetType="Label">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="FontFamily" Value="Consolas" />
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Gautami"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Margin" Value="0, 10, 0, 0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#0b7fab"/>
+            <Setter Property="Margin" Value="0, 20, 0, 0"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="300"/>
         </Style>
         <Style  TargetType="TextBox">
-            <Setter Property="Height" Value="20" />
+            <Setter Property="Height" Value="25" />
             <Setter Property="Margin" Value="10,0,10,10" />
         </Style>
-
     </Window.Resources>
-    <Grid Margin="0,0,0,0">
-        <StackPanel Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="250px" Height="465.768" Width="450.96" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
-            <Label Content="Логин"  Margin="0,0,0,0" Height="35"/>
-            <TextBox x:Name="TextBoxLogin"/>
-            <Label Content="Пароль" />
-            <TextBox x:Name="TextBoxPassword"/>
-            <Label Content="Имя"/>
-            <TextBox x:Name="TextBoxName"/>
-            <Label Content="Фамилия" />
-            <TextBox x:Name="TextBoxSurname"/>
-            <Label Content="Номер телефона" />
-            <TextBox x:Name="TextBoxPhone"/>
-            <Label Content="Почта" />
-            <TextBox x:Name="TextBoxMail"/>
-            <Button Click="ButtonSignUp_Click" Content="Зарегистрироваться" FontSize="20" FontFamily="Consolas" Background="#FF140F0B" Foreground="White" Margin="10 20 10 0" Height="42" />
-        </StackPanel>
-    </Grid>
+    <StackPanel Margin="10,40,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="550" Width="420" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+        <Label Content="Логин"  Margin="0,0,0,0" Height="35"/>
+        <TextBox x:Name="TextBoxLogin"/>
+        <Label Content="Пароль" />
+        <TextBox x:Name="TextBoxPassword"/>
+        <Label Content="Имя"/>
+        <TextBox x:Name="TextBoxName"/>
+        <Label Content="Фамилия" />
+        <TextBox x:Name="TextBoxSurname"/>
+        <Label Content="Номер телефона" />
+        <TextBox x:Name="TextBoxPhone"/>
+        <Label Content="Почта" />
+        <TextBox x:Name="TextBoxMail"/>
+        <Button Click="ButtonSignUp_Click" Content="Зарегистрироваться"/>
+    </StackPanel>
 </Window>

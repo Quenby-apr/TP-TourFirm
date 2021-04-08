@@ -22,8 +22,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "Normal";
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "3cm", "3cm", "3cm","3cm", "3cm", "3cm"
-};
+            List<string> columns = new List<string> { "3cm", "3cm", "3cm","3cm", "3cm", "3cm" };
             foreach (var elem in columns)
             {
                 table.AddColumn(elem);
@@ -31,8 +30,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Дата путешествия", "Фамилия", "Имя",
-"Город", "Название экскурсии", "Название тура" },
+                Texts = new List<string> { "Дата путешествия", "Фамилия", "Имя", "Город", "Название экскурсии", "Название тура" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
@@ -42,8 +40,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 {
                     Table = table,
                     Texts = new List<string> { guide.DateStartTravel.ToShortDateString(),
-guide.GuideSurname, guide.GuideName, guide.GuideWorkPlace, guide.ExcursionName, guide.TourName
-},
+                        guide.GuideSurname, guide.GuideName, guide.GuideWorkPlace, guide.ExcursionName, guide.TourName },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left
                 });
@@ -56,10 +53,8 @@ guide.GuideSurname, guide.GuideName, guide.GuideWorkPlace, guide.ExcursionName, 
             renderer.RenderDocument();
             renderer.PdfDocument.Save(info.FileName);
         }
-        /// <summary>
-        /// Создание стилей для документа
-        /// </summary>
-        /// <param name="document"></param>
+
+        // Создание стилей для документа
         private static void DefineStyles(Document document)
         {
             Style style = document.Styles["Normal"];
@@ -68,10 +63,9 @@ guide.GuideSurname, guide.GuideName, guide.GuideWorkPlace, guide.ExcursionName, 
             style = document.Styles.AddStyle("NormalTitle", "Normal");
             style.Font.Bold = true;
         }
-        /// <summary>
-        /// Создание и заполнение строки
-        /// </summary>
-        /// <param name="rowParameters"></param>
+
+
+        // Создание и заполнение строки
         private static void CreateRow(PdfRowParameters rowParameters)
         {
             Row row = rowParameters.Table.AddRow();
@@ -87,10 +81,9 @@ guide.GuideSurname, guide.GuideName, guide.GuideWorkPlace, guide.ExcursionName, 
                 });
             }
         }
-        /// <summary>
-        /// Заполнение ячейки
-        /// </summary>
-        /// <param name="cellParameters"></param>
+
+
+        // Заполнение ячейки
         private static void FillCell(PdfCellParameters cellParameters)
         {
             cellParameters.Cell.AddParagraph(cellParameters.Text);

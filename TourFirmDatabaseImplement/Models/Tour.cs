@@ -7,9 +7,16 @@ namespace TourFirmDatabaseImplement.Models
     public class Tour
     {
         public int ID { get; set; }
-        [Required] public string Name { get; set; }
-        [Required] public string Country { get; set; }
-        [Required] public decimal Price { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Country { get; set; }
+
+        [Required]
+        public decimal Price { get; set; }
+
         public int OperatorID { get; set; }
         public int HaltID { get; set; }
 

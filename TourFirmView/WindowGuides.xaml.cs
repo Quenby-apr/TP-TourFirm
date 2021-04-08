@@ -44,7 +44,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме списка гидов при загрузке данных");
+                logger.Warn("Ошибка при попытке загрузки списка гидов");
             }
         }
 
@@ -61,7 +61,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме списка гидов при создании");
+                logger.Warn("Ошибка при попытке создания гида");
             }
         }
 
@@ -83,7 +83,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме списка гидов при редактировании");
+                logger.Warn("Ошибка при попытке редактирования гида");
             }
         }
 
@@ -104,7 +104,7 @@ namespace TourFirmView
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        logger.Warn("Ошибка в форме списка гидов при удалении");
+                        logger.Warn("Ошибка при попытке удаления гида");
                     }
                     LoadData();
                 }

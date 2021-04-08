@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.HelperModels;
@@ -8,32 +7,29 @@ using TourFirmBusinessLogic.ViewModels;
 
 namespace TourFirmBusinessLogic.BusinessLogic
 {
-    public class ReportLogic
+    public class OperatorReportLogic
     {
         private readonly IGuideStorage _guideStorage;
         private readonly IExcursionStorage _excursionStorage;
         private readonly ITourStorage _tourStorage;
         private readonly ITravelStorage _travelStorage;
 
-        public ReportLogic(IGuideStorage guideStorage, IExcursionStorage excursionStorage, ITourStorage tourStorage, ITravelStorage travelStorage)
+        public OperatorReportLogic(IGuideStorage guideStorage, IExcursionStorage excursionStorage, ITourStorage tourStorage, ITravelStorage travelStorage)
         {
             _guideStorage = guideStorage;
             _excursionStorage = excursionStorage;
             _tourStorage = tourStorage;
             _travelStorage = travelStorage;
         }
-        /// <summary>
-        /// Получение списка смен гидов за определенный период с указанием туров и экскурсий 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public List<ReportGuideViewModel> GetGuides(ReportBindingModel model)
+
+        // Получение списка смен гидов за определенный период с указанием туров и экскурсий 
+        public List<ReportGuidesViewModel> GetGuides(ReportTourBindingModel model)
         {
-            var list = new List<ReportGuideViewModel>();
+            var list = new List<ReportGuidesViewModel>();
             var travels = _travelStorage.GetFilteredList(new TravelBindingModel
             {
-                DateStart = (DateTime)model.DateFrom,
-                DateEnd = (DateTime)model.DateTo
+                DateStart = model.DateFrom.Value,
+                DateEnd = model.DateTo.Value
             });
             foreach (var travel in travels)
             {
@@ -49,13 +45,13 @@ namespace TourFirmBusinessLogic.BusinessLogic
                         {
                             ID = TG.Key
                         });
-                        foreach (var GE in guide.ExcursionGuides)
+                        foreach (var GE in guide.GuideExcursions)
                         {
                             var excursion = _excursionStorage.GetElement(new ExcursionBindingModel
                             {
                                 ID = GE.Key
                             });
-                            var record = new ReportGuideViewModel
+                            var record = new ReportGuidesViewModel
                             {
                                 DateStartTravel = travel.DateStart,
                                 GuideSurname = guide.Surname,
@@ -71,12 +67,12 @@ namespace TourFirmBusinessLogic.BusinessLogic
             }
             return list;
         }
-        public List<ReportTourExcursionViewModel> GetTourExcursions(List<TourViewModel> tours)
+        public List<ReportTourExcursionsViewModel> GetTourExcursions(List<TourViewModel> tours)
         {
-            var list = new List<ReportTourExcursionViewModel>();
+            var list = new List<ReportTourExcursionsViewModel>();
             foreach (var tour in tours)
             {
-                var record = new ReportTourExcursionViewModel
+                var record = new ReportTourExcursionsViewModel
                 {
                     TourName = tour.Name,
                     Excursions = new List<ExcursionViewModel>(),
@@ -87,11 +83,9 @@ namespace TourFirmBusinessLogic.BusinessLogic
                     {
                         ID = _guide.Key
                     });
-                    var listExcursions = guide.ExcursionGuides.ToList();
-                    for (int i = 0; i < listExcursions.Count; i++)
-                    {
-                        record.Excursions.Add(_excursionStorage.GetElement(new ExcursionBindingModel
-                        {
+                    var listExcursions = guide.GuideExcursions.ToList();
+                    for (int i = 0; i < listExcursions.Count; i++) {
+                        record.Excursions.Add(_excursionStorage.GetElement(new ExcursionBindingModel {
                             ID = listExcursions[i].Key
                         }));
                     }
@@ -100,6 +94,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             }
             return list;
         }
+
         public void SaveTourExcurionToWordFile(ReportTourBindingModel model)
         {
             OperatorSaveToWord.CreateDoc(new OperatorWordInfo
@@ -119,7 +114,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 TourExcursions = GetTourExcursions(model.Tours)
             });
         }
-        public void SaveGuidesToPdfFile(ReportBindingModel model)
+
+        public void SaveGuidesToPdfFile(ReportTourBindingModel model)
         {
             OperatorSaveToPdf.CreateDoc(new OperatorPdfInfo
             {

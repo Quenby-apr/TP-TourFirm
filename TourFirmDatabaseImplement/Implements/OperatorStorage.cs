@@ -36,8 +36,7 @@ namespace TourFirmDatabaseImplement.Implements
             }
             using (var context = new TourFirmDatabase())
             {
-                var _operator = context.Operators
-              .FirstOrDefault(rec => rec.ID == model.ID || rec.Login == model.Login);
+                var _operator = context.Operators.FirstOrDefault(rec => rec.ID == model.ID || rec.Login == model.Login || rec.Mail == model.Mail);
                 return _operator != null ? new OperatorViewModel
                 {
                     ID = _operator.ID,
@@ -50,52 +49,31 @@ namespace TourFirmDatabaseImplement.Implements
                 null;
             }
         }
+
         public void Insert(OperatorBindingModel model)
         {
             using (var context = new TourFirmDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        context.Operators.Add(CreateModel(model, new Operator(), context));
-                        context.SaveChanges();
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
+                context.Operators.Add(CreateModel(model, new Operator()));
+                context.SaveChanges();
             }
         }
+        
         public void Update(OperatorBindingModel model)
         {
             using (var context = new TourFirmDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
+                var element = context.Operators.FirstOrDefault(rec => rec.ID == model.ID);
+
+                if (element == null)
                 {
-                    try
-                    {
-                        var element = context.Operators.FirstOrDefault(rec => rec.ID ==
-                       model.ID);
-                        if (element == null)
-                        {
-                            throw new Exception("Элемент не найден");
-                        }
-                        CreateModel(model, element, context);
-                        context.SaveChanges();
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
+                    throw new Exception("Элемент не найден");
                 }
+                CreateModel(model, element);
+                context.SaveChanges();
             }
         }
+
         public void Delete(OperatorBindingModel model)
         {
             using (var context = new TourFirmDatabase())
@@ -113,7 +91,8 @@ namespace TourFirmDatabaseImplement.Implements
                 }
             }
         }
-        private Operator CreateModel(OperatorBindingModel model, Operator _operator, TourFirmDatabase context)
+
+        private Operator CreateModel(OperatorBindingModel model, Operator _operator)
         {
             _operator.Name = model.Name;
             _operator.Surname = model.Surname;

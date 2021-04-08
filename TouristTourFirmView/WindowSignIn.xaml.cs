@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using TourFirmBusinessLogic.BusinessLogic;
 using TourFirmBusinessLogic.ViewModels;
 using Unity;
@@ -35,7 +34,7 @@ namespace TouristTourFirmView
             }
 
             var tourists = logic.Read(null);
-            
+
             TouristViewModel touristView = null;
 
             foreach (var tourist in tourists)
@@ -55,7 +54,7 @@ namespace TouristTourFirmView
             }
             else
             {
-                MessageBox.Show("Данные некорректны", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Неверно введён логин или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }

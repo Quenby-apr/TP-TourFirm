@@ -1,6 +1,6 @@
 ﻿namespace TourFirmDatabaseImplement.Models
 {
-    public class ExcursionGuide
+    public class GuideExcursion
     {
         public int ID { get; set; }
         public int ExcursionID { get; set; }

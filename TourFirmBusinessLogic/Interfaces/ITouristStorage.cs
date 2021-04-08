@@ -4,7 +4,6 @@ using TourFirmBusinessLogic.ViewModels;
 
 namespace TourFirmBusinessLogic.Interfaces
 {
-    //Нуждается в переработке ??
     public interface ITouristStorage
     {
         List<TouristViewModel> GetFullList();

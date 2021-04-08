@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using TourFirmBusinessLogic.BindingModels;
@@ -25,11 +26,14 @@ namespace TouristTourFirmView
         private Dictionary<int, string> travelTours;
         private Dictionary<int, string> travelExcursions;
 
+        private readonly Logger logger;
+
         public WindowTravel(TravelLogic travelLogic, TourLogic tourLogic, ExcursionLogic excursionLogic)
         {
             InitializeComponent();
             this.travelLogic = travelLogic;
             listAllTours = tourLogic.Read(null);
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void WindowTravel_Load(object sender, RoutedEventArgs e)
@@ -53,6 +57,7 @@ namespace TouristTourFirmView
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Warn("Ошибка при попытке загрузки данных о путешествии");
                 }
             }
             else
@@ -99,6 +104,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка про попытке загрузки данных о привязанных турах/экскурсиях");
             }
         }
 
@@ -110,8 +116,7 @@ namespace TouristTourFirmView
                 return;
             }
 
-            travelTours.Add((int)ListBoxAvaliableTours.SelectedValue, 
-                ((TourViewModel)ListBoxAvaliableTours.SelectedItem).Name);
+            travelTours.Add((int)ListBoxAvaliableTours.SelectedValue, ((TourViewModel)ListBoxAvaliableTours.SelectedItem).Name);
             Listboxes_Reload();
         }
 
@@ -136,6 +141,7 @@ namespace TouristTourFirmView
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Warn("Ошибка при попытке удаления привязанного тура");
                 }
             }
         }
@@ -206,6 +212,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке сохранения данных о путешествии");
             }
         }
 

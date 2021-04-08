@@ -73,8 +73,11 @@ namespace TourFirmView
                 NameTextBox.Text = tour.Name;
                 CountryTextBox.Text = tour.Country;
                 PriceTextBox.Text = tour.Price.ToString();
-            }    
+                ComboBoxHalts.SelectedValue = tour.HaltID;
+
+            }
         }
+
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             if (ListBoxAvailable.SelectedItem != null)
@@ -143,7 +146,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме редактирования тура");
+                logger.Warn("Ошибка при попытке сохранения данных о туре");
             }
         }
 
@@ -159,5 +162,4 @@ namespace TourFirmView
             AddressTextBox.Text = halt.Address;
         }
     }
-
 }

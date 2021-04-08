@@ -10,7 +10,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
 {
     class TouristSaveToExcel
     {
-        public static void CreateDoc(TouristListTravelGuidesInfo info)
+        public static void CreateDoc(TouristWordExcelInfo info)
         {
             using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(info.FileName, SpreadsheetDocumentType.Workbook))
             {
