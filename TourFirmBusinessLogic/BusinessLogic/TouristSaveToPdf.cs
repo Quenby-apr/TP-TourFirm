@@ -42,7 +42,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
-                    
+
                     Texts = new List<string> {
                                 travelExcursionGuide.TravelName,
                                 travelExcursionGuide.DateStart.ToShortDateString(),

@@ -35,7 +35,6 @@ namespace TourFirmBusinessLogic.BusinessLogic
             {
                 Name = model.Name
             });
-
             if (element != null && element.ID != model.ID)
             {
                 throw new Exception("Данное место уже зарегистрировано");

@@ -13,7 +13,7 @@ namespace TourFirmBusinessLogic.BindingModels
         public string MainLanguage { get; set; }
         public string AdditionalLanguage { get; set; }
         public DateTime DateWork { get; set; }
-        public Dictionary<int, string> ExcursionGuides { get; set; }
+        public Dictionary<int, string> GuideExcursions { get; set; }
         public int OperatorID { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }

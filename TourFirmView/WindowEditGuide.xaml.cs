@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using NLog;
 using TourFirmBusinessLogic.BindingModels;
@@ -74,7 +75,8 @@ namespace TourFirmView
                     MainLanguage = MainLanguageTextBox.Text,
                     AdditionalLanguage = AdditionalLanguageTextBox.Text,
                     OperatorID = App.Operator.ID,
-                }); ;
+                    GuideExcursions = new Dictionary<int, string>()
+                }); 
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
                 Close();
@@ -82,7 +84,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме редактирования гида при сохранении");
+                logger.Warn("Ошибка при попытке сохранения данных о гиде");
             }
         }
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

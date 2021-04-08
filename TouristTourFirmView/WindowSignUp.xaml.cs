@@ -64,8 +64,6 @@ namespace TouristTourFirmView
                 return;
             }
 
-            //TODO: В TouristLogic надо предусмотреть проверку уникальности почты
-
             try
             {
                 logic.CreateOrUpdate(new TouristBindingModel

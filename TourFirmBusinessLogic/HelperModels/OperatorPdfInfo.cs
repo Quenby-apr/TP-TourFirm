@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TourFirmBusinessLogic.ViewModels;
 
 namespace TourFirmBusinessLogic.HelperModels
@@ -11,6 +10,6 @@ namespace TourFirmBusinessLogic.HelperModels
         public string Title { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
-        public List<ReportGuideViewModel> Guides { get; set; }
+        public List<ReportGuidesViewModel> Guides { get; set; }
     }
 }

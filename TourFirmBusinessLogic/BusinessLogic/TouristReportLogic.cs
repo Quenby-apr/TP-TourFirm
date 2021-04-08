@@ -43,7 +43,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
                     foreach (var guide in guides)
                     {
-                        foreach (var guideExcursion in guide.ExcursionGuides)
+                        foreach (var guideExcursion in guide.GuideExcursions)
                         {
                             if (guideExcursion.Key == excursion.ID)
                             {
@@ -89,7 +89,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 {
                     foreach (var guide in guides)
                     {
-                        foreach (var guideExcursion in guide.ExcursionGuides)
+                        foreach (var guideExcursion in guide.GuideExcursions)
                         {
                             if (guideExcursion.Key == travelExcursion.Key)
                             {
@@ -117,7 +117,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
         public void SaveTravelGuidesToWord(ReportTravelBindingModel model)
         {
-            TouristSaveToWord.CreateDoc(new TouristListTravelGuidesInfo
+            TouristSaveToWord.CreateDoc(new TouristWordExcelInfo
             {
                 FileName = model.FileName,
                 Title = "Список гидов по выбранным путешествиям",
@@ -127,7 +127,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
         public void SaveTravelGuidesToExcel(ReportTravelBindingModel model)
         {
-            TouristSaveToExcel.CreateDoc(new TouristListTravelGuidesInfo
+            TouristSaveToExcel.CreateDoc(new TouristWordExcelInfo
             {
                 FileName = model.FileName,
                 Title = "Список гидов по выбранным путешествиям",

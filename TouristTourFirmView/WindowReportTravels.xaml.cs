@@ -68,7 +68,7 @@ namespace TouristTourFirmView
                             DateTo = DatePickerTo.SelectedDate,
                             TouristID = App.Tourist.ID
                         });
-                        MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,  MessageBoxImage.Information);
+                        MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {

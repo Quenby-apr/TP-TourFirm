@@ -82,26 +82,14 @@ namespace TourFirmDatabaseImplement.Implements
         {
             using (var context = new TourFirmDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
+                var element = context.Places.FirstOrDefault(rec => rec.ID == model.ID);
+
+                if (element == null)
                 {
-                    try
-                    {
-                        Place element = context.Places.FirstOrDefault(rec => rec.ID == model.ID);
-
-                        if (element == null)
-                        {
-                            throw new Exception("Элемент не найден");
-                        }
-
-                        CreateModel(model, element);
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
+                    throw new Exception("Элемент не найден");
                 }
+                CreateModel(model, element);
+                context.SaveChanges();
             }
         }
 
