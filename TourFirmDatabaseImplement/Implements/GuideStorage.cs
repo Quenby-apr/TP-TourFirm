@@ -32,7 +32,6 @@ namespace TourFirmDatabaseImplement.Implements
                     WorkPlace = guide.WorkPlace,
                     MainLanguage = guide.MainLanguage,
                     AdditionalLanguage = guide.AdditionalLanguage,
-                    DateWork = guide.DateWork,
                     OperatorID = guide.OperatorID,
                     GuideExcursions = guide.GuideExcursions
                     .ToDictionary(recEX => recEX.ExcursionID, recEX => (recEX.Excursion?.Name))
@@ -43,7 +42,32 @@ namespace TourFirmDatabaseImplement.Implements
 
         public List<GuideViewModel> GetFilteredList(GuideBindingModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return null;
+            }
+
+            using (var context = new TourFirmDatabase())
+            {
+                return context.Guides
+                    .Include(rec => rec.GuideExcursions)
+                    .ThenInclude(rec => rec.Excursion)
+                    .Where(rec => (rec.OperatorID == model.OperatorID))
+                    .ToList().
+                    Select(rec => new GuideViewModel
+                    {
+                        ID = rec.ID,
+                        Name = rec.Name,
+                        Surname = rec.Surname,
+                        PhoneNumber = rec.PhoneNumber,
+                        WorkPlace = rec.WorkPlace,
+                        MainLanguage = rec.MainLanguage,
+                        AdditionalLanguage = rec.AdditionalLanguage,
+                        OperatorID = rec.OperatorID,
+                        GuideExcursions = rec.GuideExcursions
+                        .ToDictionary(recPC => recPC.ExcursionID, recPC => (recPC.Excursion?.Name))
+                    }).ToList();
+            }
         }
 
         public List<GuideViewModel> GetFullList()
@@ -62,35 +86,9 @@ namespace TourFirmDatabaseImplement.Implements
                        WorkPlace = rec.WorkPlace,
                        MainLanguage = rec.MainLanguage,
                        AdditionalLanguage = rec.AdditionalLanguage,
-                       DateWork = rec.DateWork,
                        OperatorID = rec.OperatorID,
                        GuideExcursions = rec.GuideExcursions
                         .ToDictionary(recPC => recPC.ExcursionID, recPC => (recPC.Excursion?.Name))
-                   })
-                    .ToList();
-            }
-        }
-
-        public List<GuideViewModel> GetUserList(int UserID)
-        {
-            using (var context = new TourFirmDatabase())
-            {
-                return context.Guides.Include(rec => rec.GuideExcursions)
-                    .ThenInclude(rec => rec.Excursion)
-                   .Where(rec => rec.OperatorID.Equals(UserID))
-                   .Select(rec => new GuideViewModel
-                   {
-                       ID = rec.ID,
-                       Name = rec.Name,
-                       Surname = rec.Surname,
-                       PhoneNumber = rec.PhoneNumber,
-                       WorkPlace = rec.WorkPlace,
-                       MainLanguage = rec.MainLanguage,
-                       AdditionalLanguage = rec.AdditionalLanguage,
-                       DateWork = rec.DateWork,
-                       OperatorID = rec.OperatorID,
-                       GuideExcursions = rec.GuideExcursions
-                        .ToDictionary(recEG => recEG.ExcursionID, recEG => recEG.Excursion.Name)
                    })
                     .ToList();
             }
@@ -112,7 +110,6 @@ namespace TourFirmDatabaseImplement.Implements
                             WorkPlace = model.WorkPlace,
                             MainLanguage = model.MainLanguage,
                             AdditionalLanguage = model.AdditionalLanguage,
-                            DateWork = DateTime.Now,
                             OperatorID = model.OperatorID
                         };
                         context.Guides.Add(guide);
@@ -180,7 +177,6 @@ namespace TourFirmDatabaseImplement.Implements
             guide.WorkPlace = model.WorkPlace;
             guide.MainLanguage = model.MainLanguage;
             guide.AdditionalLanguage = model.AdditionalLanguage;
-            guide.DateWork = model.DateWork;
             guide.OperatorID = model.OperatorID;
             if (model.GuideExcursions != null)
             {

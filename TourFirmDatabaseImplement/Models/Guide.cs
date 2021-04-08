@@ -25,7 +25,6 @@ namespace TourFirmDatabaseImplement.Models
         public string MainLanguage { get; set; }
 
         public string AdditionalLanguage { get; set; }
-        public DateTime DateWork { get; set; }
         public int OperatorID { get; set; }
 
         [ForeignKey("GuideID")]

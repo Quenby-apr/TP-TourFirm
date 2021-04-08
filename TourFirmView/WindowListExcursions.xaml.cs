@@ -18,16 +18,12 @@ namespace TourFirmView
         [Dependency]
         public IUnityContainer Container { get; set; }
 
-        private readonly GuideLogic guidelogic;
-        private readonly ExcursionLogic excursionlogic;
         private readonly TourLogic tourlogic;
         private OperatorReportLogic reportlogic;
         private readonly Logger logger;
         public WindowListExcursions(GuideLogic guidelogic, ExcursionLogic excursionlogic, TourLogic tourlogic, OperatorReportLogic reportlogic)
         {
             InitializeComponent();
-            this.guidelogic = guidelogic;
-            this.excursionlogic = excursionlogic;
             this.tourlogic = tourlogic;
             this.reportlogic = reportlogic;
             logger = LogManager.GetCurrentClassLogger();
@@ -39,7 +35,9 @@ namespace TourFirmView
         }
         private void LoadData()
         {
-            var listbindmodels = tourlogic.Read(null);
+            var listbindmodels = tourlogic.Read(new TourBindingModel {
+                OperatorID = App.Operator.ID
+            });
             foreach (var tour in listbindmodels)
             {
                 ListBoxTours.Items.Add(tour);

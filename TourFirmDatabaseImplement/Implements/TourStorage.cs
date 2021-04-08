@@ -40,16 +40,12 @@ namespace TourFirmDatabaseImplement.Implements
 
         public List<TourViewModel> GetFilteredList(TourBindingModel model)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<TourViewModel> GetFullList()
-        {
             using (var context = new TourFirmDatabase())
             {
                 return context.Tours
                     .Include(rec => rec.TourGuides)
                     .ThenInclude(rec => rec.Guide)
+                    .Where(rec => (rec.OperatorID == model.OperatorID))
                     .ToList()
                     .Select(rec => new TourViewModel
                     {
@@ -66,15 +62,15 @@ namespace TourFirmDatabaseImplement.Implements
             }
         }
 
-        public List<TourViewModel> GetUserList(int UserID)
+        public List<TourViewModel> GetFullList()
         {
             using (var context = new TourFirmDatabase())
             {
                 return context.Tours
                     .Include(rec => rec.TourGuides)
                     .ThenInclude(rec => rec.Guide)
-                    .Where(rec => rec.OperatorID.Equals(UserID))
-                    .ToList().Select(rec => new TourViewModel
+                    .ToList()
+                    .Select(rec => new TourViewModel
                     {
                         ID = rec.ID,
                         Name = rec.Name,

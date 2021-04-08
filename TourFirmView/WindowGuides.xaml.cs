@@ -34,7 +34,9 @@ namespace TourFirmView
         {
             try
             {
-                var list = logic.Read(null);
+                var list = logic.Read(new GuideBindingModel {
+                    OperatorID = App.Operator.ID
+                });
 
                 if (list != null)
                 {

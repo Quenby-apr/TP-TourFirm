@@ -32,7 +32,24 @@ namespace TourFirmDatabaseImplement.Implements
 
         public List<HaltViewModel> GetFilteredList(HaltBindingModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return null;
+            }
+
+            using (var context = new TourFirmDatabase())
+            {
+                return context.Halts
+                    .Where(rec => (rec.OperatorID == model.OperatorID))
+                    .ToList().
+                    Select(rec => new HaltViewModel
+                    {
+                        ID = rec.ID,
+                        Name = rec.Name,
+                        Address = rec.Address,
+                        OperatorID = rec.OperatorID
+                    }).ToList();
+            }
         }
 
         public List<HaltViewModel> GetFullList()

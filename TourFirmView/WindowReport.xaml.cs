@@ -36,7 +36,7 @@ namespace TourFirmView
                 {
                     DateFrom = DatePikerFrom.SelectedDate,
                     DateTo = DatePikerTo.SelectedDate
-                });
+                }, App.Operator.ID);
                 GuidesGrid.ItemsSource = dataSource;
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace TourFirmView
                             FileName = dialog.FileName,
                             DateFrom = DatePikerFrom.SelectedDate,
                             DateTo = DatePikerTo.SelectedDate
-                        });
+                        }, App.Operator.ID);
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,
                        MessageBoxImage.Information);
                     }
