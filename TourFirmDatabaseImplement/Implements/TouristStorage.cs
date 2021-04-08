@@ -37,7 +37,7 @@ namespace TourFirmDatabaseImplement.Implements
 
             using (var context = new TourFirmDatabase())
             {
-                var tourist = context.Tourists.FirstOrDefault(rec => rec.ID == model.ID);
+                var tourist = context.Tourists.FirstOrDefault(rec => rec.ID == model.ID || rec.Login == model.Login || rec.Mail == model.Mail);
                 return tourist != null ? new TouristViewModel
                 {
                     ID = tourist.ID,
@@ -50,6 +50,7 @@ namespace TourFirmDatabaseImplement.Implements
                 null;
             }
         }
+        
         public void Insert(TouristBindingModel model)
         {
             using (var context = new TourFirmDatabase())
@@ -63,26 +64,14 @@ namespace TourFirmDatabaseImplement.Implements
         {
             using (var context = new TourFirmDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
+                var element = context.Tourists.FirstOrDefault(rec => rec.ID == model.ID);
+
+                if (element == null)
                 {
-                    try
-                    {
-                        Tourist element = context.Tourists.FirstOrDefault(rec => rec.ID == model.ID);
-
-                        if (element == null)
-                        {
-                            throw new Exception("Элемент не найден");
-                        }
-
-                        CreateModel(model, element);
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
+                    throw new Exception("Элемент не найден");
                 }
+                CreateModel(model, element);
+                context.SaveChanges();
             }
         }
 
@@ -103,7 +92,7 @@ namespace TourFirmDatabaseImplement.Implements
                 }
             }
         }
-        
+
         private Tourist CreateModel(TouristBindingModel model, Tourist tourist)
         {
             tourist.Name = model.Name;

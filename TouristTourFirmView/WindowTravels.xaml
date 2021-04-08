@@ -3,13 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
         Loaded="WindowTravels_Load"
         Title="Путешествия" Height="450" Width="810" ResizeMode="NoResize" >
-    <Grid>
+    <Grid> 
         <DataGrid x:Name="DataGridTravels" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700" AutoGenerateColumns="False" CanUserAddRows="false" CanUserReorderColumns="False" >
-            <DataGrid.Columns >
+            <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=ID}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="0.5*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Дата начала" Binding="{Binding Path=DateStart}" Width="0.5*"></DataGridTextColumn>

@@ -33,8 +33,8 @@ namespace TourFirmBusinessLogic.BusinessLogic
             var element = _guideStorage.GetElement(new GuideBindingModel
             {
                 Name = model.Name,
-                Surname=model.Surname,
-                PhoneNumber=model.PhoneNumber
+                Surname = model.Surname,
+                PhoneNumber = model.PhoneNumber
             });
             if (element != null && element.ID != model.ID)
             {
@@ -52,9 +52,9 @@ namespace TourFirmBusinessLogic.BusinessLogic
         public void Delete(GuideBindingModel model)
         {
             var element = _guideStorage.GetElement(new GuideBindingModel { ID = model.ID });
-            if (element == null) 
+            if (element == null)
             {
-                throw new Exception("Элемент не найден"); 
+                throw new Exception("Элемент не найден");
             }
             _guideStorage.Delete(model);
         }

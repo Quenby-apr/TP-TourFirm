@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
-                Title='Турфирма "Иван Сусанин"' Height="380" Width="725"  ResizeMode="NoResize">
-    <Grid>
+        Title='Турфирма "Иван Сусанин"' Height="375" Width="725"  ResizeMode="NoResize">
+    <StackPanel>
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem x:Name="MenuItemTravels" Header="Путешествия" Click="MenuItemTravels_Click"></MenuItem>
             <MenuItem x:Name="MenuItemExcursions" Header="Экскурсии" Click="MenuItemExcursions_Click"></MenuItem>
@@ -15,7 +14,6 @@
             <MenuItem x:Name="MenuItemReport" Header="Отчёт по путешествиям" Click="MenuItemReport_Click"></MenuItem>
             <MenuItem x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click" Margin="210,0,0,0"></MenuItem>
         </Menu>
-        <Image HorizontalAlignment="Left" Height="321" Margin="0,25,0,0" 
-               VerticalAlignment="Top" Width="731" Source="logo.png" Stretch="UniformToFill"/>
-    </Grid>
+        <Image Source="logo.png" Stretch="UniformToFill"/>
+    </StackPanel>
 </Window>

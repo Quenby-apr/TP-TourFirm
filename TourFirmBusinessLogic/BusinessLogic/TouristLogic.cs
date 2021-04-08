@@ -31,14 +31,22 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
         public void CreateOrUpdate(TouristBindingModel model)
         {
-            var element = _touristStorage.GetElement(new TouristBindingModel
+            var elementByLogin = _touristStorage.GetElement(new TouristBindingModel
             {
                 Login = model.Login
             });
-
-            if (element != null && element.ID != model.ID)
+            if (elementByLogin != null && elementByLogin.ID != model.ID)
             {
-                throw new Exception("Пользователь с таким логином уже зарегистрирован");
+                throw new Exception("Данный логин уже занят");
+            }
+
+            var elementByMail = _touristStorage.GetElement(new TouristBindingModel
+            {
+                Mail = model.Mail
+            });
+            if (elementByMail != null && elementByMail.ID != model.ID)
+            {
+                throw new Exception("Данный электронная почта уже занята");
             }
 
             if (model.ID.HasValue)

@@ -1,16 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
@@ -30,6 +20,7 @@ namespace TourFirmView
         private readonly GuideLogic guidelogic;
         private readonly ExcursionLogic excursionlogic;
         private readonly Logger logger;
+
         public WindowBindingExcursions(GuideLogic guideLogic, ExcursionLogic excursionLogic)
         {
             InitializeComponent();
@@ -64,11 +55,11 @@ namespace TourFirmView
         {
             try
             {
-                Dictionary<int, string> excursionGuides = new Dictionary<int, string>();
+                Dictionary<int, string> guideExcursions = new Dictionary<int, string>();
                 foreach (var exc in ListBoxExcursion.SelectedItems)
                 {
                     var excursion = (ExcursionViewModel)exc;
-                    excursionGuides.Add(excursion.ID, excursion.Name);
+                    guideExcursions.Add(excursion.ID, excursion.Name);
                 }
                 GuideViewModel guide = (GuideViewModel)ComboBoxChoosenGuide.SelectedItem;
                 guidelogic.CreateOrUpdate(new GuideBindingModel
@@ -81,7 +72,7 @@ namespace TourFirmView
                     MainLanguage = guide.MainLanguage,
                     AdditionalLanguage = guide.AdditionalLanguage,
                     OperatorID = App.Operator.ID,
-                    ExcursionGuides = excursionGuides
+                    GuideExcursions = guideExcursions
                 });
                 MessageBox.Show("Привязка прошла успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
@@ -90,7 +81,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме привязки гиды-экскурсии при сохранении");
+                logger.Warn("Ошибка при попытке привязки гидов к экскурсии");
             }
         }
     }

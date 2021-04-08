@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using NLog;
 using TourFirmBusinessLogic.BindingModels;
@@ -25,10 +14,10 @@ namespace TourFirmView
     public partial class WindowReport : Window
     {
         [Dependency]
-        public  IUnityContainer Container { get; set; }
-        private readonly ReportLogic logic;
+        public IUnityContainer Container { get; set; }
+        private readonly OperatorReportLogic logic;
         private readonly Logger logger;
-        public WindowReport(ReportLogic logic)
+        public WindowReport(OperatorReportLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
@@ -43,7 +32,7 @@ namespace TourFirmView
             }
             try
             {
-                var dataSource = logic.GetGuides(new ReportBindingModel
+                var dataSource = logic.GetGuides(new ReportTourBindingModel
                 {
                     DateFrom = DatePikerFrom.SelectedDate,
                     DateTo = DatePikerTo.SelectedDate
@@ -53,7 +42,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме отчёта при формирании");
+                logger.Warn("Ошибка при попытке вывода отчёта на форму");
             }
         }
         private void ButtonToPdf_Click(object sender, RoutedEventArgs e)
@@ -69,7 +58,7 @@ namespace TourFirmView
                 {
                     try
                     {
-                        logic.SaveGuidesToPdfFile(new ReportBindingModel
+                        logic.SaveGuidesToPdfFile(new ReportTourBindingModel
                         {
                             FileName = dialog.FileName,
                             DateFrom = DatePikerFrom.SelectedDate,
@@ -81,7 +70,7 @@ namespace TourFirmView
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        logger.Warn("Ошибка в форме отчёта при отправки через пдф");
+                        logger.Warn("Ошибка при попытке формирования отчёта Pdf");
                     }
                 }
             }

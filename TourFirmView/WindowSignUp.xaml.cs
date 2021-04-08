@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NLog;
+using System;
+using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
 using Unity;
@@ -26,14 +17,13 @@ namespace TourFirmView
         public IUnityContainer Container { get; set; }
 
         private readonly OperatorLogic logic;
-
-        public int Id { set { id = value; } }
-        private int? id;
+        private readonly Logger logger;
 
         public WindowSignUp(OperatorLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
@@ -68,18 +58,32 @@ namespace TourFirmView
                 MessageBox.Show("Введите почту", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            logic.CreateOrUpdate(new OperatorBindingModel
+            if (!Regex.IsMatch(MailTextBox.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
             {
-                ID = id,
-                Name = FirstNameTextBox.Text,
-                Surname = SecondNameTextBox.Text,
-                PhoneNumber = PhoneTextBox.Text,
-                Login = LoginTextBox.Text,
-                Password = PasswordTextBox.Text,
-                Mail = MailTextBox.Text,
-            });
-            DialogResult = true;
-            Close();
+                MessageBox.Show("Почта введена некорректно", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                logic.CreateOrUpdate(new OperatorBindingModel
+                {
+                    Login = LoginTextBox.Text,
+                    Password = PasswordTextBox.Text,
+                    Name = FirstNameTextBox.Text,
+                    Surname = SecondNameTextBox.Text,
+                    Mail = MailTextBox.Text,
+                    PhoneNumber = PhoneTextBox.Text
+                });
+                MessageBox.Show("Регистрация прошла успешно!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке регистрации нового пользователя");
+            }
         }
     }
 }

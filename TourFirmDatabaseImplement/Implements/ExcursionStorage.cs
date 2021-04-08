@@ -26,8 +26,8 @@ namespace TourFirmDatabaseImplement.Implements
                     Name = excursion.Name,
                     Price = excursion.Price,
                     Duration = excursion.Duration,
-                    PlaceID =excursion.PlaceID,
-                    TouristID=excursion.TouristID,
+                    PlaceID = excursion.PlaceID,
+                    TouristID = excursion.TouristID,
                 } :
                 null;
             }
@@ -69,7 +69,7 @@ namespace TourFirmDatabaseImplement.Implements
                         Price = rec.Price,
                         Duration = rec.Duration,
                         PlaceID = rec.PlaceID,
-                        TouristID = rec.TouristID,      
+                        TouristID = rec.TouristID,
                     })
                     .ToList();
             }
@@ -79,54 +79,32 @@ namespace TourFirmDatabaseImplement.Implements
         {
             using (var context = new TourFirmDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        context.Excursions.Add(CreateModel(model, new Excursion(), context));
-                        context.SaveChanges();
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
+                context.Excursions.Add(CreateModel(model, new Excursion()));
+                context.SaveChanges();
             }
         }
+
         public void Update(ExcursionBindingModel model)
         {
             using (var context = new TourFirmDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
+                var element = context.Excursions.FirstOrDefault(rec => rec.ID == model.ID);
+
+                if (element == null)
                 {
-                    try
-                    {
-                        var element = context.Excursions.FirstOrDefault(rec => rec.ID ==
-                       model.ID);
-                        if (element == null)
-                        {
-                            throw new Exception("Элемент не найден");
-                        }
-                        CreateModel(model, element, context);
-                        context.SaveChanges();
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
+                    throw new Exception("Элемент не найден");
                 }
+                CreateModel(model, element);
+                context.SaveChanges();
             }
         }
+
         public void Delete(ExcursionBindingModel model)
         {
             using (var context = new TourFirmDatabase())
             {
-                Excursion element = context.Excursions.FirstOrDefault(rec => rec.ID ==
-               model.ID);
+                Excursion element = context.Excursions.FirstOrDefault(rec => rec.ID == model.ID);
+
                 if (element != null)
                 {
                     context.Excursions.Remove(element);
@@ -138,7 +116,8 @@ namespace TourFirmDatabaseImplement.Implements
                 }
             }
         }
-        private Excursion CreateModel(ExcursionBindingModel model, Excursion excursion, TourFirmDatabase context)
+
+        private Excursion CreateModel(ExcursionBindingModel model, Excursion excursion)
         {
             excursion.Name = model.Name;
             excursion.Price = model.Price;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using TourFirmBusinessLogic.ViewModels;
 
 namespace TourFirmBusinessLogic.HelperModels
@@ -9,6 +7,6 @@ namespace TourFirmBusinessLogic.HelperModels
     {
         public string FileName { get; set; }
         public string Title { get; set; }
-        public List<ReportTourExcursionViewModel> TourExcursions { get; set; }
+        public List<ReportTourExcursionsViewModel> TourExcursions { get; set; }
     }
 }

@@ -107,6 +107,7 @@ namespace TouristTourFirmView
                         TextBoxName.Text = view.Name;
                         TextBoxPrice.Text = view.Price.ToString();
                         TextBoxDuration.Text = view.Duration.ToString();
+                        ComboBoxPlaces.SelectedValue = view.PlaceID;
                     }
                 }
                 catch (Exception ex)

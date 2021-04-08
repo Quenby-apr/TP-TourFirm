@@ -40,24 +40,24 @@ namespace TouristTourFirmView
 
         private void WindowBondTravelExcursions_Load(object sender, RoutedEventArgs e)
         {
-                try
-                {
-                    var view = travelLogic.Read(new TravelBindingModel { ID = id })?[0];
+            try
+            {
+                var view = travelLogic.Read(new TravelBindingModel { ID = id })?[0];
 
-                    if (view != null)
-                    {
-                        travelExcursions = view.TravelExcursions;
-                        LoadData();
-                    }
-                }
-                catch (Exception ex)
+                if (view != null)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    logger.Warn("Ошибка при попытке загрузки списка доступных экскурсий");
+                    travelExcursions = view.TravelExcursions;
+                    LoadData();
                 }
             }
-        
-    
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Warn("Ошибка при попытке загрузки списка доступных экскурсий");
+            }
+        }
+
+
 
         private void LoadData()
         {

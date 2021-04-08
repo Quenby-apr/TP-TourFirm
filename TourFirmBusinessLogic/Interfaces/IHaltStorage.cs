@@ -7,7 +7,6 @@ namespace TourFirmBusinessLogic.Interfaces
     public interface IHaltStorage
     {
         List<HaltViewModel> GetFullList();
-        List<HaltViewModel> GetUserList(int UserID);
         List<HaltViewModel> GetFilteredList(HaltBindingModel model);
         HaltViewModel GetElement(HaltBindingModel model);
         void Insert(HaltBindingModel model);

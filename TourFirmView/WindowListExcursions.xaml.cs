@@ -1,16 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using NLog;
 using TourFirmBusinessLogic.BindingModels;
@@ -31,9 +21,9 @@ namespace TourFirmView
         private readonly GuideLogic guidelogic;
         private readonly ExcursionLogic excursionlogic;
         private readonly TourLogic tourlogic;
-        private ReportLogic reportlogic;
+        private OperatorReportLogic reportlogic;
         private readonly Logger logger;
-        public WindowListExcursions(GuideLogic guidelogic, ExcursionLogic excursionlogic, TourLogic tourlogic, ReportLogic reportlogic)
+        public WindowListExcursions(GuideLogic guidelogic, ExcursionLogic excursionlogic, TourLogic tourlogic, OperatorReportLogic reportlogic)
         {
             InitializeComponent();
             this.guidelogic = guidelogic;
@@ -58,7 +48,7 @@ namespace TourFirmView
 
         private void ButtonWord_Click(object sender, RoutedEventArgs e)
         {
-            if (ListBoxTours.SelectedItems.Count==0)
+            if (ListBoxTours.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Выберите туры", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -85,7 +75,7 @@ namespace TourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка в форме списка экскурсий при отчёте в ворд");
+                logger.Warn("Ошибка при попытке формирования отчёта Word");
             }
         }
 
@@ -118,7 +108,7 @@ namespace TourFirmView
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
                    MessageBoxImage.Error);
-                    logger.Warn("Ошибка в форме списка экскурсий при отчёте в эксель");
+                    logger.Warn("Ошибка при попытке формирования отчёта Excel");
                 }
             }
         }

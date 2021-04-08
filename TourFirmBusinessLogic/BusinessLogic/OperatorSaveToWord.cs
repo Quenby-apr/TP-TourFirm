@@ -18,14 +18,14 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 Body docBody = mainPart.Document.AppendChild(new Body());
                 docBody.AppendChild(CreateParagraph(new WordParagraph
                 {
-                    Texts = new List<(string, WordTextProperties)> { (info.Title, new
-WordTextProperties {Bold = true, Size = "24", } ) },
+                    Texts = new List<(string, WordTextProperties)> { (info.Title, new WordTextProperties { Bold = true, Size = "24", }) },
                     TextProperties = new WordTextProperties
                     {
                         Size = "24",
                         JustificationValues = (DocumentFormat.OpenXml.Math.JustificationValues)JustificationValues.Center
                     }
                 }));
+
                 int i = 0;
                 foreach (var tour in info.TourExcursions)
                 {
@@ -60,10 +60,8 @@ WordTextProperties {Bold = true, Size = "24", } ) },
                 wordDocument.MainDocumentPart.Document.Save();
             }
         }
-        /// <summary>
-        /// Настройки страницы
-        /// </summary>
-        /// <returns></returns>
+
+        // Настройки страницы
         private static SectionProperties CreateSectionProperties()
         {
             SectionProperties properties = new SectionProperties();
@@ -74,11 +72,8 @@ WordTextProperties {Bold = true, Size = "24", } ) },
             properties.AppendChild(pageSize);
             return properties;
         }
-        /// <summary>
-        /// Создание абзаца с текстом
-        /// </summary>
-        /// <param name="paragraph"></param>
-        /// <returns></returns>
+
+        // Создание абзаца с текстом
         private static Paragraph CreateParagraph(WordParagraph paragraph)
         {
             if (paragraph != null)
@@ -108,20 +103,16 @@ WordTextProperties {Bold = true, Size = "24", } ) },
             }
             return null;
         }
-        /// <summary>
-        /// Задание форматирования для абзаца
-        /// </summary>
-        /// <param name="paragraphProperties"></param>
-        /// <returns></returns>
-        private static ParagraphProperties CreateParagraphProperties(WordTextProperties
-       paragraphProperties)
+
+        // Задание форматирования для абзаца
+        private static ParagraphProperties CreateParagraphProperties(WordTextProperties paragraphProperties)
         {
             if (paragraphProperties != null)
             {
                 ParagraphProperties properties = new ParagraphProperties();
                 properties.AppendChild(new Justification()
                 {
-                    Val = (DocumentFormat.OpenXml.Wordprocessing.JustificationValues)paragraphProperties.JustificationValues
+                    Val = (JustificationValues)paragraphProperties.JustificationValues
                 });
                 properties.AppendChild(new SpacingBetweenLines
                 {
