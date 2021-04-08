@@ -7,27 +7,18 @@
          Title="Авторизация" Height="395" Width="380" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Gautami"/>
-            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontFamily" Value="{StaticResource Label_fontFamily}"/>
             <Setter Property="Margin" Value="0, 10, 0, 0"/>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Margin" Value="0, 20, 0, 0"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="300"/>
+            <Setter Property="FontWeight" Value="Medium"/>
         </Style>
     </Window.Resources>
     <StackPanel HorizontalAlignment="Stretch" Height="350" Margin="20">
         <Label Content="Логин:" Margin="0, 30, 0, 0"/>
-        <TextBox x:Name="TextBoxLogin" Height="25"/>
+        <TextBox x:Name="TextBoxLogin" Style="{StaticResource General_textbox}"/>
         <Label Content="Пароль:"/>
-        <TextBox x:Name="TextBoxPassword" Height="25"/>
-        <Button Content="Войти" Background="#0b7fab" Click="ButtonSignIn_Click" Margin="0, 40, 0, 0"/>
-        <Button Content="Зарегистрироваться" Background="#7c7b89" Click="ButtonGoToSignUp_Click"/>
+        <TextBox x:Name="TextBoxPassword" Style="{StaticResource General_textbox}"/>
+        <Button Content="Войти" Style="{StaticResource General_button}" Click="ButtonSignIn_Click" Margin="0, 40, 0, 0"/>
+        <Button Content="Зарегистрироваться" Style="{StaticResource General_button}" Background="#7c7b89" Margin="0, 20, 0, 0" Click="ButtonGoToSignUp_Click"/>
     </StackPanel>
 </Window>
