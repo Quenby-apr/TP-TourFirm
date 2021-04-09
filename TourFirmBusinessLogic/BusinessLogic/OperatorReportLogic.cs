@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.HelperModels;
@@ -23,44 +24,55 @@ namespace TourFirmBusinessLogic.BusinessLogic
         }
 
         // Получение списка смен гидов за определенный период с указанием туров и экскурсий 
-        public List<ReportGuidesViewModel> GetGuides(ReportTourBindingModel model)
+        public List<ReportGuidesViewModel> GetGuides(ReportTourBindingModel model, int _OperatorID)
         {
+            Console.WriteLine("Пфункцию вызываю");
             var list = new List<ReportGuidesViewModel>();
-            var travels = _travelStorage.GetFilteredList(new TravelBindingModel
+            var travels = _travelStorage.GetFullList(/*new TravelBindingModel
             {
-                DateStart = model.DateFrom.Value,
-                DateEnd = model.DateTo.Value
-            });
+                DateStart = (DateTime)model.DateFrom,
+                DateEnd = (DateTime)model.DateTo
+            }*/);
             foreach (var travel in travels)
             {
-                foreach (var TT in travel.TravelTours)
+                Console.WriteLine("Путешествия вижу");
+                if (travel.DateStart >= model.DateFrom && travel.DateEnd <= model.DateTo)
                 {
-                    var tour = _tourStorage.GetElement(new TourBindingModel
+                    foreach (var TT in travel.TravelTours)
                     {
-                        ID = TT.Key
-                    });
-                    foreach (var TG in tour.TourGuides)
-                    {
-                        var guide = _guideStorage.GetElement(new GuideBindingModel
+                        var tour = _tourStorage.GetElement(new TourBindingModel
                         {
-                            ID = TG.Key
+                            ID = TT.Key,
                         });
-                        foreach (var GE in guide.GuideExcursions)
+                        if (tour.OperatorID == _OperatorID)
                         {
-                            var excursion = _excursionStorage.GetElement(new ExcursionBindingModel
+                            Console.WriteLine("Путешествия получаю");
+                            foreach (var TG in tour.TourGuides)
                             {
-                                ID = GE.Key
-                            });
-                            var record = new ReportGuidesViewModel
-                            {
-                                DateStartTravel = travel.DateStart,
-                                GuideSurname = guide.Surname,
-                                GuideName = guide.Name,
-                                GuideWorkPlace = guide.WorkPlace,
-                                ExcursionName = excursion.Name,
-                                TourName = tour.Name
-                            };
-                            list.Add(record);
+                                var guide = _guideStorage.GetElement(new GuideBindingModel
+                                {
+                                    ID = TG.Key,
+                                });
+                                Console.WriteLine("туры получаю");
+                                foreach (var GE in guide.GuideExcursions)
+                                {
+                                    var excursion = _excursionStorage.GetElement(new ExcursionBindingModel
+                                    {
+                                        ID = GE.Key
+                                    });
+                                    Console.WriteLine("гидов получаю");
+                                    var record = new ReportGuidesViewModel
+                                    {
+                                        DateStartTravel = travel.DateStart,
+                                        GuideSurname = guide.Surname,
+                                        GuideName = guide.Name,
+                                        GuideWorkPlace = guide.WorkPlace,
+                                        ExcursionName = excursion.Name,
+                                        TourName = tour.Name
+                                    };
+                                    list.Add(record);
+                                }
+                            }
                         }
                     }
                 }
@@ -81,7 +93,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 {
                     var guide = _guideStorage.GetElement(new GuideBindingModel
                     {
-                        ID = _guide.Key
+                        ID = _guide.Key,
                     });
                     var listExcursions = guide.GuideExcursions.ToList();
                     for (int i = 0; i < listExcursions.Count; i++) {
@@ -115,7 +127,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             });
         }
 
-        public void SaveGuidesToPdfFile(ReportTourBindingModel model)
+        public void SaveGuidesToPdfFile(ReportTourBindingModel model, int _OperatorID)
         {
             OperatorSaveToPdf.CreateDoc(new OperatorPdfInfo
             {
@@ -123,7 +135,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 Title = "Список гидов",
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
-                Guides = GetGuides(model)
+                Guides = GetGuides(model, _OperatorID)
             });
         }
     }

@@ -18,14 +18,14 @@
             <Button Content="в PDF" Width="100"  Margin="10" Click="ButtonToPdf_Click"></Button>
             <Button Content="На почту" Width="100"  Margin="10"></Button>
         </StackPanel>
-        <DataGrid x:Name="GuidesGrid" Margin="0,60,0,0"  HorizontalAlignment="Center" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" Width="1300">
+        <DataGrid x:Name="GuidesGrid" Margin="0,60,0,0" CanUserAddRows="False" HorizontalAlignment="Center" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" Width="1300">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Path=DateStartTravel}" Width="300" />
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=GuideSurname}" Width="220" />
-                <DataGridTextColumn Header="Имя" Binding="{Binding Path=GuideName}" Width="300" />
-                <DataGridTextColumn Header="Место работы" Binding="{Binding Path=GuideWorkPlace}" Width="180" />
-                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=ExcursionName}" Width="180" />
-                <DataGridTextColumn Header="Название тура" Binding="{Binding Path=TourName}" Width="180" />
+                <DataGridTextColumn Header="Дата начала путешествия" Binding="{Binding Path=DateStartTravel}" Width="200" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=GuideSurname}" Width="200" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=GuideName}" Width="200" />
+                <DataGridTextColumn Header="Место работы" Binding="{Binding Path=GuideWorkPlace}" Width="220" />
+                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=ExcursionName}" Width="240" />
+                <DataGridTextColumn Header="Название тура" Binding="{Binding Path=TourName}" Width="240" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

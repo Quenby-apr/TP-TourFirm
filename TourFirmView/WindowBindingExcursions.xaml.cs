@@ -36,7 +36,9 @@ namespace TourFirmView
 
         private void LoadData()
         {
-            ComboBoxChoosenGuide.ItemsSource = guidelogic.Read(null);
+            ComboBoxChoosenGuide.ItemsSource = guidelogic.Read(new GuideBindingModel { 
+                OperatorID = App.Operator.ID
+            });
             ComboBoxChoosenGuide.SelectedItem = null;
             var listbindmodels = excursionlogic.Read(null);
             foreach (var excursion in listbindmodels)

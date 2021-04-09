@@ -1,7 +1,7 @@
-﻿using DocumentFormat.OpenXml;
+﻿using System.Collections.Generic;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using System.Collections.Generic;
 using TourFirmBusinessLogic.HelperModels;
 
 namespace TourFirmBusinessLogic.BusinessLogic

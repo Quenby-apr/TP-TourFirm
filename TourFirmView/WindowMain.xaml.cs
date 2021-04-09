@@ -50,5 +50,13 @@ namespace TourFirmView
             var form = Container.Resolve<WindowBindingExcursions>();
             form.ShowDialog();
         }
+
+        private void MenuItemExit_Click(object sender, RoutedEventArgs e)
+        {
+            App.Operator = null;
+            var windowSignIn = Container.Resolve<WindowSignIn>();
+            Close();
+            windowSignIn.ShowDialog();
+        }
     }
 }

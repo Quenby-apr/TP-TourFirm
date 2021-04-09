@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TourFirmDatabaseImplement;
 
 namespace TourFirmDatabaseImplement.Migrations
 {
     [DbContext(typeof(TourFirmDatabase))]
-    partial class TourFirmDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20210408200016_Remane")]
+    partial class Remane
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,6 +62,9 @@ namespace TourFirmDatabaseImplement.Migrations
 
                     b.Property<string>("AdditionalLanguage")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateWork")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("MainLanguage")
                         .IsRequired()

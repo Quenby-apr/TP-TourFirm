@@ -15,7 +15,5 @@ namespace TourFirmBusinessLogic.BindingModels
         public DateTime DateWork { get; set; }
         public Dictionary<int, string> GuideExcursions { get; set; }
         public int OperatorID { get; set; }
-        public DateTime? DateFrom { get; set; }
-        public DateTime? DateTo { get; set; }
     }
 }

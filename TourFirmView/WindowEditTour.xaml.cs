@@ -41,9 +41,13 @@ namespace TourFirmView
 
         private void LoadData()
         {
-            ComboBoxHalts.ItemsSource = Hlogic.Read(null);
+            ComboBoxHalts.ItemsSource = Hlogic.Read(new HaltBindingModel { 
+                OperatorID = App.Operator.ID
+            });
             ComboBoxHalts.SelectedItem = null;
-            var tours = logic.Read(null);
+            var tours = logic.Read(new TourBindingModel {
+                OperatorID = App.Operator.ID
+            });
             foreach (var tour in tours)
             {
                 if (tour.ID == id)
@@ -51,7 +55,9 @@ namespace TourFirmView
                     this.tour = tour;
                 }
             }
-            var listbindmodels = Guidelogic.Read(null);
+            var listbindmodels = Guidelogic.Read(new GuideBindingModel {
+                OperatorID = App.Operator.ID
+            });
             foreach (var guide in listbindmodels)
             {
                 ListBoxAvailable.Items.Add(guide.Surname);
