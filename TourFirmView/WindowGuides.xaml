@@ -5,26 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Список гидов" Height="450" Width="827.6" Loaded="WindowGuides_Load">
+        Title="Список гидов" Height="450" Width="1000" ResizeMode="NoResize" Loaded="WindowGuides_Load">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="GridGuides" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="420" Margin="0,0,0,-1" VerticalAlignment="Top" Width="700" ItemsSource="{Binding Mode=OneWay}" CanUserReorderColumns="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="GridGuides" Grid.Column="0" Style="{StaticResource General_datagrid}" ItemsSource="{Binding Mode=OneWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Surname}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding Path=PhoneNumber}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Место работы" Binding="{Binding Path=WorkPlace}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Основной язык" Binding="{Binding Path=MainLanguage}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Дополнительный язык" Binding="{Binding Path=AdditionalLanguage}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Surname}" Width="0.7*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="0.7*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Path=PhoneNumber}" Width="0.6*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Место работы" Binding="{Binding Path=WorkPlace}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Основной язык" Binding="{Binding Path=MainLanguage}" Width="0.8*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дополнительный язык" Binding="{Binding Path=AdditionalLanguage}" Width="1*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="ButtonCreate"  Click="ButtonCreate_Click" Content="Создать" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonUpdate" Click="ButtonUpdate_Click" Content="Изменить" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonDelete" Click="ButtonDelete_Click" Content="Удалить" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Обновить" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="75"/>
-
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="20, 40, 20, 0">
+            <Button x:Name="ButtonCreate"  Click="ButtonCreate_Click" Content="Создать" Style="{StaticResource General_buttonBlue}"/>
+            <Button x:Name="ButtonUpdate" Click="ButtonUpdate_Click" Content="Изменить" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+            <Button x:Name="ButtonDelete" Click="ButtonDelete_Click" Content="Удалить" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+            <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Обновить" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+        </StackPanel>
     </Grid>
 </Window>
