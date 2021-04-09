@@ -34,8 +34,6 @@ namespace TourFirmView
             }
 
             var operators = logic.Read(null);
-            Console.WriteLine(LoginTextBox.Text);
-            Console.WriteLine(PasswordTextBox.Text);
             OperatorViewModel _operator = null;
             foreach (var oper in operators)
             {

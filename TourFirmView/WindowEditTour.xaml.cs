@@ -128,10 +128,6 @@ namespace TourFirmView
                     Surname = guide.ToString()
                 })[0].ID, guide.ToString());
             }
-            foreach (var zap in _TourGuides)
-            {
-                Console.WriteLine(zap.Key);
-            }
             try
             {
                 logic.CreateOrUpdate(new TourBindingModel

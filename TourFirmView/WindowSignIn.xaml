@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Вход" Height="395" Width="380" ResizeMode="NoResize">
+        Title="Вход" Height="410" Width="380" ResizeMode="NoResize">
     <StackPanel HorizontalAlignment="Stretch" Height="350" Margin="20">
-        <Label Content="Логин:" Style="{StaticResource General_label}" Margin="0, 30, 0, 0" FontSize="22"/>
+        <Label Content="Логин:" Style="{StaticResource General_label}" Margin="0, 10, 0, 0" FontSize="22"/>
         <TextBox x:Name="LoginTextBox" Style="{StaticResource General_textbox}"/>
         <Label Content="Пароль:" Style="{StaticResource General_label}" Margin="0, 10, 0, 0" FontSize="22"/>
         <TextBox x:Name="PasswordTextBox" Style="{StaticResource General_textbox}"/>

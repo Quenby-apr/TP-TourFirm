@@ -26,16 +26,10 @@ namespace TourFirmBusinessLogic.BusinessLogic
         // Получение списка смен гидов за определенный период с указанием туров и экскурсий 
         public List<ReportGuidesViewModel> GetGuides(ReportTourBindingModel model, int _OperatorID)
         {
-            Console.WriteLine("Пфункцию вызываю");
             var list = new List<ReportGuidesViewModel>();
-            var travels = _travelStorage.GetFullList(/*new TravelBindingModel
-            {
-                DateStart = (DateTime)model.DateFrom,
-                DateEnd = (DateTime)model.DateTo
-            }*/);
+            var travels = _travelStorage.GetFullList();
             foreach (var travel in travels)
             {
-                Console.WriteLine("Путешествия вижу");
                 if (travel.DateStart >= model.DateFrom && travel.DateEnd <= model.DateTo)
                 {
                     foreach (var TT in travel.TravelTours)
@@ -46,21 +40,18 @@ namespace TourFirmBusinessLogic.BusinessLogic
                         });
                         if (tour.OperatorID == _OperatorID)
                         {
-                            Console.WriteLine("Путешествия получаю");
                             foreach (var TG in tour.TourGuides)
                             {
                                 var guide = _guideStorage.GetElement(new GuideBindingModel
                                 {
                                     ID = TG.Key,
                                 });
-                                Console.WriteLine("туры получаю");
                                 foreach (var GE in guide.GuideExcursions)
                                 {
                                     var excursion = _excursionStorage.GetElement(new ExcursionBindingModel
                                     {
                                         ID = GE.Key
                                     });
-                                    Console.WriteLine("гидов получаю");
                                     var record = new ReportGuidesViewModel
                                     {
                                         DateStartTravel = travel.DateStart,
