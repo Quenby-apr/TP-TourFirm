@@ -60,7 +60,7 @@ namespace TourFirmView
             });
             foreach (var guide in listbindmodels)
             {
-                ListBoxAvailable.Items.Add(guide);
+                ListBoxAvailable.Items.Add(guide.Surname);
             }
             if (tour != null)
             {
@@ -70,7 +70,7 @@ namespace TourFirmView
                     ListBoxSelected.Items.Add(Guidelogic.Read(new GuideBindingModel
                     {
                         ID = guide.Key
-                    }));
+                    })[0].Surname);
                 }
                 foreach (var guide in ListBoxSelected.Items)
                 {
@@ -121,9 +121,12 @@ namespace TourFirmView
             }
             HaltViewModel halt = (HaltViewModel)ComboBoxHalts.SelectedItem;
             Dictionary<int, string> _TourGuides = new Dictionary<int, string>();
-            foreach (GuideViewModel guide in ListBoxSelected.Items)
+            foreach (var guide in ListBoxSelected.Items)
             {
-                _TourGuides.Add((int)guide.ID, guide.Surname);
+                _TourGuides.Add(Guidelogic.Read(new GuideBindingModel
+                {
+                    Surname = guide.ToString()
+                })[0].ID, guide.ToString());
             }
             try
             {

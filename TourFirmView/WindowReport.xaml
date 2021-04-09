@@ -21,8 +21,8 @@
         <DataGrid x:Name="GuidesGrid" Style="{StaticResource General_datagrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата начала путешествия" Binding="{Binding Path=DateStartTravel, StringFormat=dd/MM/yyyy}" Width="0.7*" />
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=GuideSurname}" Width="0.3*" />
-                <DataGridTextColumn Header="Имя" Binding="{Binding Path=GuideName}" Width="0.3*" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=GuideSurname}" Width="0.6*" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=GuideName}" Width="0.6*" />
                 <DataGridTextColumn Header="Место работы" Binding="{Binding Path=GuideWorkPlace}" Width="0.5*" />
                 <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=ExcursionName}" Width="1*" />
                 <DataGridTextColumn Header="Название тура" Binding="{Binding Path=TourName}" Width="1*" />

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Редактирование остановки" Height="260" Width="500" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Редактирование остановки" Height="278.88" Width="500" ResizeMode="NoResize" Loaded="Window_Loaded">
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="450" Margin="0, 30, 0, 0">
         <Label Content="Название:" Style="{StaticResource General_label}" FontSize="16"/>
         <TextBox x:Name="NameTextBox" Style="{StaticResource General_textbox}"/>

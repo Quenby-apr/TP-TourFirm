@@ -71,7 +71,6 @@ namespace TourFirmView
                     Surname = SurnameTextBox.Text,
                     PhoneNumber = PhoneTextBox.Text,
                     WorkPlace = WorkPlaceTextBox.Text,
-                    DateWork = DateTime.Now,
                     MainLanguage = MainLanguageTextBox.Text,
                     AdditionalLanguage = AdditionalLanguageTextBox.Text,
                     OperatorID = App.Operator.ID,

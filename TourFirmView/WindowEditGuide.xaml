@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Редактирование гида" Height="570" Width="500" ResizeMode="NoResize">
+        Title="Редактирование гида" Height="650" Width="500" ResizeMode="NoResize" Loaded="Window_Loaded">
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="450" Margin="0, 30, 0, 0">
         <Label Content="Фамилия:" Style="{StaticResource General_label}" FontSize="16"/>
         <TextBox x:Name="SurnameTextBox" Style="{StaticResource General_textbox}"/>
