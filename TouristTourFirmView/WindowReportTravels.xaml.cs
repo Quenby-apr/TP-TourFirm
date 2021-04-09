@@ -39,7 +39,7 @@ namespace TouristTourFirmView
                     DateTo = DatePickerTo.SelectedDate,
                     TouristID = App.Tourist.ID
                 });
-                GuidesGrid.ItemsSource = dataSource;
+                DataGridReport.ItemsSource = dataSource;
             }
             catch (Exception ex)
             {

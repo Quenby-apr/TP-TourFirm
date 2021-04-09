@@ -3,53 +3,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
         Loaded="WindowTravel_Load"
-        Title="Формирование путешествия" Height="450" Width="1200">
-    <Window.Resources>
-        <Style  TargetType="Label">
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontFamily" Value="Consolas" />
-        </Style>
-        <Style  TargetType="TextBox">
-            <Setter Property="Height" Value="20" />
-            <Setter Property="Margin" Value="10,0,10,10" />
-        </Style>
-    </Window.Resources>
-
-    <Grid Margin="0,0,0,0">
+        Title="Формирование путешествия" Height="450" Width="1350" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.88*"/>
+            <RowDefinition Height="0.12*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="586*"/>
-            <ColumnDefinition Width="277*"/>
-            <ColumnDefinition Width="330*"/>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.2*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="20,110,0,110" VerticalAlignment="Center"  HorizontalAlignment="Left" Height="200" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" >
-            <Label Content="Название:"  Margin="0,0,0,0" Height="35"/>
-            <TextBox x:Name="TextBoxName"/>
-            <Label Content="Дата начала:" />
-
+        <Border BorderBrush="#e9723d" BorderThickness="1" Height="260" Margin="15, 30, 15, 0"/>
+        <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"  HorizontalAlignment="Center" Height="270" Width="220">
+            <Label Content="Название:"  Style="{StaticResource General_label}" FontSize="15" Margin="0, 40, 0, 0"/>
+            <TextBox x:Name="TextBoxName" Style="{StaticResource General_textbox}" FontSize="14" HorizontalAlignment="Stretch" Margin="0, 5, 0 ,5"/>
+            <Label Content="Дата начала:" Style="{StaticResource General_label}" FontSize="15" Margin="0, 30, 0, 0"/>
             <DatePicker x:Name="DatePickerStart" SelectedDateFormat="Short"/>
-
-            <Label Content="Дата окончания:" />
-
+            <Label Content="Дата окончания:" Style="{StaticResource General_label}" FontSize="15" Margin="0, 20, 0, 0"/>
             <DatePicker x:Name="DatePickerEnd" SelectedDateFormat="Short"/>
         </StackPanel>
-        <Label Content="Данные по путешествию:" HorizontalAlignment="Left" Margin="20,59,0,0" VerticalAlignment="Top" Height="33" Width="195"/>
-        <Border BorderBrush="Black" BorderThickness="0.5" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="20,110,0,0"/>
+        <Label Content="Данные по путешествию:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource General_label}" FontSize="18" FontWeight="Bold" Foreground="#0b7fab" Margin="12,44,0,283"/>
 
-        <ListBox x:Name="ListBoxSelectedTours" DisplayMemberPath="Value" SelectedValuePath="Key" HorizontalAlignment="Left" Height="290" Margin="245,60,0,0" VerticalAlignment="Top" Width="250"/>
-        <ListBox x:Name="ListBoxAvaliableTours" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Height="290" Margin="9.6,59,0,0" VerticalAlignment="Top" Width="250" Grid.Column="1"/>
-        <ListBox x:Name="ListBoxExcursions" DisplayMemberPath="Value" HorizontalAlignment="Left" Height="290" Margin="28.8,60,0,0" VerticalAlignment="Top" Width="278" Focusable="False" Grid.Column="2"/>
+        <ListBox x:Name="ListBoxSelectedTours" Grid.Column="1" Grid.Row="0" DisplayMemberPath="Value" SelectedValuePath="Key" FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
+        <Label Content="Выбранные туры:" Grid.Column="1" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30, 35, 0, 0"/>
 
-        <Button x:Name="ButtonAddTour" Click="ButtonAddTour_Click" Content="&lt;-" HorizontalAlignment="Left" Margin="505,140,0,0" VerticalAlignment="Top" Width="70" Height="20"/>
-        <Button x:Name="ButtonRemoveTour" Click="ButtonRemoveTour_Click" Content="->" HorizontalAlignment="Left" Margin="505,220,0,0" VerticalAlignment="Top" Width="70" Height="20"/>
+        <Button x:Name="ButtonAddTour" Grid.Column="2" Grid.Row="0" Style="{StaticResource General_buttonBlue}" Click="ButtonAddTour_Click" Content="&lt;-" VerticalAlignment="Center" Margin="0, 30, 0, 60" Width="70" Height="40"/>
+        <Button x:Name="ButtonRemoveTour" Grid.Column="2" Grid.Row="0" Style="{StaticResource General_buttonBlue}" Click="ButtonRemoveTour_Click" Content="->" VerticalAlignment="Center" Margin="0, 90, 0, 0" Width="70" Height="40"/>
 
-        <Label Content="Выбранные туры:" HorizontalAlignment="Left" Margin="240,20,0,0" VerticalAlignment="Top" Height="29" Width="142"/>
-        <Label Content="Доступные туры:" HorizontalAlignment="Left" Margin="27.6,20,0,0" VerticalAlignment="Top" Grid.Column="1" Height="29" Width="142"/>
-        <Label Content="Привязанные экскурсии:" HorizontalAlignment="Left" Margin="28.8,20,0,0" VerticalAlignment="Top" Grid.Column="2" Width="220" Height="29" RenderTransformOrigin="0.408,0.583"/>
+        <ListBox x:Name="ListBoxAvaliableTours" Grid.Column="3" Grid.Row="0" DisplayMemberPath="Name" SelectedValuePath="ID" FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
+        <Label Content="Доступные туры:" Grid.Column="3" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30, 35, 0, 0"/>
 
-        <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Сохранить" HorizontalAlignment="Center" Margin="464,370,36.4,0" VerticalAlignment="Top" Width="86" Height="30"/>
-        <Button x:Name="ButtonCancel" Click="ButtonCancel_Click" Content="Отмена" HorizontalAlignment="Center" Margin="15.6,370,175.2,0" VerticalAlignment="Top" Width="86" Height="30" Grid.Column="1"/>
+        <ListBox x:Name="ListBoxExcursions" Grid.Column="4" Grid.Row="0" DisplayMemberPath="Value" FontFamily="{StaticResource Label_fontFamily}" FontSize="14" Width="290" Height="290" Focusable="False" VerticalAlignment="Center" Margin="0, 40, 0, 0" BorderThickness="1" BorderBrush="#e9723d"/>
+        <Label Content="Привязанные экскурсии:" Grid.Column="4" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40, 35, 0, 0"/>
+
+        <Button x:Name="ButtonSave" Grid.ColumnSpan="5" Grid.Row="1" Style="{StaticResource General_buttonBlue}" Click="ButtonSave_Click" Content="Сохранить" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-140, 0, 0, 0" Width="100" Height="30"/>
+        <Button x:Name="ButtonCancel" Grid.ColumnSpan="5" Grid.Row="1" Style="{StaticResource General_buttonGray}" Click="ButtonCancel_Click" Content="Отмена" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="140, 0, 0, 0" Width="100" Height="30"/>
     </Grid>
 </Window>

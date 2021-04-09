@@ -3,22 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouristTourFirmView"
+        xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
         mc:Ignorable="d"
         Loaded="WindowExcursions_Load"
-        Title="Экскурсии" Height="450" Width="810">
+        Title="Экскурсии" Height="450" Width="900" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="DataGridExcursions" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700" AutoGenerateColumns="False" CanUserAddRows="false" CanUserReorderColumns="False" >
-            <DataGrid.Columns >
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3.5*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="DataGridExcursions" Grid.Column="0" Style="{StaticResource General_datagrid}">
+            <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=ID}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="0.5*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price}" Width="0.5*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Продолжительность" Binding="{Binding Path=Duration}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price, StringFormat=\{0:C\}, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" Width="0.25*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Продолжительность" Binding="{Binding Path=Duration, StringFormat={}{0} ч.}" Width="0.35*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="ButtonAdd" Click="ButtonAdd_Click" Content="Создать" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button x:Name="ButtonUpdate" Click="ButtonUpdate_Click" Content="Изменить" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button x:Name="ButtonDelete" Click="ButtonDelete_Click" Content="Удалить" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Обновить" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="85"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="20, 60, 20, 0">
+            <Button x:Name="ButtonAdd" Click="ButtonAdd_Click" Content="Создать" Style="{StaticResource General_buttonBlue}"/>
+            <Button x:Name="ButtonUpdate" Click="ButtonUpdate_Click" Content="Изменить" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+            <Button x:Name="ButtonDelete" Click="ButtonDelete_Click" Content="Удалить" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+            <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Обновить" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+        </StackPanel>
     </Grid>
 </Window>
