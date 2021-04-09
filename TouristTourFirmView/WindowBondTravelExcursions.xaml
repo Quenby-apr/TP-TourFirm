@@ -3,38 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
         Loaded="WindowBondTravelExcursions_Load"
-        Title="Привязать экскурсии к путешествию" Height="450" Width="690">
-    <Window.Resources>
-        <Style  TargetType="Label">
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontFamily" Value="Consolas" />
-        </Style>
-        <Style  TargetType="TextBox">
-            <Setter Property="Height" Value="20" />
-            <Setter Property="Margin" Value="10,0,10,10" />
-        </Style>
-    </Window.Resources>
-
-    <Grid HorizontalAlignment="Left" Width="680">
+        Title="Привязать экскурсии к путешествию" Height="450" Width="690" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.88*"/>
+            <RowDefinition Height="0.12*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="310*"/>
-            <ColumnDefinition Width="321*"/>
-            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="ListBoxSelectedExcursions" DisplayMemberPath="Value" SelectedValuePath="Key" HorizontalAlignment="Left" Height="290" Margin="29,60,0,0" VerticalAlignment="Top" Width="250"/>
-        <ListBox x:Name="ListBoxAvaliableExcursions" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Height="290" Margin="87.6,60,0,0" VerticalAlignment="Top" Width="250" Grid.Column="1" Grid.ColumnSpan="2"/>
 
-        <Button x:Name="ButtonAddExcursion" Click="ButtonAddExcursion_Click" Content="&lt;-" HorizontalAlignment="Left" Margin="307,140,0,0" VerticalAlignment="Top" Width="70" Height="20" Grid.ColumnSpan="2"/>
-        <Button x:Name="ButtonRemoveExcursion" Click="ButtonRemoveExcursion_Click" Content="->" HorizontalAlignment="Left" Margin="307,220,0,0" VerticalAlignment="Top" Width="70" Height="20" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="ListBoxSelectedExcursions" Grid.Column="0" Grid.Row="0" DisplayMemberPath="Value" SelectedValuePath="Key" FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
+        <Label Content="Выбранные экскурсии:" Grid.Column="0" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30, 35, 0, 0"/>
 
-        <Label Content="Выбранные экскурсии:" HorizontalAlignment="Left" Margin="24,20,0,0" VerticalAlignment="Top" Height="29" Width="200"/>
-        <Label Content="Доступные экскурсии:" HorizontalAlignment="Left" Margin="87.6,20,0,0" VerticalAlignment="Top" Grid.Column="1" Height="29" Width="200"/>
+        <ListBox x:Name="ListBoxAvaliableExcursions" Grid.Column="2" Grid.Row="0" DisplayMemberPath="Name" SelectedValuePath="ID" FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
+        <Label Content="Доступные экскурсии:" Grid.Column="2" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30, 35, 0, 0"/>
 
-        <Button x:Name="ButtonBond" Click="ButtonBond_Click" Content="Сохранить" HorizontalAlignment="Center" Margin="231,370,314.153,0" VerticalAlignment="Top" Width="86" Height="30" Grid.ColumnSpan="2"/>
-        <Button x:Name="ButtonCancel" Click="ButtonCancel_Click" Content="Отмена" HorizontalAlignment="Center" Margin="66.6,370,168.153,0" VerticalAlignment="Top" Width="86" Height="30" Grid.Column="1"/>
+        <Button x:Name="ButtonAddExcursion" Grid.Column="1" Grid.Row="0" Click="ButtonAddExcursion_Click" Content="&lt;-" Style="{StaticResource General_buttonBlue}" VerticalAlignment="Center" Margin="0, 30, 0, 60" Width="70" Height="40"/>
+        <Button x:Name="ButtonRemoveExcursion"  Grid.Column="1" Grid.Row="0" Click="ButtonRemoveExcursion_Click" Content="->" Style="{StaticResource General_buttonBlue}" VerticalAlignment="Center" Margin="0, 90, 0, 0" Width="70" Height="40"/>
+
+        <Button x:Name="ButtonBond" Click="ButtonBond_Click" Content="Сохранить"  Grid.ColumnSpan="3" Grid.Row="1" Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-140, 0, 0, 0" Width="100" Height="35"/>
+        <Button x:Name="ButtonCancel" Click="ButtonCancel_Click" Content="Отмена" Grid.ColumnSpan="3" Grid.Row="1" Style="{StaticResource General_buttonGray}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="140, 0, 0, 0" Width="100" Height="35"/>
     </Grid>
 </Window>
-

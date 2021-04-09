@@ -4,14 +4,37 @@
     <Application.Resources>
         <FontFamily x:Key="Button_fontFamily">Verdana</FontFamily>
         <FontFamily x:Key="Label_fontFamily">Gautami</FontFamily>
-        <Style x:Key="General_button" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource General_backgroundBrush}"></Setter>
-            <Setter Property="Foreground" Value="{StaticResource General_foregroundBrush}"></Setter>
+        <Style x:Key="General_buttonBlue" TargetType="Button">
+            <Setter Property="Background" Value="#0b7fab"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="FontFamily" Value="{StaticResource Button_fontFamily}"></Setter>
-            <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Height" Value="45"/>
-            <Setter Property="Width" Value="300"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Help" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#08244f"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="General_buttonGray" TargetType="Button">
+            <Setter Property="Background" Value="#7c7b89"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource Button_fontFamily}"></Setter>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -28,8 +51,24 @@
             </Setter>
         </Style>
         <Style x:Key="General_textbox" TargetType="TextBox">
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Height" Value="25"/>
             <Setter Property="FontFamily" Value="{StaticResource Button_fontFamily}"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style x:Key="General_label" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource Label_fontFamily}"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+        <Style x:Key="General_datagrid" TargetType="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="CanUserSortColumns" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="FontFamily" Value="{StaticResource Label_fontFamily}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="SelectionMode" Value="Single"/>
         </Style>
     </Application.Resources>
 </Application>

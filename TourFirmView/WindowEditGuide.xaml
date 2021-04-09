@@ -5,40 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Редактирование гида" Height="500" Width="500" Loaded="Window_Loaded">
-    <Window.Resources>
-
-        <Style  TargetType="Label">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="FontFamily" Value="Consolas" />
-        </Style>
-        <Style  TargetType="TextBox">
-            <Setter Property="Height" Value="20" />
-            <Setter Property="Margin" Value="10,0,10,10" />
-        </Style>
-
-    </Window.Resources>
-    <Grid Margin="0,0,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel Margin="0 0 0 0" VerticalAlignment="Top"  HorizontalAlignment="Center" MinWidth="250px" Height="380" Width="450" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" Grid.RowSpan="2" >
-            <Label Content="Фамилия"  Margin="0,0,0,0" Height="35"/>
-            <TextBox x:Name="SurnameTextBox"/>
-            <Label Content="Имя" />
-            <TextBox x:Name="NameTextBox"/>
-            <Label Content="Телефон"/>
-            <TextBox x:Name="PhoneTextBox"/>
-            <Label Content="Место работы" />
-            <TextBox x:Name="WorkPlaceTextBox"/>
-            <Label Content="Основной язык" />
-            <TextBox x:Name="MainLanguageTextBox"/>
-            <Label Content="Дополнительный язык" />
-            <TextBox x:Name="AdditionalLanguageTextBox"/>
+        Title="Редактирование гида" Height="570" Width="500" ResizeMode="NoResize">
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="450" Margin="0, 30, 0, 0">
+        <Label Content="Фамилия:" Style="{StaticResource General_label}" FontSize="16"/>
+        <TextBox x:Name="SurnameTextBox" Style="{StaticResource General_textbox}"/>
+        <Label Content="Имя:" Style="{StaticResource General_label}" FontSize="16" Margin="0, 20, 0, 0"/>
+        <TextBox x:Name="NameTextBox" Style="{StaticResource General_textbox}"/>
+        <Label Content="Телефон:" Style="{StaticResource General_label}" FontSize="16" Margin="0, 20, 0, 0"/>
+        <TextBox x:Name="PhoneTextBox" Style="{StaticResource General_textbox}"/>
+        <Label Content="Место работы (страна, город):" Style="{StaticResource General_label}" FontSize="16" Margin="0, 20, 0, 0"/>
+        <TextBox x:Name="WorkPlaceTextBox" Style="{StaticResource General_textbox}"/>
+        <Label Content="Основной язык:" Style="{StaticResource General_label}" FontSize="16" Margin="0, 20, 0, 0"/>
+        <TextBox x:Name="MainLanguageTextBox" Style="{StaticResource General_textbox}"/>
+        <Label Content="Дополнительный язык:" Style="{StaticResource General_label}" FontSize="16" Margin="0, 20, 0, 0"/>
+        <TextBox x:Name="AdditionalLanguageTextBox" Style="{StaticResource General_textbox}"/>
+        <StackPanel Orientation="Horizontal" Height="70">
+            <Button x:Name="ButtonSave" Content="Сохранить" Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Center" Margin="40, 0, 0, 0" Width="160" Height="35" VerticalAlignment="Bottom" Click="ButtonSave_Click"/>
+            <Button x:Name="ButtonCancel" Content="Отмена" Style="{StaticResource General_buttonGray}" HorizontalAlignment="Center" Margin="50, 0, 0, 0" Width="160" Height="35" VerticalAlignment="Bottom" Click="ButtonCancel_Click"/>
         </StackPanel>
-        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="100,420,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="75" Click="ButtonSave_Click"/>
-        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="285,420,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
-
-    </Grid>
+    </StackPanel>
 </Window>

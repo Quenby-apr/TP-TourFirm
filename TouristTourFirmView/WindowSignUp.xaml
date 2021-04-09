@@ -4,42 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Регистрация" Height="650" Width="500" ResizeMode="NoResize">
-    <Window.Resources>
-        <Style TargetType="Label">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Gautami"/>
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="Margin" Value="0, 10, 0, 0"/>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#0b7fab"/>
-            <Setter Property="Margin" Value="0, 20, 0, 0"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="300"/>
-        </Style>
-        <Style  TargetType="TextBox">
-            <Setter Property="Height" Value="25" />
-            <Setter Property="Margin" Value="10,0,10,10" />
-        </Style>
-    </Window.Resources>
-    <StackPanel Margin="10,40,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="550" Width="420" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
-        <Label Content="Логин"  Margin="0,0,0,0" Height="35"/>
-        <TextBox x:Name="TextBoxLogin"/>
-        <Label Content="Пароль" />
-        <TextBox x:Name="TextBoxPassword"/>
-        <Label Content="Имя"/>
-        <TextBox x:Name="TextBoxName"/>
-        <Label Content="Фамилия" />
-        <TextBox x:Name="TextBoxSurname"/>
-        <Label Content="Номер телефона" />
-        <TextBox x:Name="TextBoxPhone"/>
-        <Label Content="Почта" />
-        <TextBox x:Name="TextBoxMail"/>
-        <Button Click="ButtonSignUp_Click" Content="Зарегистрироваться"/>
+        Title="Регистрация" Height="650" Width="520" ResizeMode="NoResize">
+    <StackPanel Margin="10, 20, 0, 0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="550" Width="420">
+        <Label Content="Логин" Style="{StaticResource General_label}" FontSize="22"/>
+        <TextBox x:Name="TextBoxLogin" Style="{StaticResource General_textbox}" Height="30"/>
+        <Label Content="Пароль" Style="{StaticResource General_label}" FontSize="22"  Margin="0, 10, 0, 0"/>
+        <TextBox x:Name="TextBoxPassword" Style="{StaticResource General_textbox}" Height="30"/>
+        <Label Content="Имя" Style="{StaticResource General_label}" FontSize="22"  Margin="0, 10, 0, 0"/>
+        <TextBox x:Name="TextBoxName" Style="{StaticResource General_textbox}" Height="30"/>
+        <Label Content="Фамилия" Style="{StaticResource General_label}" FontSize="22"  Margin="0, 10, 0, 0"/>
+        <TextBox x:Name="TextBoxSurname" Style="{StaticResource General_textbox}" Height="30"/>
+        <Label Content="Номер телефона" Style="{StaticResource General_label}" FontSize="22"  Margin="0, 10, 0, 0"/>
+        <TextBox x:Name="TextBoxPhone" Style="{StaticResource General_textbox}" Height="30"/>
+        <Label Content="Почта" Style="{StaticResource General_label}" FontSize="22"  Margin="0, 10, 0, 0"/>
+        <TextBox x:Name="TextBoxMail" Style="{StaticResource General_textbox}" Height="30"/>
+        <Button Click="ButtonSignUp_Click" Style="{StaticResource General_buttonBlue}" FontSize="22" Content="Зарегистрироваться" Margin="0, 40, 0 , 0"  Width="300"/>
     </StackPanel>
 </Window>

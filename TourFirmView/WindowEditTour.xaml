@@ -5,43 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="WindowEditTour" Height="450" Width="1200" Loaded="WindowEditTour_Load">
-    <Window.Resources>
-
-        <Style  TargetType="Label">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="FontFamily" Value="Consolas" />
-        </Style>
-        <Style  TargetType="TextBox">
-            <Setter Property="Height" Value="20" />
-            <Setter Property="Margin" Value="10,0,10,10" />
-        </Style>
-
-    </Window.Resources>
-    <Grid Margin="0,0,0,0">
-        <StackPanel Margin="20,10,0,110" VerticalAlignment="Center"  HorizontalAlignment="Left" Height="200" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" >
-            <Label Content="Название"  Margin="0,0,0,0" Height="35"/>
-            <TextBox x:Name="NameTextBox"/>
-            <Label Content="Страна" />
-            <TextBox x:Name="CountryTextBox"/>
-            <Label Content="Стоимость" />
-            <TextBox x:Name="PriceTextBox"/>
+        Title="WindowEditTour" Height="450" Width="1300" ResizeMode="NoResize" Loaded="WindowEditTour_Load">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.88*"/>
+            <RowDefinition Height="0.12*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="#e9723d" BorderThickness="1" Height="230" Margin="15, 40, 15, 0"/>
+        <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"  HorizontalAlignment="Center" Height="270" Width="220">
+            <Label Content="Название:" Style="{StaticResource General_label}" FontSize="15" Margin="0, 40, 0, 0"/>
+            <TextBox x:Name="NameTextBox" Style="{StaticResource General_textbox}" FontSize="14" HorizontalAlignment="Stretch" Margin="0, 5, 0 ,5"/>
+            <Label Content="Страна:" Style="{StaticResource General_label}" FontSize="15" Margin="0, 20, 0, 0"/>
+            <TextBox x:Name="CountryTextBox" Style="{StaticResource General_textbox}" FontSize="14" HorizontalAlignment="Stretch" Margin="0, 5, 0 ,5"/>
+            <Label Content="Стоимость (в руб.):" Style="{StaticResource General_label}" FontSize="15" Margin="0, 20, 0, 0"/>
+            <TextBox x:Name="PriceTextBox" Style="{StaticResource General_textbox}" FontSize="14" HorizontalAlignment="Stretch" Margin="0, 5, 0 ,5"/>
         </StackPanel>
-        <Label Content="Название" Margin="900,70,0,313"/>
-        <ComboBox x:Name="ComboBoxHalts" DisplayMemberPath="Name" SelectedValuePath="ID" HorizontalAlignment="Left" Margin="900,120,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ComboBoxHalts_SelectionChanged"/>
-        <Label Content="Адрес"  Margin="900,160,0,220" HorizontalAlignment="Left" Width="210" />
-        <TextBox x:Name="AddressTextBox" Margin="900,10,0,0" HorizontalAlignment="Left" IsReadOnly="True" Width="210"/>
-        <Label Content="Данные по туру:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="33" Width="175"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="20,60,0,0"/>
-        <ListBox x:Name="ListBoxSelected" HorizontalAlignment="Left" Height="290" Margin="245,60,0,0" VerticalAlignment="Top" Width="250" DisplayMemberPath="Surname" SelectedValuePath="ID"/>
-        <ListBox x:Name="ListBoxAvailable" HorizontalAlignment="Left" Height="290" Margin="590,60,0,0" VerticalAlignment="Top" Width="250" DisplayMemberPath="Surname" SelectedValuePath="ID"/>
-        <Button x:Name="ButtonAdd" Content="Добавить" HorizontalAlignment="Left" Margin="505,120,0,0" VerticalAlignment="Top" Width="70" Click="ButtonAdd_Click"/>
-        <Button x:Name="ButtonDelete" Content="Убрать" HorizontalAlignment="Left" Margin="505,200,0,0" VerticalAlignment="Top" Width="70" Click="ButtonDelete_Click"/>
-        <Label Content="Выбранные гиды:" HorizontalAlignment="Left" Margin="240,20,0,0" VerticalAlignment="Top"/>
-        <Label Content="Доступные гиды:" HorizontalAlignment="Left" Margin="590,20,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="680,380,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.341,0.148" Grid.ColumnSpan="2" Click="ButtonSave_Click"/>
-        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="780,380,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="ButtonCancel_Click"/>
-        <Label Content="Данные по остановке:" HorizontalAlignment="Left" Margin="900,20,0,0" VerticalAlignment="Top"/>
+        <Label Content="Данные по туру:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource General_label}" FontSize="18" FontWeight="Bold" Foreground="#0b7fab" Margin="12,55,0,283"/>
 
+        <ListBox x:Name="ListBoxSelected" Grid.Column="1" Grid.Row="0" DisplayMemberPath="Surname" SelectedValuePath="ID" FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
+        <Label Content="Выбранные гиды:" Grid.Column="1" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30, 35, 0, 0"/>
+
+        <Button x:Name="ButtonAdd" Content="Добавить" Grid.Column="2" Grid.Row="0" Style="{StaticResource General_buttonBlue}" VerticalAlignment="Center" Margin="0, 30, 0, 60" Width="100" Height="30" Click="ButtonAdd_Click"/>
+        <Button x:Name="ButtonDelete" Content="Убрать" Grid.Column="2" Grid.Row="0" Style="{StaticResource General_buttonBlue}" VerticalAlignment="Center" Margin="0, 90, 0, 0" Width="100" Height="30" Click="ButtonDelete_Click"/>
+
+        <ListBox x:Name="ListBoxAvailable" Grid.Column="3" Grid.Row="0" DisplayMemberPath="Surname" SelectedValuePath="ID" FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
+        <Label Content="Доступные гиды:" Grid.Column="3" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30, 35, 0, 0"/>
+
+        <StackPanel Grid.Column="4" Grid.Row="0">
+            <Label Content="Данные по остановке:" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40, 35, 0, 0"/>
+            <Label Content="Название:" Style="{StaticResource General_label}" FontSize="16" Margin="20, 40, 0, 0"/>
+            <ComboBox x:Name="ComboBoxHalts" DisplayMemberPath="Name" SelectedValuePath="ID" Margin="0, 5, 0, 0" HorizontalAlignment="Center" Width="250" SelectionChanged="ComboBoxHalts_SelectionChanged"/>
+            <Label Content="Адрес:" Style="{StaticResource General_label}" FontSize="16" Margin="20, 40, 0, 0"/>
+            <TextBox x:Name="AddressTextBox" Style="{StaticResource General_textbox}" Margin="0, 5, 0, 0" IsReadOnly="True" Width="250"/>
+        </StackPanel>
+
+        <Button x:Name="ButtonSave" Content="Сохранить" Grid.ColumnSpan="5" Grid.Row="1" Style="{StaticResource General_buttonBlue}"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-140, 0, 0, 0" Width="100" Height="30" Click="ButtonSave_Click"/>
+        <Button x:Name="ButtonCancel" Content="Отмена" Grid.ColumnSpan="5" Grid.Row="1" Style="{StaticResource General_buttonGray}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="140, 0, 0, 0" Width="100" Height="30" Click="ButtonCancel_Click"/>
     </Grid>
 </Window>

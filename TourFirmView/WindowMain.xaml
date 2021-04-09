@@ -5,18 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Турфирма &quot;Иван Сусанин&quot;" Height="380" Width="725">
-    <Grid>
+        Title="Турфирма &quot;Иван Сусанин&quot;" Height="375" Width="725"  ResizeMode="NoResize">
+    <StackPanel>
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem x:Name="MenuItemGuides" Header="Гиды" Click="MenuItemGuides_Click"> </MenuItem>
+            <MenuItem x:Name="MenuItemGuides" Header="Гиды" Click="MenuItemGuides_Click"></MenuItem>
             <MenuItem x:Name="MenuItemTours" Header="Эксурсионные туры"  Click="MenuItemTours_Click"></MenuItem>
             <MenuItem x:Name="MenuItemStops" Header="Остановки"  Click="MenuItemStop_Click"></MenuItem>
             <MenuItem x:Name="MenuItemExcursions" Header="Список экскурсий"  Click="MenuItemExcursions_Click"></MenuItem>
             <MenuItem x:Name="MenuItemReport" Header="Отчёт"  Click="MenuItemReport_Click"></MenuItem>
             <MenuItem x:Name="MenuItemBindingGuide" Header="Привязка гида к экскурсии"  Click="MenuItemBindingGuide_Click"></MenuItem>
             <MenuItem x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click" Margin="100,0,0,0"></MenuItem>
-</Menu>
-        <Image HorizontalAlignment="Left" Height="321" Margin="0,25,0,0" 
-               VerticalAlignment="Top" Width="731" Source="logo.png" Stretch="UniformToFill"/>
-    </Grid>
+        </Menu>
+        <Image Source="logo.png" Stretch="UniformToFill"/>
+    </StackPanel>
 </Window>

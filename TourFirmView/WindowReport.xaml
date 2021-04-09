@@ -5,28 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Отчёт по гидам" Height="520" Width="1400">
-    <Grid>
+        Title="Отчёт по гидам" Height="480" Width="1200" ResizeMode="NoResize">
+    <StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50">
-            <Label Content="c" FontSize="14" Margin="10,5"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-            <DatePicker x:Name="DatePikerFrom" Height="25" Width="120">
-            </DatePicker>
-            <Label Content="по" FontSize="14" Margin="10,5"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-            <DatePicker x:Name="DatePikerTo" Height="25" Width="120">
-            </DatePicker>
-            <Button Content="Сформировать" Width="100"  Margin="10" Click="ButtonMake_Click"></Button>
-            <Button Content="в PDF" Width="100"  Margin="10" Click="ButtonToPdf_Click"></Button>
-            <Button Content="На почту" Width="100"  Margin="10"></Button>
+            <Label Content="c" Style="{StaticResource General_label}" FontSize="15" Margin="10,5" VerticalContentAlignment="Center"/>
+            <DatePicker x:Name="DatePikerFrom" Height="25" Width="150"/>
+
+            <Label Content="по" Style="{StaticResource General_label}" FontSize="15" Margin="10,5" VerticalContentAlignment="Center"/>
+            <DatePicker x:Name="DatePikerTo" Height="25" Width="150"/>
+
+            <Button Content="Сформировать" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonMake_Click"></Button>
+            <Button Content="в PDF" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonToPdf_Click"></Button>
+            <Button Content="На почту" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0"></Button>
         </StackPanel>
-        <DataGrid x:Name="GuidesGrid" Margin="0,60,0,0" CanUserAddRows="False" HorizontalAlignment="Center" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" Width="1300">
+        <DataGrid x:Name="GuidesGrid" Style="{StaticResource General_datagrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата начала путешествия" Binding="{Binding Path=DateStartTravel}" Width="200" />
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=GuideSurname}" Width="200" />
-                <DataGridTextColumn Header="Имя" Binding="{Binding Path=GuideName}" Width="200" />
-                <DataGridTextColumn Header="Место работы" Binding="{Binding Path=GuideWorkPlace}" Width="220" />
-                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=ExcursionName}" Width="240" />
-                <DataGridTextColumn Header="Название тура" Binding="{Binding Path=TourName}" Width="240" />
+                <DataGridTextColumn Header="Дата начала путешествия" Binding="{Binding Path=DateStartTravel, StringFormat=dd/MM/yyyy}" Width="0.7*" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=GuideSurname}" Width="0.3*" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=GuideName}" Width="0.3*" />
+                <DataGridTextColumn Header="Место работы" Binding="{Binding Path=GuideWorkPlace}" Width="0.5*" />
+                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=ExcursionName}" Width="1*" />
+                <DataGridTextColumn Header="Название тура" Binding="{Binding Path=TourName}" Width="1*" />
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </StackPanel>
 </Window>

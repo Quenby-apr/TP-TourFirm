@@ -3,21 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouristTourFirmView"
         mc:Ignorable="d"
         Loaded="WindowPlaces_Load"
-        Title="Места" Height="450" Width="800">
+        Title="Места" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="DataGridPlaces" HorizontalAlignment="Left" Height="420" Margin="0,0,0,0" VerticalAlignment="Top" Width="700" AutoGenerateColumns="False" CanUserAddRows="false" CanUserReorderColumns="False" >
-            <DataGrid.Columns >
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="DataGridPlaces" Grid.Column="0" Style="{StaticResource General_datagrid}">
+            <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=ID}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="1*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Тип" Binding="{Binding Path=Type}" Width="0.5*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="ButtonCreate" Content="Создать" Click="ButtonAdd_Click" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonUpdate" Content="Изменить" Click="ButtonUpdate_Click" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonDelete" Content="Удалить" Click="ButtonDelete_Click" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="ButtonRefresh" Content="Обновить" Click="ButtonRefresh_Click" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="75"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="20, 60, 20, 0">
+            <Button x:Name="ButtonAdd" Content="Создать" Click="ButtonAdd_Click" Style="{StaticResource General_buttonBlue}"/>
+            <Button x:Name="ButtonUpdate" Content="Изменить" Click="ButtonUpdate_Click" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+            <Button x:Name="ButtonDelete" Content="Удалить" Click="ButtonDelete_Click" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+            <Button x:Name="ButtonRefresh" Content="Обновить" Click="ButtonRefresh_Click" Style="{StaticResource General_buttonBlue}" Margin="0, 25, 0, 0"/>
+        </StackPanel>
     </Grid>
 </Window>
