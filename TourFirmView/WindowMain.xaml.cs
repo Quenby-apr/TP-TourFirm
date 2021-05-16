@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TourFirmDatabaseImplement.Implements;
 using Unity;
 
 namespace TourFirmView
@@ -10,15 +11,18 @@ namespace TourFirmView
     {
         [Dependency]
         public IUnityContainer Container { get; set; }
-        public WindowMain()
+        private readonly ReportStorage reportStorage;
+        public WindowMain(ReportStorage reportStorage)
         {
             InitializeComponent();
+            this.reportStorage = reportStorage;
         }
 
         private void MenuItemGuides_Click(object sender, RoutedEventArgs e)
         {
             var form = Container.Resolve<WindowGuides>();
             form.ShowDialog();
+
         }
 
         private void MenuItemTours_Click(object sender, RoutedEventArgs e)

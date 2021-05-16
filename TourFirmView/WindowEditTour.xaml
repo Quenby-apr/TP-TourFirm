@@ -29,13 +29,13 @@
         </StackPanel>
         <Label Content="Данные по туру:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource General_label}" FontSize="18" FontWeight="Bold" Foreground="#0b7fab" Margin="12,35,0,283"/>
 
-        <ListBox x:Name="ListBoxSelected" Grid.Column="1" Grid.Row="0"  FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
+        <ListBox x:Name="ListBoxSelected"  DisplayMemberPath="Surname" SelectedValuePath="ID" Grid.Column="1" Grid.Row="0"  FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
         <Label Content="Выбранные гиды:" Grid.Column="1" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30, 25, 0, 0"/>
 
         <Button x:Name="ButtonAdd" Content="Добавить" Grid.Column="2" Grid.Row="0" Style="{StaticResource General_buttonBlue}" VerticalAlignment="Center" Margin="0, 30, 0, 60" Width="100" Height="30" Click="ButtonAdd_Click"/>
         <Button x:Name="ButtonDelete" Content="Убрать" Grid.Column="2" Grid.Row="0" Style="{StaticResource General_buttonBlue}" VerticalAlignment="Center" Margin="0, 90, 0, 0" Width="100" Height="30" Click="ButtonDelete_Click"/>
 
-        <ListBox x:Name="ListBoxAvailable" Grid.Column="3" Grid.Row="0"  FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
+        <ListBox x:Name="ListBoxAvailable" DisplayMemberPath="Surname" SelectedValuePath="ID" Grid.Column="3" Grid.Row="0"  FontFamily="{StaticResource Label_fontFamily}" FontSize="14" VerticalAlignment="Center" Margin="0, 40, 0, 0" Height="290" Width="250" BorderThickness="1" BorderBrush="#e9723d"/>
         <Label Content="Доступные гиды:" Grid.Column="3" Grid.Row="0" Style="{StaticResource General_label}" FontSize="18" Foreground="#08244f" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30, 25, 0, 0"/>
 
         <StackPanel Grid.Column="4" Grid.Row="0">

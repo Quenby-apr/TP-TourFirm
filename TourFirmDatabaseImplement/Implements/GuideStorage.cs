@@ -65,7 +65,7 @@ namespace TourFirmDatabaseImplement.Implements
                         AdditionalLanguage = rec.AdditionalLanguage,
                         OperatorID = rec.OperatorID,
                         GuideExcursions = rec.GuideExcursions
-                        .ToDictionary(recPC => recPC.ExcursionID, recPC => (recPC.Excursion?.Name))
+                        .ToDictionary(recEX => recEX.ExcursionID, recEX => (recEX.Excursion?.Name))
                     }).ToList();
             }
         }

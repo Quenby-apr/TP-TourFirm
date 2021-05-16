@@ -25,8 +25,6 @@ namespace TourFirmBusinessLogic.ViewModels
 
         [DisplayName("Дополнительный язык")]
         public string AdditionalLanguage { get; set; }
-
-        [DisplayName("Дата экскурсии")]
         public Dictionary<int, string> GuideExcursions { get; set; }
         public int OperatorID { get; set; }
     }

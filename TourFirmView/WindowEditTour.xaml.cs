@@ -60,21 +60,26 @@ namespace TourFirmView
             });
             foreach (var guide in listbindmodels)
             {
-                ListBoxAvailable.Items.Add(guide.Surname);
+                ListBoxAvailable.Items.Add(guide);
             }
             if (tour != null)
             {
+                ListBoxAvailable.Items.Clear();
+                List<int> array = new List<int>();
                 var listSelectedGuides = tour.TourGuides.ToList();
                 foreach (var guide in listSelectedGuides)
                 {
-                    ListBoxSelected.Items.Add(Guidelogic.Read(new GuideBindingModel
+                    GuideViewModel current = Guidelogic.Read(new GuideBindingModel
                     {
                         ID = guide.Key
-                    })[0].Surname);
+                    })[0];
+                    ListBoxSelected.Items.Add(current);
+                    array.Add(current.ID);
                 }
-                foreach (var guide in ListBoxSelected.Items)
+                foreach (var guide in listbindmodels)
                 {
-                    ListBoxAvailable.Items.Remove(guide);
+                    if (!array.Contains(guide.ID))
+                    ListBoxAvailable.Items.Add(guide);
                 }
                 NameTextBox.Text = tour.Name;
                 CountryTextBox.Text = tour.Country;
@@ -121,12 +126,9 @@ namespace TourFirmView
             }
             HaltViewModel halt = (HaltViewModel)ComboBoxHalts.SelectedItem;
             Dictionary<int, string> _TourGuides = new Dictionary<int, string>();
-            foreach (var guide in ListBoxSelected.Items)
+            foreach (GuideViewModel guide in ListBoxSelected.Items)
             {
-                _TourGuides.Add(Guidelogic.Read(new GuideBindingModel
-                {
-                    Surname = guide.ToString()
-                })[0].ID, guide.ToString());
+                _TourGuides.Add(guide.ID, guide.Surname);
             }
             try
             {
