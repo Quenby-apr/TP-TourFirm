@@ -13,7 +13,7 @@
             <DatePicker x:Name="DatePickerTo" Height="25" Width="150"/>
             <Button Content="Сформировать" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonFormReport_Click"></Button>
             <Button Content="PDF" Click="ButtonToPdf_Click" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0"></Button>
-            <Button Content="На почту" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0"></Button>
+            <Button Content="На почту" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonSendToMail_Click"></Button>
         </StackPanel>
         <DataGrid x:Name="DataGridReport" Style="{StaticResource General_datagrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DataGrid.Columns>
