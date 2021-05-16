@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using TourFirmBusinessLogic.BusinessLogic;
+using TourFirmBusinessLogic.HelperModels;
 using TourFirmBusinessLogic.Interfaces;
 using TourFirmBusinessLogic.ViewModels;
 using TourFirmDatabaseImplement.Implements;
@@ -21,6 +23,14 @@ namespace TourFirmView
         {
             base.OnStartup(e);
             var container = BuildUnityContainer();
+            MailLogic.MailConfig(new MailConfig
+            {
+                SmtpClientHost = ConfigurationManager.AppSettings["SmtpClientHost"],
+                SmtpClientPort = Convert.ToInt32(ConfigurationManager.AppSettings["SmtpClientPort"]),
+                MailLogin = ConfigurationManager.AppSettings["MailLogin"],
+                MailPassword = ConfigurationManager.AppSettings["MailPassword"],
+                MailName = ConfigurationManager.AppSettings["MailName"]
+            });
             var Window = container.Resolve<WindowSignIn>();
             Window.ShowDialog();
         }
@@ -43,6 +53,7 @@ namespace TourFirmView
             currentContainer.RegisterType<GuideLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TourLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<HaltLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<MailLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

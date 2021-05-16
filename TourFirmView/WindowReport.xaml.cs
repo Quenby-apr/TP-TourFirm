@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using NLog;
 using TourFirmBusinessLogic.BindingModels;
 using TourFirmBusinessLogic.BusinessLogic;
+using TourFirmBusinessLogic.HelperModels;
 using Unity;
 
 namespace TourFirmView
@@ -73,6 +74,42 @@ namespace TourFirmView
                         logger.Warn("Ошибка при попытке формирования отчёта Pdf");
                     }
                 }
+            }
+        }
+        private void ButtonToMail_Click(object sender, RoutedEventArgs e)
+        {
+            if (DatePikerFrom.SelectedDate >= DatePikerTo.SelectedDate)
+            {
+                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                var fileName = "Отчет.pdf";
+
+                logic.SaveGuidesToPdfFile(new ReportTourBindingModel
+                {
+                    FileName = fileName,
+                    DateFrom = DatePikerFrom.SelectedDate,
+                    DateTo = DatePikerTo.SelectedDate
+                }, App.Operator.ID);
+
+                MailLogic.MailSend(new MailSendInfo
+                {
+                    MailAddress = App.Operator.Mail,
+                    Subject = "Отчет по путешествиям",
+                    Text = "Отчет по путешествиям от " + DatePikerFrom.SelectedDate.Value.ToShortDateString() + " по " + DatePikerTo.SelectedDate.Value.ToShortDateString(),
+                    FileName = fileName
+                });
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,
+                MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Ошибка отправки отчета: " + ex.Message);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                MessageBoxImage.Error);
             }
         }
     }

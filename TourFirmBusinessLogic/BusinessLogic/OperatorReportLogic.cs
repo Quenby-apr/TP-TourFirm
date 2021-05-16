@@ -31,33 +31,6 @@ namespace TourFirmBusinessLogic.BusinessLogic
             var list = reportStorage.GetFullListGuides( model, _OperatorID);
             return list;
         }
-        /*public List<ReportTourExcursionsViewModel> GetTourExcursions(List<TourViewModel> tours)
-        {
-            var list = new List<ReportTourExcursionsViewModel>();
-            foreach (var tour in tours)
-            {
-                var record = new ReportTourExcursionsViewModel
-                {
-                    TourName = tour.Name,
-                    Excursions = new List<ExcursionViewModel>(),
-                };
-                foreach (var _guide in tour.TourGuides)
-                {
-                    var guide = _guideStorage.GetElement(new GuideBindingModel
-                    {
-                        ID = _guide.Key,
-                    });
-                    var listExcursions = guide.GuideExcursions.ToList();
-                    for (int i = 0; i < listExcursions.Count; i++) {
-                        record.Excursions.Add(_excursionStorage.GetElement(new ExcursionBindingModel {
-                            ID = listExcursions[i].Key
-                        }));
-                    }
-                }
-                list.Add(record);
-            }
-            return list;
-        }*/
         public List<ReportTourExcursionsViewModel> GetTourExcursions(List<TourViewModel> tours)
         {
             var list = new List<ReportTourExcursionsViewModel>();

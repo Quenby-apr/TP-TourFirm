@@ -16,7 +16,7 @@
 
             <Button Content="Сформировать" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonMake_Click"></Button>
             <Button Content="в PDF" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonToPdf_Click"></Button>
-            <Button Content="На почту" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0"></Button>
+            <Button Content="На почту" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonToMail_Click"></Button>
         </StackPanel>
         <DataGrid x:Name="GuidesGrid" Style="{StaticResource General_datagrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DataGrid.Columns>
