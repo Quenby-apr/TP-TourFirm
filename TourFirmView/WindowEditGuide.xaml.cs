@@ -96,6 +96,7 @@ namespace TourFirmView
         {
             LoadData();
         }
+
         private void LoadData()
         {
             if (id != null)

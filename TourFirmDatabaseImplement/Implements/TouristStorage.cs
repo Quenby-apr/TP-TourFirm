@@ -22,7 +22,8 @@ namespace TourFirmDatabaseImplement.Implements
                        Surname = rec.Surname,
                        PhoneNumber = rec.PhoneNumber,
                        Login = rec.Login,
-                       Password = rec.Password
+                       Password = rec.Password,
+                       Mail = rec.Mail
                    })
                     .ToList();
             }
@@ -45,7 +46,8 @@ namespace TourFirmDatabaseImplement.Implements
                     Surname = tourist.Surname,
                     PhoneNumber = tourist.PhoneNumber,
                     Login = tourist.Login,
-                    Password = tourist.Password
+                    Password = tourist.Password,
+                    Mail = tourist.Mail
                 } :
                 null;
             }
