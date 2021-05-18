@@ -11,66 +11,89 @@ namespace TourFirmBusinessLogic.BusinessLogic
         private readonly ITravelStorage travelStorage;
         private readonly IExcursionStorage excursionStorage;
         private readonly IGuideStorage guideStorage;
+        private readonly IReportStorage reportStorage;
 
-        public TouristReportLogic(ITravelStorage travelStorage, IExcursionStorage excursionStorage, IGuideStorage guideStorage)
+        public TouristReportLogic(ITravelStorage travelStorage, IExcursionStorage excursionStorage, IGuideStorage guideStorage, IReportStorage reportStorage)
         {
             this.travelStorage = travelStorage;
             this.excursionStorage = excursionStorage;
             this.guideStorage = guideStorage;
+            this.reportStorage = reportStorage;
         }
 
-        private List<ReportTravelGuidesViewModel> GetTravelGuides(List<TravelViewModel> selectedTravels)
+        public List<ReportTravelGuidesViewModel> GetTravelGuides(List<TravelViewModel> selectedTravels)
         {
-            var guides = guideStorage.GetFullList();
             var list = new List<ReportTravelGuidesViewModel>();
 
             foreach (var travel in selectedTravels)
             {
-                var record = new ReportTravelGuidesViewModel
+                list.Add(reportStorage.GetTravelGuides(new TravelBindingModel
                 {
-                    TravelName = travel.Name,
-                    Guides = new List<GuideViewModel>(),
-                };
-
-                var listGuides = new List<GuideViewModel>();
-
-                foreach (var travelExcursion in travel.TravelExcursions)
-                {
-                    var excursion = excursionStorage.GetElement(new ExcursionBindingModel
-                    {
-                        ID = travelExcursion.Key
-                    });
-
-                    foreach (var guide in guides)
-                    {
-                        foreach (var guideExcursion in guide.GuideExcursions)
-                        {
-                            if (guideExcursion.Key == excursion.ID)
-                            {
-                                if (!listGuides.Contains(guide))
-                                {
-                                    listGuides.Add(guide);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                foreach (var guide in listGuides)
-                {
-                    var guideRecord = guideStorage.GetElement(new GuideBindingModel
-                    {
-                        ID = guide.ID
-                    });
-                    record.Guides.Add(guideRecord);
-                }
-                list.Add(record);
+                    ID = travel.ID,
+                    Name = travel.Name
+                }));
             }
             return list;
         }
 
+        public List<ReportTravelsViewModel> GetTravelExcursionsGuides(ReportTravelBindingModel model, int _TouristID)
+        {
+            var list = reportStorage.GetFullListTravels(model, _TouristID);
+            return list;
+        }
+
+        /*        private List<ReportTravelGuidesViewModel> GetTravelGuides(List<TravelViewModel> selectedTravels)
+                {
+                    var guides = guideStorage.GetFullList();
+                    var list = new List<ReportTravelGuidesViewModel>();
+
+                    foreach (var travel in selectedTravels)
+                    {
+                        var record = new ReportTravelGuidesViewModel
+                        {
+                            TravelName = travel.Name,
+                            Guides = new List<GuideViewModel>(),
+                        };
+
+                        var listGuides = new List<GuideViewModel>();
+
+                        foreach (var travelExcursion in travel.TravelExcursions)
+                        {
+                            var excursion = excursionStorage.GetElement(new ExcursionBindingModel
+                            {
+                                ID = travelExcursion.Key
+                            });
+
+                            foreach (var guide in guides)
+                            {
+                                foreach (var guideExcursion in guide.GuideExcursions)
+                                {
+                                    if (guideExcursion.Key == excursion.ID)
+                                    {
+                                        if (!listGuides.Contains(guide))
+                                        {
+                                            listGuides.Add(guide);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        foreach (var guide in listGuides)
+                        {
+                            var guideRecord = guideStorage.GetElement(new GuideBindingModel
+                            {
+                                ID = guide.ID
+                            });
+                            record.Guides.Add(guideRecord);
+                        }
+                        list.Add(record);
+                    }
+                    return list;
+                }*/
+
         //Получение списка путешествий с расшифровкой по экскурсиям и гидам
-        public List<ReportTravelsViewModel> GetTravelExcursionsGuides(ReportTravelBindingModel model)
+        /*public List<ReportTravelsViewModel> GetTravelExcursionsGuides(ReportTravelBindingModel model)
         {
             var travels = travelStorage.GetFilteredList(new TravelBindingModel
             {
@@ -113,7 +136,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 }
             }
             return travelsExcursionsGuides;
-        }
+        }*/
 
         public void SaveTravelGuidesToWord(ReportTravelBindingModel model)
         {
@@ -135,7 +158,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
             });
         }
 
-        public void SaveTravelsExcursionsGuidesToPdf(ReportTravelBindingModel model)
+        public void SaveTravelsExcursionsGuidesToPdf(ReportTravelBindingModel model, int _TouristID)
         {
             TouristSaveToPdf.CreateDoc(new TouristPdfInfo
             {
@@ -143,7 +166,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 Title = "Список экскурсий и гидов по выбранным путешествиям",
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
-                TravelExcursionsGuides = GetTravelExcursionsGuides(model)
+                TravelExcursionsGuides = GetTravelExcursionsGuides(model, _TouristID)
             });
         }
     }

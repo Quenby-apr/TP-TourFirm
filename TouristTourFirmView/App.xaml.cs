@@ -45,6 +45,7 @@ namespace TouristTourFirmView
             currentContainer.RegisterType<IGuideStorage, GuideStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ITouristStorage, TouristStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ITourStorage, TourStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportStorage, ReportStorage>(new HierarchicalLifetimeManager());
 
             currentContainer.RegisterType<TravelLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TouristReportLogic>(new HierarchicalLifetimeManager());
