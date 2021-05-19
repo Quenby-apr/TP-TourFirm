@@ -199,6 +199,9 @@
     <Compile Include="WindowBindingExcursions.xaml.cs">
       <DependentUpon>WindowBindingExcursions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowChooseStatistic.xaml.cs">
+      <DependentUpon>WindowChooseStatistic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowEditGuide.xaml.cs">
       <DependentUpon>WindowEditGuide.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,9 @@
     </Compile>
     <Compile Include="WindowEditTour.xaml.cs">
       <DependentUpon>WindowEditTour.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowExcursionStatistic.xaml.cs">
+      <DependentUpon>WindowExcursionStatistic.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowGuides.xaml.cs">
       <DependentUpon>WindowGuides.xaml</DependentUpon>
@@ -236,7 +242,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WindowTravelStatistic.xaml.cs">
+      <DependentUpon>WindowTravelStatistic.xaml</DependentUpon>
+    </Compile>
     <Page Include="WindowBindingExcursions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowChooseStatistic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowEditTour.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowExcursionStatistic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,6 +298,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowTours.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowTravelStatistic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

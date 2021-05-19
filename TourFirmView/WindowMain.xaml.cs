@@ -62,5 +62,10 @@ namespace TourFirmView
             Close();
             windowSignIn.ShowDialog();
         }
+        private void MenuItemStatistic_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowChooseStatistic>();
+            form.ShowDialog();
+        }
     }
 }

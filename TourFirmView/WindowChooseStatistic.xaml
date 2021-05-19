@@ -1,0 +1,18 @@
+﻿<Window x:Class="TourFirmView.WindowChooseStatistic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TourFirmView"
+        mc:Ignorable="d"
+        Title="Окно выбора статистик" Height="282.676" Width="559.155">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="386*"/>
+            <ColumnDefinition Width="165*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Ежемесячная статистика путешествий по выбранному году"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="60,40,0,0" VerticalAlignment="Top" Width="440" Height="80" FontSize="12" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <Button Content="Статистика количества экскурсий за выбранный период"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="60,140,0,0" VerticalAlignment="Top" Width="440" Height="80" FontSize="12" Click="Button_Click_1" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>

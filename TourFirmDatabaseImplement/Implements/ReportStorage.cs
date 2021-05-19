@@ -18,8 +18,10 @@ namespace TourFirmDatabaseImplement.Implements
                              where tour.OperatorID == _OperatorID
                              join travel in context.Travels
                              on travelTours.TravelID equals travel.ID
+                             where travel.DateStart >= model.DateFrom
+                             where travel.DateEnd <= model.DateTo
                              join tourguide in context.TourGuides
-                             on tour.ID equals tourguide.TourID
+                             on tour.ID equals tourguide.TourID 
                              join guide in context.Guides
                              on tourguide.GuideID equals guide.ID
                              where guide.OperatorID == _OperatorID
