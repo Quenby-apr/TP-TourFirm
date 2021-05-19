@@ -5,7 +5,7 @@ namespace TourFirmDatabaseImplement.Migrations
     public partial class Remane : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        {/*
             migrationBuilder.DropTable(
                 name: "ExcursionGuides");
 
@@ -43,12 +43,12 @@ namespace TourFirmDatabaseImplement.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_GuideExcursions_GuideID",
                 table: "GuideExcursions",
-                column: "GuideID");
+                column: "GuideID");*/
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
+            /*migrationBuilder.DropTable(
                 name: "GuideExcursions");
 
             migrationBuilder.CreateTable(
@@ -85,7 +85,7 @@ namespace TourFirmDatabaseImplement.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ExcursionGuides_GuideID",
                 table: "ExcursionGuides",
-                column: "GuideID");
+                column: "GuideID");*/
         }
     }
 }

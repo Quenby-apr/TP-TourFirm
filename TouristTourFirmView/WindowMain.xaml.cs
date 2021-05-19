@@ -46,6 +46,12 @@ namespace TouristTourFirmView
             form.ShowDialog();
         }
 
+        private void MenuItemStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowStatistics>();
+            form.ShowDialog();
+        }
+
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             App.Tourist = null;

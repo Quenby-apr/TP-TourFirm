@@ -12,7 +12,8 @@
             <MenuItem x:Name="MenuItemPlaces" Header="Места" Click="MenuItemPlaces_Click"></MenuItem>
             <MenuItem x:Name="MenuItemGuidesList" Header="Список гидов" Click="MenuItemGuidesList_Click"></MenuItem>
             <MenuItem x:Name="MenuItemReport" Header="Отчёт по путешествиям" Click="MenuItemReport_Click"></MenuItem>
-            <MenuItem x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click" Margin="210,0,0,0"></MenuItem>
+            <MenuItem x:Name="MenuItemStatistics" Header="Статистика" Click="MenuItemStatistics_Click"></MenuItem>
+            <MenuItem x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click" Margin="150,0,0,0"></MenuItem>
         </Menu>
         <Image Source="logo.png" Stretch="UniformToFill"/>
     </StackPanel>

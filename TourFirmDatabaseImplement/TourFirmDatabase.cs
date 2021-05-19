@@ -7,6 +7,7 @@ namespace TourFirmDatabaseImplement
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
             if (optionsBuilder.IsConfigured == false)
             {
                 optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TourFirmDatabase;Integrated Security=True;MultipleActiveResultSets=True;");

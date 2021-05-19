@@ -55,6 +55,7 @@ namespace TouristTourFirmView
             currentContainer.RegisterType<TouristLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TourLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<MailLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<TouristStatisticsLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
