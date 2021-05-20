@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Вход" Height="410" Width="380" ResizeMode="NoResize">
     <StackPanel HorizontalAlignment="Stretch" Height="350" Margin="20">
         <Label Content="Логин:" Style="{StaticResource General_label}" Margin="0, 10, 0, 0" FontSize="22"/>

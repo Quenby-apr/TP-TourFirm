@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Привязка экскурсий" Height="540" Width="400" Loaded="Window_Loaded" ResizeMode="NoResize">
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="350" Margin="0, 30, 0, 0">
         <Label Content="Выбранный гид:" Style="{StaticResource General_label}" FontSize="16"/>

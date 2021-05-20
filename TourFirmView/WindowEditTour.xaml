@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="WindowEditTour" Height="450" Width="1300" ResizeMode="NoResize" Loaded="WindowEditTour_Load">
     <Grid>
         <Grid.RowDefinitions>

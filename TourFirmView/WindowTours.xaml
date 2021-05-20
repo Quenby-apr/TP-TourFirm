@@ -6,6 +6,7 @@
         xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Список туров" Height="450" Width="850" ResizeMode="NoResize" Loaded="WindowTours_Load">
     <Grid>
         <Grid.RowDefinitions>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Список гидов" Height="450" Width="1000" ResizeMode="NoResize" Loaded="WindowGuides_Load">
     <Grid>
         <Grid.RowDefinitions>

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TourFirmView"
         xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Стастика туров по выбранному месяцу" Height="1030.361" Width="800" Loaded="Window_Loaded">
     <Grid>
         <ComboBox x:Name="ComboBoxMonths" HorizontalAlignment="Left" Margin="180,15,0,0" VerticalAlignment="Top" Width="250" FontFamily="{StaticResource Label_fontFamily}" SelectedValuePath="ID" FontSize="15" IsReadOnly="True"/>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Окно выбора статистик" Height="388.975" Width="559.155">
     <Grid>
         <Grid.ColumnDefinitions>

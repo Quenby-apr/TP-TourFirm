@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Отчёт по экскурсиям" Height="441.2" Width="450" ResizeMode="NoResize" Loaded="Window_Loaded">
     <StackPanel>
         <ListBox x:Name="ListBoxTours" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionMode="Multiple" FontSize="14" FontFamily="{StaticResource Label_fontFamily}" HorizontalAlignment="Stretch" Height="320" Margin="10,10,10,0" BorderThickness="1" BorderBrush="#e9723d"/>

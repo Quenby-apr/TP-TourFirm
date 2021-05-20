@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Турфирма &quot;Иван Сусанин&quot;" Height="375" Width="725"  ResizeMode="NoResize">
     <StackPanel>
         <Menu Height="25" VerticalAlignment="Top">
