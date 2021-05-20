@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" 
         xmlns:local="clr-namespace:TourFirmView"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="Окно со статистикой по экскурсиям" Height="450" Width="800">
+        Title="Статистика по экскурсиям" Height="716.992" Width="800">
     <Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50">
+         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50">
             <Label Content="c" Style="{StaticResource General_label}" FontSize="15" Margin="10,5" VerticalContentAlignment="Center"/>
             <DatePicker x:Name="DatePikerFrom" Height="25" Width="150"/>
 
@@ -16,24 +16,17 @@
             <DatePicker x:Name="DatePikerTo" Height="25" Width="150"/>
             <Button Content="Сформировать" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonMake_Click"></Button>
         </StackPanel>
-        <StackPanel Margin="10,50, 10, 0">
-            <DVC:Chart Height="300"  Name="mcChart" Background="White">
-                <DVC:Chart.Series>
-                    <DVC:ColumnSeries Title="Экскурсии (остальных)" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}"  >
-                    </DVC:ColumnSeries>
-                    <DVC:ColumnSeries Title="Экскурсии (пользовательские)" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}"  >
-                    </DVC:ColumnSeries>
-                </DVC:Chart.Series>
-                <DVC:Chart.Axes>
-                    <DVC:LinearAxis Orientation="Y"
-                        Title="Количество экскурсий"
-                        Minimum="0"
-                        Interval="5"
-                        Maximum="25"
-                        Location="Right"
-                        ShowGridLines="True" />
-                </DVC:Chart.Axes>
-            </DVC:Chart>
-        </StackPanel>
+        <DVC:Chart Height="270" Width="750" Margin="0,100,0,0" VerticalAlignment="Top" Name="mcChart" Background="White" Title="Взаимосвязь между стоимость и количеством экскурсий" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
+            <DVC:Chart.Series>
+                <DVC:PieSeries IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}">
+                </DVC:PieSeries>
+            </DVC:Chart.Series>
+        </DVC:Chart>
+        <DVC:Chart Height="270" Width="750" Margin="0,400,0,0" VerticalAlignment="Top" Name="mcChart2" Background="White" Title="Взаимосвязь между продолжительностью и количеством экскурсий" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
+            <DVC:Chart.Series>
+                <DVC:PieSeries IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}">
+                </DVC:PieSeries>
+            </DVC:Chart.Series>
+        </DVC:Chart>
     </Grid>
 </Window>

@@ -217,6 +217,9 @@
     <Compile Include="WindowGuides.xaml.cs">
       <DependentUpon>WindowGuides.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowGuideStatistic.xaml.cs">
+      <DependentUpon>WindowGuideStatistic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowListExcursions.xaml.cs">
       <DependentUpon>WindowListExcursions.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowGuides.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowGuideStatistic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

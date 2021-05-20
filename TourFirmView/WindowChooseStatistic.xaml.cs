@@ -26,14 +26,19 @@ namespace TourFirmView
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void tourStatistic_Click(object sender, RoutedEventArgs e)
         {
             var form = Container.Resolve<WindowTourStatistic>();
             form.ShowDialog();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void guideStatistic_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowGuideStatistic>();
+            form.ShowDialog();
+        }
+
+        private void excursionStatistic_Click(object sender, RoutedEventArgs e)
         {
             var form = Container.Resolve<WindowExcursionStatistic>();
             form.ShowDialog();

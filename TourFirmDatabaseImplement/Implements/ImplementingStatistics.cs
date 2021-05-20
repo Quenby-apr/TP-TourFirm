@@ -106,5 +106,32 @@ namespace TourFirmDatabaseImplement.Implements
                 return tours.ToList();
             }
         }
+        public List<ExcursionViewModel> GetAllExcursionStatistics(ReportBindingModel model)
+        {
+            using (var context = new TourFirmDatabase())
+            {
+                var excursions = from tour in context.Tours
+                             join travelTours in context.TravelTours
+                             on tour.ID equals travelTours.TourID
+                             join travel in context.Travels
+                             on travelTours.TravelID equals travel.ID
+                             where travel.DateStart >= model.DateFrom
+                             where travel.DateEnd <= model.DateTo
+                             join tourguide in context.TourGuides
+                             on tour.ID equals tourguide.TourID
+                             join guide in context.Guides
+                             on tourguide.GuideID equals guide.ID
+                             join guideExcursion in context.GuideExcursions
+                             on guide.ID equals guideExcursion.GuideID
+                             join excursion in context.Excursions
+                             on guideExcursion.ExcursionID equals excursion.ID
+                             select new ExcursionViewModel
+                             {
+                                 Price = excursion.Price,
+                                 Duration = excursion.Duration
+                             };
+                return excursions.ToList();
+            }
+        }
     }
 }
