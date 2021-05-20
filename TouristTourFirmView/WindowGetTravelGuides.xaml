@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Loaded="WindowGetTravelGuides_Load"
+        Style="{StaticResource General_Window}"
         Title="Получение списка гидов" Height="480" Width="450" ResizeMode="NoResize">
     <StackPanel>
         <Label Content="Выберите путешествия:" Style="{StaticResource General_label}" FontSize="19" HorizontalAlignment="Center" Margin="0, 20, 0, 0" Foreground="#08244f"/>

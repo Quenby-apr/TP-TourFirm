@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Loaded="WindowTravel_Load"
+        Style="{StaticResource General_Window}"
         Title="Формирование путешествия" Height="450" Width="1350" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>

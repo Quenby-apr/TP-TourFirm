@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Loaded="WindowBondTravelExcursions_Load"
+        Style="{StaticResource General_Window}"
         Title="Привязать экскурсии к путешествию" Height="450" Width="780" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>

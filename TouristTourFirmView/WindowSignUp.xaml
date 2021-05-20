@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Регистрация" Height="650" Width="520" ResizeMode="NoResize">
     <StackPanel Margin="10, 20, 0, 0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="550" Width="420">
         <Label Content="Логин" Style="{StaticResource General_label}" FontSize="22"/>

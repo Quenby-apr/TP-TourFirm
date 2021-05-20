@@ -19,6 +19,9 @@ namespace TouristTourFirmView
         private readonly TouristLogic logic;
         private readonly Logger logger;
 
+        private readonly int passwordMaxLength = 50;
+        private readonly int passwordMinLength = 10;
+
         public WindowSignUp(TouristLogic logic)
         {
             InitializeComponent();
@@ -62,6 +65,11 @@ namespace TouristTourFirmView
             {
                 MessageBox.Show("Почта введена некорректно", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
+            }
+            if (TextBoxPassword.Text.Length > passwordMaxLength || TextBoxPassword.Text.Length < passwordMinLength 
+                || !Regex.IsMatch(TextBoxPassword.Text, @"^((\w+\d+\W+)|(\w+\W+\d+)|(\d+\w+\W+)|(\d+\W+\w+)|(\W+\w+\d+)|(\W+\d+\w+))[\w\d\W]*$"))
+            {
+                throw new Exception($"Пароль должен содержать не менее {passwordMinLength} и не более {passwordMaxLength} символов и состоять из цифр, букв и небуквенных символов");
             }
 
             try

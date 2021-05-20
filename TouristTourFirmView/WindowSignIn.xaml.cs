@@ -27,7 +27,7 @@ namespace TouristTourFirmView
                 MessageBox.Show("Введите логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(TextBoxPassword.Text))
+            if (string.IsNullOrEmpty(PasswordBox.Password))
             {
                 MessageBox.Show("Введите пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -39,7 +39,7 @@ namespace TouristTourFirmView
 
             foreach (var tourist in tourists)
             {
-                if (tourist.Login == TextBoxLogin.Text && tourist.Password == TextBoxPassword.Text)
+                if (tourist.Login == TextBoxLogin.Text && tourist.Password == PasswordBox.Password)
                 {
                     touristView = tourist;
                 }
