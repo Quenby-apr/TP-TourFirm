@@ -19,34 +19,40 @@ using Unity;
 namespace TourFirmView
 {
     /// <summary>
-    /// Логика взаимодействия для WindowExcursionStatistic.xaml
+    /// Логика взаимодействия для WindowTourStatistic.xaml
     /// </summary>
-    public partial class WindowExcursionStatistic : Window
+    public partial class WindowTourStatistic : Window
     {
         [Dependency]
         public IUnityContainer Container { get; set; }
         private readonly OperatorStatisticLogic logic;
-        public WindowExcursionStatistic(OperatorStatisticLogic logic)
+
+        public WindowTourStatistic(OperatorStatisticLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
-        private void LoadData()
-        {
-            ((ColumnSeries)mcChart.Series[0]).ItemsSource = logic.GetGuideStatistic(new ReportBindingModel
-            {
-                DateFrom = DatePikerFrom.SelectedDate,
-                DateTo = DatePikerTo.SelectedDate
-            }, App.Operator.ID, true);
-            ((ColumnSeries)mcChart.Series[1]).ItemsSource = logic.GetGuideStatistic(new ReportBindingModel
-            {
-                DateFrom = DatePikerFrom.SelectedDate,
-                DateTo = DatePikerTo.SelectedDate
-            }, App.Operator.ID, false);
-        }
-        private void ButtonMake_Click(object sender, RoutedEventArgs e)
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadData();
+        }
+        private void LoadData()
+        {
+            string[] arraymonths = new string[] {
+                "Январь","Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+            };
+            ComboBoxMonths.ItemsSource = arraymonths;
+            ComboBoxMonths.SelectedItem = null;
+        }
+
+        private void ButtonMake_Click(object sender, RoutedEventArgs e)
+        {
+            int monthid = (int)ComboBoxMonths.SelectedItem;
+            ((ColumnSeries)mcChart.Series[0]).ItemsSource = logic.GetTourByMonthStatistic(new StatisticBindingModel
+            {
+                 month = monthid+1
+            }, App.Operator.ID);
         }
     }
 }

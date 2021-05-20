@@ -29,7 +29,7 @@ namespace TourFirmView
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowTravelStatistic>();
+            var form = Container.Resolve<WindowTourStatistic>();
             form.ShowDialog();
         }
 

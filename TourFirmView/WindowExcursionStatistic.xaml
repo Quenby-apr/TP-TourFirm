@@ -19,7 +19,7 @@
         <StackPanel Margin="10,50, 10, 0">
             <DVC:Chart Height="300"  Name="mcChart" Background="White">
                 <DVC:Chart.Series>
-                    <DVC:ColumnSeries Title="Экскурсии (общие)" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}"  >
+                    <DVC:ColumnSeries Title="Экскурсии (остальных)" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}"  >
                     </DVC:ColumnSeries>
                     <DVC:ColumnSeries Title="Экскурсии (пользовательские)" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}"  >
                     </DVC:ColumnSeries>

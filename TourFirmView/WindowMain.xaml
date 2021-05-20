@@ -15,7 +15,7 @@
             <MenuItem x:Name="MenuItemReport" Header="Отчёт"  Click="MenuItemReport_Click"></MenuItem>
             <MenuItem x:Name="MenuItemBindingGuide" Header="Привязка гида к экскурсии"  Click="MenuItemBindingGuide_Click"></MenuItem>
             <MenuItem x:Name="MenuItemStatistic" Header="Статистика"  Click="MenuItemStatistic_Click"></MenuItem>
-            <MenuItem x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click" Margin="30,0,0,0"></MenuItem>
+            <MenuItem x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click" Margin="20,0,0,0"></MenuItem>
         </Menu>
         <Image Source="logo.png" Stretch="UniformToFill"/>
     </StackPanel>
