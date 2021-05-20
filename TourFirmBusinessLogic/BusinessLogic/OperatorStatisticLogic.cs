@@ -92,5 +92,71 @@ namespace TourFirmBusinessLogic.BusinessLogic
             }
             return result;
         }
+        public List<Tuple<string, int>> GetExcursionCostStatistic(ReportBindingModel model)
+        {
+            var listExcursions = implementer.GetAllExcursionStatistics(model);
+
+            var excursions = new List<string>();
+            int s = 0;
+            int m = 0;
+            int h = 0;
+            foreach (var elem in listExcursions)
+            {
+                if (elem.Price < 1500)
+                {
+                    excursions.Add("низкая стоимость - 0-1499");
+                    s++;
+                }
+                if (elem.Price >= 1500 && elem.Price <=5000 )
+                {
+                    excursions.Add("средняя стоимость - 1500-5000");
+                    m++;
+                }
+                if (elem.Price > 5000)
+                {
+                    excursions.Add("высокая стоимость - 5001+");
+                    h++;
+                }
+            }
+            var result = new List<Tuple<string, int>>();
+            result.Add(new Tuple<string, int>("низкая стоимость - 0-1499", s));
+            result.Add(new Tuple<string, int>("средняя стоимость - 1500-5000", m));
+            result.Add(new Tuple<string, int>("высокая стоимость - 5001+", h));
+
+            return result;
+        }
+        public List<Tuple<string, int>> GetExcursionDurationStatistic(ReportBindingModel model)
+        {
+            var listExcursions = implementer.GetAllExcursionStatistics(model);
+
+            var excursions = new List<string>();
+            int s = 0;
+            int m = 0;
+            int h = 0;
+            foreach (var elem in listExcursions)
+            {
+                if (elem.Duration <= 2)
+                {
+                    excursions.Add("малая длительность - 0-2 часа");
+                    s++;
+                }
+                if (elem.Duration >=3  && elem.Duration <= 5)
+                {
+                    excursions.Add("средняя длительность - 3-5 часов");
+                    m++;
+                }
+                if (elem.Duration > 6)
+                {
+                    excursions.Add("большая стоимость - 6+ часов");
+                    h++;
+                }
+            }
+            var result = new List<Tuple<string, int>>();
+            result.Add(new Tuple<string, int>("малая длительность - 0-2 часа", s));
+            result.Add(new Tuple<string, int>("средняя длительность - 3-5 часов", m));
+            result.Add(new Tuple<string, int>("большая стоимость - 6+ часов", h));
+
+            return result;
+        }
     }
 }

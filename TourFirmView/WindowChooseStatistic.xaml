@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
-        Title="Окно выбора статистик" Height="282.676" Width="559.155">
+        Title="Окно выбора статистик" Height="388.975" Width="559.155">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="386*"/>
             <ColumnDefinition Width="165*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Статистика по самым популярным турам за выбранный месяц"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="45,40,0,0" VerticalAlignment="Top" Width="470" Height="80" FontSize="12" Click="Button_Click" Grid.ColumnSpan="2"/>
-        <Button Content="Статистика количества экскурсий за выбранный период"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="45,140,0,0" VerticalAlignment="Top" Width="470" Height="80" FontSize="12" Click="Button_Click_1" Grid.ColumnSpan="2"/>
-
+        <Button x:Name="tourStatistic" Content="Статистика по самым популярным турам за выбранный месяц"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="45,40,0,0" VerticalAlignment="Top" Width="470" Height="80" FontSize="12"  Grid.ColumnSpan="2" Click="tourStatistic_Click"/>
+        <Button x:Name="guideStatistic" Content="Статистика работы гидов за выбранный период"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="45,140,0,0" VerticalAlignment="Top" Width="470" Height="80" FontSize="12"  Grid.ColumnSpan="2" Click="guideStatistic_Click"/>
+        <Button x:Name="excursionStatistic" Content="Статистика по количеству экскурсий за выбранный период"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="45,240,0,0" VerticalAlignment="Top" Width="470" Height="80" FontSize="12"  Grid.ColumnSpan="2" Click="excursionStatistic_Click" />
     </Grid>
 </Window>

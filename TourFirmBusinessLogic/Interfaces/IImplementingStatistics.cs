@@ -12,5 +12,6 @@ namespace TourFirmBusinessLogic.Interfaces
         List<GuideViewModel> GetAllGuidesStatistics(ReportBindingModel model, int _OperatorID);
         List<TourViewModel> GetTourByMonthStatistic(StatisticBindingModel model, int _OperatorID);
         List<TourViewModel> GetAllTourByMonthStatistic(StatisticBindingModel model);
+        List<ExcursionViewModel> GetAllExcursionStatistics(ReportBindingModel model);
     }
 }
