@@ -81,7 +81,8 @@ namespace TourFirmDatabaseImplement.Implements
                              where travel.DateStart.Month == model.month
                              select new TourViewModel
                              {
-                                 Country = tour.Country
+                                 Country = tour.Country,
+                                 Price = tour.Price
                              };
                 return tours.ToList();
             }
@@ -99,7 +100,8 @@ namespace TourFirmDatabaseImplement.Implements
                             where travel.DateStart.Month == model.month
                             select new TourViewModel
                             {
-                                Country = tour.Country
+                                Country = tour.Country,
+                                Price = tour.Price
                             };
                 return tours.ToList();
             }

@@ -4,10 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourFirmView"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="Стастика туров по выбранному месяцу" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Стастика туров по выбранному месяцу" Height="1030.361" Width="800" Loaded="Window_Loaded">
     <Grid>
         <ComboBox x:Name="ComboBoxMonths" HorizontalAlignment="Left" Margin="180,15,0,0" VerticalAlignment="Top" Width="250" FontFamily="{StaticResource Label_fontFamily}" SelectedValuePath="ID" FontSize="15" IsReadOnly="True"/>
         <Button Content="Сформировать" Style="{StaticResource General_buttonBlue}" Width="160" FontSize="16" VerticalAlignment="Top" Height="35" Margin="270, 15, 0, 0" Click="ButtonMake_Click"></Button>
+        <DVC:Chart Height="270" Width="750" Margin="0,100,0,0" VerticalAlignment="Top" Name="mcChart" Background="White" Title="Топ посещённых стран за месяц (пользователь)" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
+            <DVC:Chart.Series>
+                <DVC:PieSeries IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}">
+                </DVC:PieSeries>
+            </DVC:Chart.Series>
+        </DVC:Chart>
+        <DVC:Chart Height="270" Width="750" Margin="0,400,0,0" VerticalAlignment="Top" Name="mcChart2" Background="White" Title="Топ посещённых стран за месяц (все)" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
+            <DVC:Chart.Series>
+                <DVC:PieSeries IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}">
+                </DVC:PieSeries>
+            </DVC:Chart.Series>
+        </DVC:Chart>
+        <DVC:Chart Height="270" Width="750" Margin="0,700,0,0" VerticalAlignment="Top" Name="mcChart3" Background="White" Title="Прибыль посещённых стран за месяц (все)" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
+            <DVC:Chart.Series>
+                <DVC:PieSeries IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}">
+                </DVC:PieSeries>
+            </DVC:Chart.Series>
+        </DVC:Chart>
     </Grid>
 </Window>
