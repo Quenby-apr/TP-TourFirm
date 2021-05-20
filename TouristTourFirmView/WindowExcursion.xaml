@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Loaded="WindowExcursion_Load"
+        Style="{StaticResource General_Window}"
          Title="Формирование экскурсии" Height="420" Width="500" ResizeMode="NoResize">
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="450" Margin="0, 30, 0, 0">
         <Label Content="Название:" Style="{StaticResource General_label}" FontSize="16"/>

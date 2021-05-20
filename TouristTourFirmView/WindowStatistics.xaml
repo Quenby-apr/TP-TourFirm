@@ -8,7 +8,8 @@
         xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" 
         mc:Ignorable="d"
         Loaded="WindowStatistics_Load"
-        Title="Статистика" Height="1000" Width="1500" ResizeMode="NoResize">
+        Style="{StaticResource General_Window}"
+        Title="Статистика" Height="900" Width="1500" ResizeMode="NoResize" WindowState="Maximized">
 
     <StackPanel>
         <DVC:Chart Height="260"  Name="mcChartTravels" Background="White" Title="Количество путешествий по месяцам. Выберите самое удобное для вас время!" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
@@ -22,13 +23,13 @@
                 <DVC:LinearAxis Orientation="Y"
                         Title="Количество путешествий"
                         Minimum="0"
-                        Interval="1"
-                        Maximum="10"
+                        Interval="2"
+                        Maximum="7"
                         Location="Right"
                         ShowGridLines="True" />
             </DVC:Chart.Axes>
         </DVC:Chart>
-        <DVC:Chart Height="260"  Name="mcChartExcursions" Background="White" Title="Топ 5 экскурсий у других пользователей. Присмотритесь!" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
+        <DVC:Chart Height="260"  Name="mcChartExcursions" Background="White" Title="Топ 5 экскурсий у других пользователей. Присмотритесь!" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black" Margin="0, 30, 0, 0">
             <DVC:Chart.Series>
                 <DVC:ColumnSeries Title="Экскурсии" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}" FontSize="12" FontStyle="Normal">
                 </DVC:ColumnSeries>
@@ -38,14 +39,14 @@
                         Title="Кол-во бронирований"
                         Minimum="0"
                         Interval="1"
-                        Maximum="10"
+                        Maximum="5"
                         Location="Right"
                         ShowGridLines="True"
                         FontSize="12" FontStyle="Normal" Foreground="Black"/>
             </DVC:Chart.Axes>
         </DVC:Chart>
-        <StackPanel Orientation="Horizontal">
-        <DVC:Chart Height="270" Width="750" Name="mcChartCountries" Background="White" Title="Топ посещённых стран" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 30, 0, 0">
+        <DVC:Chart Height="272" Width="750" Name="mcChartCountries" Background="White" Title="Посмотрите, в каких странах вы бывали чаще:" FontFamily="Gautami" FontSize="12" FontWeight="Bold" Foreground="Black">
             <DVC:Chart.Series>
                 <DVC:PieSeries IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}">
                 </DVC:PieSeries>

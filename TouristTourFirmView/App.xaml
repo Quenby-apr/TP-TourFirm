@@ -55,6 +55,10 @@
             <Setter Property="FontFamily" Value="{StaticResource Button_fontFamily}"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
+        <Style x:Key="General_passwordBox" TargetType="PasswordBox">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
         <Style x:Key="General_label" TargetType="Label">
             <Setter Property="FontFamily" Value="{StaticResource Label_fontFamily}"/>
             <Setter Property="FontWeight" Value="Medium"/>
@@ -69,6 +73,9 @@
             <Setter Property="FontFamily" Value="{StaticResource Label_fontFamily}"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="SelectionMode" Value="Single"/>
+        </Style>
+        <Style x:Key="General_Window" TargetType="Window">
+            <Setter Property="Icon" Value="C:\Users\Chocomilk\source\repos\TP-TourFirm\TouristTourFirmView\logo.ico"/>
         </Style>
     </Application.Resources>
 </Application>

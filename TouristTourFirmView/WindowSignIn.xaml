@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
          Title="Авторизация" Height="395" Width="380" ResizeMode="NoResize">
     <StackPanel HorizontalAlignment="Stretch" Height="350" Margin="20">
         <Label Content="Логин:" Style="{StaticResource General_label}" Margin="0, 30, 0, 0" FontSize="22"/>
         <TextBox x:Name="TextBoxLogin" Style="{StaticResource General_textbox}" />
         <Label Content="Пароль:" Style="{StaticResource General_label}" Margin="0, 10, 0, 0" FontSize="22"/>
-        <TextBox x:Name="TextBoxPassword" Style="{StaticResource General_textbox}"/>
+        <PasswordBox x:Name="PasswordBox" Style="{StaticResource General_passwordBox}"/>
         <Button Content="Войти" Style="{StaticResource General_buttonBlue}" Click="ButtonSignIn_Click" Margin="0, 40, 0, 0" FontSize="22" Width="300"/>
         <Button Content="Зарегистрироваться" Style="{StaticResource General_buttonGray}" Click="ButtonGoToSignUp_Click" Margin="0, 20, 0, 0" FontSize="22" Width="300"/>
     </StackPanel>

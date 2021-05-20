@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Loaded="WindowPlace_Load"
         mc:Ignorable="d"
+        Style="{StaticResource General_Window}"
         Title="Формирование мест" Height="250" Width="500" ResizeMode="NoResize">
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="450" Margin="0, 30, 0, 0">
         <Label Content="Название:" Style="{StaticResource General_label}" FontSize="16"/>

@@ -47,7 +47,7 @@ namespace TouristTourFirmView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Ошибка при попытке загрузки списка пуешествий");
+                logger.Warn("Ошибка при попытке загрузки списка путешествий");
             }
         }
 

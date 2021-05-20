@@ -6,6 +6,7 @@
         xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
         mc:Ignorable="d"
         Loaded="WindowExcursions_Load"
+        Style="{StaticResource General_Window}"
         Title="Экскурсии" Height="450" Width="900" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
