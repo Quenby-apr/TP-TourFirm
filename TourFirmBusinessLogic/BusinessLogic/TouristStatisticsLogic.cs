@@ -41,10 +41,10 @@ namespace TourFirmBusinessLogic.BusinessLogic
             return countByMonths;
         }
 
-        public List<Tuple<string, int>> GetExcursionsInfo()
+        public List<Tuple<string, int>> GetExcursionsInfo(int touristID)
         {
-            var listAllTravels = travelStorage.GetFullList();
-            var listAllExcursions = excursionStorage.GetFullList();
+            var listAllTravels = travelStorage.GetFullList().Where(rec => rec.TouristID != touristID).ToList();
+            var listAllExcursions = excursionStorage.GetFullList().Where(rec => rec.TouristID != touristID).ToList();
 
             var result = new List<Tuple<string, int>>();
 
@@ -56,7 +56,9 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
                     if (record.Count > 0)
                     {
+                        result.Remove(new Tuple<string, int>(excuirsion.Value, record[0].Item2));
                         record[0] = new Tuple<string, int>(excuirsion.Value, record[0].Item2 + 1);
+                        result.Add(record[0]);
                     }
 
                     else
@@ -66,7 +68,7 @@ namespace TourFirmBusinessLogic.BusinessLogic
                 }
             }
 
-            return result;
+            return result.OrderByDescending(rec => rec.Item2).Take(5).ToList();
         }
     }
 }
