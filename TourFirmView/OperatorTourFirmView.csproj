@@ -242,8 +242,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WindowTravelStatistic.xaml.cs">
-      <DependentUpon>WindowTravelStatistic.xaml</DependentUpon>
+    <Compile Include="WindowTourStatistic.xaml.cs">
+      <DependentUpon>WindowTourStatistic.xaml</DependentUpon>
     </Compile>
     <Page Include="WindowBindingExcursions.xaml">
       <SubType>Designer</SubType>
@@ -301,7 +301,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowTravelStatistic.xaml">
+    <Page Include="WindowTourStatistic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

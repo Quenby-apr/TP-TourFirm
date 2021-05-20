@@ -15,9 +15,9 @@ namespace TourFirmDatabaseImplement.Implements
             using (var context = new TourFirmDatabase())
             {
                 var guides = from tour in context.Tours
+                             where tour.OperatorID == _OperatorID
                              join travelTours in context.TravelTours
                              on tour.ID equals travelTours.TourID
-                             where tour.OperatorID == _OperatorID
                              join travel in context.Travels
                              on travelTours.TravelID equals travel.ID
                              where travel.DateStart >= model.DateFrom
@@ -35,15 +35,17 @@ namespace TourFirmDatabaseImplement.Implements
                              {
                                  Surname = guide.Surname,
                                  Name = guide.Name,
+                                 PhoneNumber = guide.PhoneNumber
                              };
                 return guides.ToList();
             }
         }
-        public List<GuideViewModel> GetAllGuidesStatistics(ReportBindingModel model)
+        public List<GuideViewModel> GetAllGuidesStatistics(ReportBindingModel model, int _OperatorID)
         {
             using (var context = new TourFirmDatabase())
             {
                 var guides = from tour in context.Tours
+                             where tour.OperatorID != _OperatorID
                              join travelTours in context.TravelTours
                              on tour.ID equals travelTours.TourID
                              join travel in context.Travels
@@ -62,8 +64,46 @@ namespace TourFirmDatabaseImplement.Implements
                              {
                                  Surname = guide.Surname,
                                  Name = guide.Name,
+                                 PhoneNumber = guide.PhoneNumber
                              };
                 return guides.ToList();
+            }
+        }
+        public List<TourViewModel> GetAllTourByMonthStatistic(StatisticBindingModel model)
+        {
+            using (var context = new TourFirmDatabase())
+            {
+                var tours = from tour in context.Tours
+                             join travelTours in context.TravelTours
+                             on tour.ID equals travelTours.TourID
+                             join travel in context.Travels
+                             on travelTours.TravelID equals travel.ID
+                             where travel.DateStart.Month == model.month
+                             select new TourViewModel
+                             {
+                                 Country = tour.Country,
+                                 Price = tour.Price
+                             };
+                return tours.ToList();
+            }
+        }
+        public List<TourViewModel> GetTourByMonthStatistic(StatisticBindingModel model, int _OperatorID)
+        {
+            using (var context = new TourFirmDatabase())
+            {
+                var tours = from tour in context.Tours
+                            where tour.OperatorID == _OperatorID
+                            join travelTours in context.TravelTours
+                            on tour.ID equals travelTours.TourID
+                            join travel in context.Travels
+                            on travelTours.TravelID equals travel.ID
+                            where travel.DateStart.Month == model.month
+                            select new TourViewModel
+                            {
+                                Country = tour.Country,
+                                Price = tour.Price
+                            };
+                return tours.ToList();
             }
         }
     }

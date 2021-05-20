@@ -37,12 +37,12 @@ namespace TourFirmView
             {
                 DateFrom = DatePikerFrom.SelectedDate,
                 DateTo = DatePikerTo.SelectedDate
-            }, 0);
+            }, App.Operator.ID, true);
             ((ColumnSeries)mcChart.Series[1]).ItemsSource = logic.GetGuideStatistic(new ReportBindingModel
             {
                 DateFrom = DatePikerFrom.SelectedDate,
                 DateTo = DatePikerTo.SelectedDate
-            }, App.Operator.ID);
+            }, App.Operator.ID, false);
         }
         private void ButtonMake_Click(object sender, RoutedEventArgs e)
         {

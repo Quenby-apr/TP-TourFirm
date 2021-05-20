@@ -11,8 +11,8 @@
             <ColumnDefinition Width="386*"/>
             <ColumnDefinition Width="165*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Ежемесячная статистика путешествий по выбранному году"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="60,40,0,0" VerticalAlignment="Top" Width="440" Height="80" FontSize="12" Click="Button_Click" Grid.ColumnSpan="2"/>
-        <Button Content="Статистика количества экскурсий за выбранный период"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="60,140,0,0" VerticalAlignment="Top" Width="440" Height="80" FontSize="12" Click="Button_Click_1" Grid.ColumnSpan="2"/>
+        <Button Content="Статистика по самым популярным турам за выбранный месяц"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="45,40,0,0" VerticalAlignment="Top" Width="470" Height="80" FontSize="12" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <Button Content="Статистика количества экскурсий за выбранный период"  Style="{StaticResource General_buttonBlue}" HorizontalAlignment="Left" Margin="45,140,0,0" VerticalAlignment="Top" Width="470" Height="80" FontSize="12" Click="Button_Click_1" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
