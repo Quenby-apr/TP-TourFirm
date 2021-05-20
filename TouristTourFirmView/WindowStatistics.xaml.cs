@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Controls.DataVisualization.Charting;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TourFirmBusinessLogic.BusinessLogic;
 using Unity;
 
@@ -34,9 +22,10 @@ namespace TouristTourFirmView
 
         private void LoadData()
         {
-            /*((ColumnSeries)mcChartTravels.Series[1]).ItemsSource = logic.GetCountByMonths(App.Tourist.ID);
+            ((ColumnSeries)mcChartTravels.Series[0]).ItemsSource = logic.GetCountByMonths(0);
+            ((ColumnSeries)mcChartTravels.Series[1]).ItemsSource = logic.GetCountByMonths(App.Tourist.ID);
             ((ColumnSeries)mcChartExcursions.Series[0]).ItemsSource = logic.GetExcursionsInfo(App.Tourist.ID);
-            ((PieSeries)mcChartCountries.Series[0]).ItemsSource = logic.GetCountriesInfo(App.Tourist.ID);*/
+            ((PieSeries)mcChartCountries.Series[0]).ItemsSource = logic.GetCountriesInfo(App.Tourist.ID);
         }
 
         private void WindowStatistics_Load(object sender, RoutedEventArgs e)
