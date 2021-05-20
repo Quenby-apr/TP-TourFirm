@@ -198,7 +198,7 @@ namespace TourFirmDatabaseImplement.Implements
                 {
                     if (model.TravelExcursions.ContainsKey(travelExcursion.ExcursionID))
                     {
-                        model.TravelTours.Remove(travelExcursion.ExcursionID);
+                        model.TravelExcursions.Remove(travelExcursion.ExcursionID);
                     }
                 }
                 context.SaveChanges();

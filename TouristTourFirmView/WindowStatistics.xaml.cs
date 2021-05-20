@@ -34,8 +34,9 @@ namespace TouristTourFirmView
 
         private void LoadData()
         {
-            ((ColumnSeries)mcChart.Series[0]).ItemsSource = logic.GetCountByMonths(0);
-            ((ColumnSeries)mcChart.Series[1]).ItemsSource = logic.GetCountByMonths(App.Tourist.ID);
+            ((ColumnSeries)mcChartTravels.Series[0]).ItemsSource = logic.GetCountByMonths(0);
+            ((ColumnSeries)mcChartTravels.Series[1]).ItemsSource = logic.GetCountByMonths(App.Tourist.ID);
+            ((ColumnSeries)mcChartExcursions.Series[0]).ItemsSource = logic.GetExcursionsInfo();
         }
 
         private void WindowStatistics_Load(object sender, RoutedEventArgs e)

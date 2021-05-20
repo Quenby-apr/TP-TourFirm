@@ -8,10 +8,10 @@
         xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" 
         mc:Ignorable="d"
         Loaded="WindowStatistics_Load"
-        Title="Статистика" Height="700" Width="1000" ResizeMode="NoResize">
+        Title="Статистика" Height="700" Width="1500" ResizeMode="NoResize">
 
     <StackPanel>
-        <DVC:Chart Height="300"  Name="mcChart" Background="White">
+        <DVC:Chart Height="300"  Name="mcChartTravels" Background="White">
             <DVC:Chart.Series>
                 <DVC:ColumnSeries Title="Путешествия (общие)" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}"  >
                 </DVC:ColumnSeries>
@@ -21,6 +21,21 @@
             <DVC:Chart.Axes>
                 <DVC:LinearAxis Orientation="Y"
                         Title="Количество путешествий"
+                        Minimum="0"
+                        Interval="1"
+                        Maximum="5"
+                        Location="Right"
+                        ShowGridLines="True" />
+            </DVC:Chart.Axes>
+        </DVC:Chart>
+        <DVC:Chart Height="300"  Name="mcChartExcursions" Background="White">
+            <DVC:Chart.Series>
+                <DVC:ColumnSeries Title="Экскурсии" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}" >
+                </DVC:ColumnSeries>
+            </DVC:Chart.Series>
+            <DVC:Chart.Axes>
+                <DVC:LinearAxis Orientation="Y"
+                        Title="Количество бронирований"
                         Minimum="0"
                         Interval="1"
                         Maximum="5"
