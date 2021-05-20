@@ -11,12 +11,12 @@ namespace TourFirmBusinessLogic.BusinessLogic
     public class TouristStatisticsLogic
     {
         private readonly ITravelStorage travelStorage;
-        private readonly IExcursionStorage excursionStorage;
+        private readonly ITourStorage tourStorage;
 
-        public TouristStatisticsLogic(ITravelStorage travelStorage, IExcursionStorage excursionStorage)
+        public TouristStatisticsLogic(ITravelStorage travelStorage, ITourStorage tourStorage)
         {
             this.travelStorage = travelStorage;
-            this.excursionStorage = excursionStorage;
+            this.tourStorage = tourStorage;
         }
 
         public List<Tuple<string, int>> GetCountByMonths(int touristID)
@@ -41,10 +41,9 @@ namespace TourFirmBusinessLogic.BusinessLogic
             return countByMonths;
         }
 
-        public List<Tuple<string, int>> GetExcursionsInfo()
+        public List<Tuple<string, int>> GetExcursionsInfo(int touristID)
         {
-            var listAllTravels = travelStorage.GetFullList();
-            var listAllExcursions = excursionStorage.GetFullList();
+            var listAllTravels = travelStorage.GetFullList().Where(rec => rec.TouristID != touristID).ToList();
 
             var result = new List<Tuple<string, int>>();
 
@@ -56,7 +55,9 @@ namespace TourFirmBusinessLogic.BusinessLogic
 
                     if (record.Count > 0)
                     {
+                        result.Remove(record[0]);
                         record[0] = new Tuple<string, int>(excuirsion.Value, record[0].Item2 + 1);
+                        result.Add(record[0]);
                     }
 
                     else
@@ -65,8 +66,43 @@ namespace TourFirmBusinessLogic.BusinessLogic
                     }
                 }
             }
+            return result.OrderByDescending(rec => rec.Item2).Take(5).ToList();
+        }
 
-            return result;
+        public List<Tuple<string, int>> GetCountriesInfo(int touristID)
+        {
+            var listAllTravels = travelStorage.GetFilteredList(new TravelBindingModel
+            {
+                TouristID = touristID
+            });
+
+            var result = new List<Tuple<string, int>>();
+
+            foreach (var travel in listAllTravels)
+            {
+                foreach (var travelTour in travel.TravelTours)
+                {
+                    var tour = tourStorage.GetElement(new TourBindingModel
+                    {
+                        ID = travelTour.Key
+                    });
+
+                    var record = result.Where(rec => rec.Item1.Equals(tour.Country)).Select(rec => new Tuple<string, int>(rec.Item1, rec.Item2)).ToList();
+
+                    if (record.Count > 0)
+                    {
+                        result.Remove(record[0]);
+                        record[0] = new Tuple<string, int>(tour.Country, record[0].Item2 + 1);
+                        result.Add(record[0]);
+                    }
+
+                    else
+                    {
+                        result.Add(new Tuple<string, int>(tour.Country, 1));
+                    }
+                }
+            }
+            return result.OrderByDescending(rec => rec.Item2).ToList();
         }
     }
 }
