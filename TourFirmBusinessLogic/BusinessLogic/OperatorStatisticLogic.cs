@@ -76,10 +76,10 @@ namespace TourFirmBusinessLogic.BusinessLogic
             }
 
             var tours = listTours.OrderByDescending(rec => rec.Price).GroupBy(rec =>  rec.Country, rec => rec.Price )
-                .Select(rec => new Tuple<string, decimal>(rec.Key, rec.Sum())).ToList();
+                .Select(rec => new Tuple<string, decimal>(rec.Key, rec.Sum())).ToList().OrderByDescending(rec => rec.Item2).ToList();
 
             var result = listTours.OrderByDescending(rec => rec.Price).GroupBy(rec => rec.Country, rec => rec.Price)
-                .Select(rec => new Tuple<string, decimal>(rec.Key, rec.Sum())).Take(5).ToList();
+                .Select(rec => new Tuple<string, decimal>(rec.Key, rec.Sum())).Take(5).ToList().OrderByDescending(rec => rec.Item2).ToList();
 
             if (tours.Count > 5)
             {

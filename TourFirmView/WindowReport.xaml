@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TourFirmView"
         mc:Ignorable="d"
         Style="{StaticResource General_Window}"
-        Title="Отчёт по гидам" Height="480" Width="1200" ResizeMode="NoResize">
+        Title="Отчёт по гидам" Height="600" Width="1200" ResizeMode="NoResize">
     <StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50">
             <Label Content="c" Style="{StaticResource General_label}" FontSize="15" Margin="10,5" VerticalContentAlignment="Center"/>
@@ -19,13 +19,13 @@
             <Button Content="в PDF" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonToPdf_Click"></Button>
             <Button Content="На почту" Style="{StaticResource General_buttonBlue}" Width="130" FontSize="14" VerticalAlignment="Center" Height="30" Margin="20, 0, 0, 0" Click="ButtonToMail_Click"></Button>
         </StackPanel>
-        <DataGrid x:Name="GuidesGrid" Style="{StaticResource General_datagrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <DataGrid x:Name="GuidesGrid" Style="{StaticResource General_datagrid}" MaxHeight="500">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата начала путешествия" Binding="{Binding Path=DateStartTravel, StringFormat=dd/MM/yyyy}" Width="0.7*" />
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=GuideSurname}" Width="0.6*" />
                 <DataGridTextColumn Header="Имя" Binding="{Binding Path=GuideName}" Width="0.6*" />
                 <DataGridTextColumn Header="Место работы" Binding="{Binding Path=GuideWorkPlace}" Width="0.5*" />
-                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=ExcursionName}" Width="1*" />
+                <DataGridTextColumn Header="Название экскурсии" Binding="{Binding Path=ExcursionName}" Width="1.2*" />
                 <DataGridTextColumn Header="Название тура" Binding="{Binding Path=TourName}" Width="1*" />
             </DataGrid.Columns>
         </DataGrid>
